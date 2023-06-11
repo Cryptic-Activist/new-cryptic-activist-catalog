@@ -1,0 +1,17 @@
+@import '../../styles/globals.module.scss';
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 18px;
+  transform: translateY(-2px);
+  cursor: pointer;
+  text-decoration: none;
+  color: $secondary;
+  h1 {
+    font-size: 0.8rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}

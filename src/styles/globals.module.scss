@@ -1,8 +1,10 @@
 $primary: #ffcd2b;
 $secondary: #000;
 
-$default-box-shadow: rgba(0, 0, 0, 0.2);
+$box-shadow-default-color: rgba(0, 0, 0, 0.3);
 
 $navbigation-bar-height: calc(4rem + 1px);
 $footer-height: calc(15rem + 1px);
 $main-content-height: calc(100vh - $navbigation-bar-height - $footer-height);
+
+$hover-button-background-color: rgba(0, 0, 0, 0.07);

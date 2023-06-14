@@ -1,8 +1,10 @@
 import { ReactElement } from 'react';
 
-export type Button = {
-  type?: 'submit' | 'button';
-  theme?: 'primary';
-  label: string | ReactElement[];
+export type Theme = 'primary' | 'secondary' | 'ghost' | 'transparent';
+
+export type ButtonProps = {
+  type?: 'button' | 'submit';
   href?: string;
+  children: string | ReactElement[];
+  theme?: Theme;
 };

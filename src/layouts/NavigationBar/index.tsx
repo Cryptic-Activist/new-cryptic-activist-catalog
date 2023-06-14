@@ -1,18 +1,14 @@
-import { Brand, Button } from '@/components';
+import { Brand } from '@/components';
 
 import styles from './index.module.scss';
+import Menu from './Menu';
 
 const NavigationBar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <Brand />
-        <div className={styles.menu}>
-          <Button label="Home" href="/" />
-          <Button label="Vendors" href="/vendors" />
-          <Button label="Help" href="/help" />
-          <Button label="Log in" />
-        </div>
+        <Menu />
       </div>
     </nav>
   );

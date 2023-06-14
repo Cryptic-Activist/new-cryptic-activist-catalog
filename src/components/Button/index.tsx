@@ -1,30 +1,34 @@
-import Link from 'next/link';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 import styles from './index.module.scss';
+import { ButtonProps } from './types';
 
-import { Button } from './types';
+const Button: FC<ButtonProps> = ({
+  children,
+  type = 'button',
+  href,
+  theme = 'primary',
+}) => {
+  const primary = theme === 'primary' ? styles.primary : null;
+  const secondary = theme === 'secondary' ? styles.secondary : null;
+  const ghost = theme === 'ghost' ? styles.ghost : null;
+  const transparent = theme === 'transparent' ? styles.transparent : null;
 
-const Button: FC<Button> = ({ type, label, theme = 'primary', href }) => {
   return (
     <>
       {href ? (
-        <Link
+        <a
           href={href}
-          className={`${styles.container} ${
-            theme === 'primary' && styles.primary
-          }`}
+          className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
         >
-          {label}
-        </Link>
+          {children}
+        </a>
       ) : (
         <button
           type={type}
-          className={`${styles.container} ${
-            theme === 'primary' && styles.primary
-          }`}
+          className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
         >
-          {label}
+          {children}
         </button>
       )}
     </>

@@ -8,6 +8,7 @@ const Button: FC<ButtonProps> = ({
   type = 'button',
   href,
   theme = 'primary',
+  onClick,
 }) => {
   const primary = theme === 'primary' ? styles.primary : null;
   const secondary = theme === 'secondary' ? styles.secondary : null;
@@ -27,6 +28,7 @@ const Button: FC<ButtonProps> = ({
         <button
           type={type}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
+          onClick={onClick}
         >
           {children}
         </button>

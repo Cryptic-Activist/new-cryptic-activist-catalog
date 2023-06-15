@@ -1,0 +1,21 @@
+@import '../../../styles/globals.module.scss';
+
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $semi-transparent-background;
+}
+
+.container {
+  background-color: $primary;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  box-shadow: 0px 0px 6px 0px $box-shadow-default-color;
+  border-radius: 0.4rem;
+}

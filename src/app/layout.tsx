@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google';
 
-import { Footer, NavigationBar } from '@/layouts';
+import { AllModals, Footer, NavigationBar } from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
@@ -19,6 +19,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <title>Cryptic Activist Catalog</title>
       </head>
       <body className={`${inter.className} ${styles.body}`}>
+        <AllModals />
         <NavigationBar />
         <main>{children}</main>
         <Footer />

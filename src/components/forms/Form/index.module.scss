@@ -1,0 +1,11 @@
+@import '../../../styles/globals.module.scss';
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.errorMessage {
+  color: #da1e28;
+}

@@ -7,5 +7,6 @@ export type ButtonProps = {
   href?: string;
   children: string | ReactElement[];
   theme?: Theme;
+  padding?: string;
   onClick?: () => void;
 };

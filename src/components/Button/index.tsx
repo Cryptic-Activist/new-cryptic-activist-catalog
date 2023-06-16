@@ -8,6 +8,7 @@ const Button: FC<ButtonProps> = ({
   type = 'button',
   href,
   theme = 'primary',
+  padding,
   onClick,
 }) => {
   const primary = theme === 'primary' ? styles.primary : null;
@@ -21,6 +22,9 @@ const Button: FC<ButtonProps> = ({
         <a
           href={href}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
+          style={{
+            padding,
+          }}
         >
           {children}
         </a>
@@ -29,6 +33,9 @@ const Button: FC<ButtonProps> = ({
           type={type}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
           onClick={onClick}
+          style={{
+            padding,
+          }}
         >
           {children}
         </button>

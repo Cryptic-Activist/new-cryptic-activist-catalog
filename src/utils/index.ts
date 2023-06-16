@@ -1,5 +1,4 @@
 export * from './axios';
-export * from './blockchain';
 export * from './browser';
 export * from './canvas';
 export * from './checkers';
@@ -7,6 +6,5 @@ export * from './formatter';
 export * from './generators';
 export * from './localStorage';
 export * from './scroll';
-export * from './socketio';
 export * from './string';
 export * from './trade';

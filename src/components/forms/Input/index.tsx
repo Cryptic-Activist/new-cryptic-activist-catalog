@@ -21,7 +21,7 @@ const Input: FC<InputProps> = ({
     {id && id.length && label && type !== 'hidden' && (
       <div className={styles.labelLinkContainer}>
         <label htmlFor={id} className={styles.label}>
-          {`${toCapitalize(label)} `}
+          {`${toCapitalize(label)} ${required && '*'}`}
         </label>
         {sideButton}
       </div>

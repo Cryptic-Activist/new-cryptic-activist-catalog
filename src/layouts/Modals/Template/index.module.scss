@@ -18,4 +18,23 @@
   padding: 2rem;
   box-shadow: 0px 0px 6px 0px $box-shadow-default-color;
   border-radius: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.heading {
+  position: relative;
+  font-size: 1.1rem;
+  margin-left: 10px;
+  font-weight: 500;
+  &::before {
+    position: absolute;
+    transform: translate(-10px, 2px);
+    content: '';
+    width: 2px;
+    height: 18px;
+    display: block;
+    background-color: $secondary;
+  }
 }

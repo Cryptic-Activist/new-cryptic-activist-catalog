@@ -6,22 +6,15 @@ import { Template } from '@/layouts/Modals';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import styles from './index.module.scss';
-import { loginResolver } from './zod';
+import { registerResolver } from './zod';
 
-const Login = () => {
+const Register = () => {
   const links = [
     {
-      label: "Don't have an account yet?",
+      label: 'Already have an account',
       onClick: () => {
         resetNavigationBar();
-        toggleModal('register');
-      },
-    },
-    {
-      label: 'Forgot password?',
-      onClick: () => {
-        resetNavigationBar();
-        toggleModal('resetPassword');
+        toggleModal('login');
       },
     },
     {
@@ -38,14 +31,33 @@ const Login = () => {
   };
 
   return (
-    <Template width="17rem" heading="Login">
+    <Template width="17rem" heading="Register">
       <div className={styles.container}>
-        <Form onSubmit={onSubmit} resolver={loginResolver}>
+        <Form onSubmit={onSubmit} resolver={registerResolver}>
+          <Input
+            type="text"
+            name="names.firstName"
+            id="names.firstName"
+            required
+            disabled
+            label="First Name"
+            placeholder="First Name"
+          />
+          <Input
+            type="text"
+            name="names.lastName"
+            id="names.lastName"
+            required
+            disabled
+            label="Last Name"
+            placeholder="Last Name"
+          />
           <Input
             type="text"
             name="username"
             id="username"
             required
+            disabled
             label="Username"
             placeholder="Username"
           />
@@ -57,9 +69,16 @@ const Login = () => {
             label="Password"
             placeholder="Password"
           />
-
+          <Input
+            type="password"
+            name="password2"
+            id="password2"
+            required
+            label="Confirm Password"
+            placeholder="Confirm Password"
+          />
           <Button type="submit" padding="1rem 0">
-            Login
+            Register
           </Button>
         </Form>
 
@@ -69,4 +88,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

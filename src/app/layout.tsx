@@ -1,11 +1,11 @@
-import { Inter } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 
 import { AllModals, Footer, NavigationBar } from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
 
-const inter = Inter({ subsets: ['latin'] });
+const montserrat = Montserrat({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +18,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <title>Cryptic Activist Catalog</title>
       </head>
-      <body className={`${inter.className} ${styles.body}`}>
+      <body className={`${montserrat.className} ${styles.body}`}>
         <AllModals />
         <NavigationBar />
         <main>{children}</main>

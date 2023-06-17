@@ -1,7 +1,7 @@
-import { Brand } from '@/components';
+import { Brand, Search } from '@/components';
 
-import Search from '@/components/Search';
 import Menu from './Menu';
+
 import styles from './index.module.scss';
 
 const NavigationBar = () => {

@@ -1,0 +1,28 @@
+@import '../../../styles/globals.module.scss';
+
+.sideLinks {
+  display: flex;
+  gap: 4rem;
+}
+
+.linksContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  .heading {
+    font-size: 1.1rem;
+    color: $secondary;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    li {
+      list-style: none;
+      a {
+        color: $secondary;
+        text-decoration: none;
+      }
+    }
+  }
+}

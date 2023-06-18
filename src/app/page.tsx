@@ -6,10 +6,6 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <SearchOffer />
-      <SearchOffer />
-
-      <SearchOffer />
-      <SearchOffer />
     </div>
   );
 }

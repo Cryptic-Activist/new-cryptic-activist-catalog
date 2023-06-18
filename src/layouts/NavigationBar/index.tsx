@@ -1,6 +1,7 @@
-import { Brand, Search } from '@/components';
+import { Brand } from '@/components';
 
 import Menu from './Menu';
+import Search from './Search';
 
 import styles from './index.module.scss';
 

@@ -39,8 +39,8 @@ export const links: Links = [
     heading: 'About Cryptic Activist Catalog',
     links: [
       {
-        label: 'Terms & Conditions',
-        href: '/terms-and-conditions',
+        label: 'About Us',
+        href: '/about-us',
       },
     ],
   },

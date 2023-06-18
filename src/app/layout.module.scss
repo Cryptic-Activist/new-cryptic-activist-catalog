@@ -1,6 +1,7 @@
 @import '../styles/globals.module.scss';
 
-.body {
-  display: grid;
-  grid-template-rows: $navbigation-bar-height $main-content-height $footer-height;
+.main {
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - $navbigation-bar-height - $footer-height);
 }

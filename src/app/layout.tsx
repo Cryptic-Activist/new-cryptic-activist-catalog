@@ -18,10 +18,10 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <title>Cryptic Activist Catalog</title>
       </head>
-      <body className={`${montserrat.className} ${styles.body}`}>
+      <body className={`${montserrat.className}`}>
         <AllModals />
         <NavigationBar />
-        <main>{children}</main>
+        <main className={styles.main}>{children}</main>
         <Footer />
       </body>
     </html>

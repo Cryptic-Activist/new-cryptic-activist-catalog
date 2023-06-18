@@ -1,6 +1,6 @@
 import { Montserrat } from 'next/font/google';
 
-import { AllModals, Footer, NavigationBar } from '@/layouts';
+import { AllModals, Footer, InitialFetch, NavigationBar } from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
@@ -19,6 +19,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <title>Cryptic Activist Catalog</title>
       </head>
       <body className={`${montserrat.className}`}>
+        <InitialFetch />
         <AllModals />
         <NavigationBar />
         <main className={styles.main}>{children}</main>

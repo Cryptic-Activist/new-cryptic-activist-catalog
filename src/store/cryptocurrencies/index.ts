@@ -40,6 +40,6 @@ export const getCryptocurrencies = async () => {
     errors: [],
     fetched: true,
     loading: false,
-    data: cryptocurrencies!.data,
+    data: cryptocurrencies!.data.results,
   });
 };

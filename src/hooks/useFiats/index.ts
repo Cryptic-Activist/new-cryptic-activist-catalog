@@ -1,7 +1,7 @@
 import { $fiats, getFiats as getFiatsStore } from '@/store';
 import { useStore } from '@nanostores/react';
 
-const useNavigationBar = () => {
+const useFiats = () => {
   const fiats = useStore($fiats);
 
   const getFiats = () => {
@@ -11,4 +11,4 @@ const useNavigationBar = () => {
   return { fiats, getFiats };
 };
 
-export default useNavigationBar;
+export default useFiats;

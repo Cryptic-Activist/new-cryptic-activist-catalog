@@ -40,6 +40,6 @@ export const getFiats = async () => {
     errors: [],
     fetched: true,
     loading: false,
-    data: fiats!.data,
+    data: fiats!.data.results,
   });
 };

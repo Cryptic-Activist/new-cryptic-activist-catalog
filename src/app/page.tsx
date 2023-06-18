@@ -1,11 +1,11 @@
-import styles from './page.module.scss';
+import { OfferList } from '@/layouts';
 
-import { SearchOffer } from '@/components';
+import styles from './page.module.scss';
 
 export default function Home() {
   return (
     <div className={styles.container}>
-      <SearchOffer />
+      <OfferList />
     </div>
   );
 }

@@ -1,0 +1,9 @@
+@import '../../../../styles/globals.module.scss';
+
+.offerListSection {
+  border-top: 1px solid $secondary;
+  border-bottom: 1px solid $secondary;
+  height: 40rem;
+  background-color: $grey-background;
+  box-shadow: inset 0px 0px 6px 0px $box-shadow-default-color;
+}

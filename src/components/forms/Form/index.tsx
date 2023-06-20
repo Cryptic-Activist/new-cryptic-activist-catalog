@@ -19,7 +19,6 @@ const Form: FC<FormProps> = ({
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       {Array.isArray(children)
         ? children.map((child, index) => {
-            // console.log({ child });
             return (
               <Fragment key={index}>
                 {child.props.name

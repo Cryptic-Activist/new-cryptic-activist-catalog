@@ -15,14 +15,6 @@ export const checkRequest = (toCheck) => {
   }
 };
 
-// export const checkIsOnline = () => {
-// 	if (document !== undefined) {
-// 		window.addEventListener("offline", () => {
-// 			console.log("Im offline");
-// 		});
-// 	}
-// };
-
 export const isLoggedIn = (user: UserState) =>
   Object.entries(user.data).length > 0 &&
   user.errors.length === 0 &&

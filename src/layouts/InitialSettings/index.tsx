@@ -4,20 +4,25 @@ import { useEffect } from 'react';
 
 import { DEFAULT_CRYPTOCURRENCY_ID, DEFAULT_FIAT_SYMBOL } from '@/constants';
 import { useApp, useCryptocurrencies, useFiats } from '@/hooks';
-import { CryptocurrencyId, FiatSymbol } from './types';
+import { CryptocurrencyCoinGeckoId, FiatSymbol } from './types';
 
-const useInitialFetch = () => {
+const InitialSettings = () => {
   const { getFiats, getFiat, fiats } = useFiats();
   const { getCryptocurrencies, getCryptocurrency, cryptocurrencies } =
     useCryptocurrencies();
   const { setValue } = useApp();
 
-  const setDefaultCryptocurrency = (id: CryptocurrencyId) => {
-    const cryptocurrency = getCryptocurrency(id);
+  const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
+    const cryptocurrency = getCryptocurrency(coinGeckoId);
 
     setValue({
       defaults: {
-        cryptocurrency,
+        cryptocurrency: {
+          coingeckoId: cryptocurrency?.coingeckoId!,
+          id: cryptocurrency?.id!,
+          name: cryptocurrency?.name!,
+          symbol: cryptocurrency?.symbol!,
+        },
       },
     });
   };
@@ -26,7 +31,11 @@ const useInitialFetch = () => {
     const fiat = getFiat(symbol);
     setValue({
       defaults: {
-        fiat,
+        fiat: {
+          id: fiat?.id!,
+          name: fiat?.name!,
+          symbol: fiat?.symbol!,
+        },
       },
     });
   };
@@ -37,14 +46,18 @@ const useInitialFetch = () => {
   }, []);
 
   useEffect(() => {
-    setDefaultCryptocurrency(DEFAULT_CRYPTOCURRENCY_ID);
+    if (cryptocurrencies.data) {
+      setDefaultCryptocurrency(DEFAULT_CRYPTOCURRENCY_ID);
+    }
   }, [cryptocurrencies.data]);
 
   useEffect(() => {
-    setDefaultFiat(DEFAULT_FIAT_SYMBOL);
+    if (fiats.data) {
+      setDefaultFiat(DEFAULT_FIAT_SYMBOL);
+    }
   }, [fiats.data]);
 
   return <></>;
 };
 
-export default useInitialFetch;
+export default InitialSettings;

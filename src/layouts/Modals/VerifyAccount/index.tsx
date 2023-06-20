@@ -33,9 +33,7 @@ const VerifyAccount = () => {
     setStep('verification');
   };
 
-  const onSubmitVerify = async (data: any) => {
-    console.log(data);
-  };
+  const onSubmitVerify = async (data: any) => {};
 
   return (
     <Template width="17rem" heading="Verify Account">

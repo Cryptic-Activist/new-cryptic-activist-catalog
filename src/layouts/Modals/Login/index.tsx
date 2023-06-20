@@ -33,9 +33,7 @@ const Login = () => {
     },
   ];
 
-  const onSubmit = async (data: any) => {
-    console.log(data);
-  };
+  const onSubmit = async (data: any) => {};
 
   return (
     <Template width="17rem" heading="Login">

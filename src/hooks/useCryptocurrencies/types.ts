@@ -1,1 +1,1 @@
-export type CryptocurrencyId = string;
+export type CryptocurrencyCoinGeckoId = string;

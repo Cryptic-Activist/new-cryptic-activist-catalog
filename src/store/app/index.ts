@@ -1,5 +1,5 @@
 import { map } from 'nanostores';
-import { AppState, AppStateSetter } from './types';
+import { AppState, AppStateSetter, Value } from './types';
 
 export const $app = map<AppState>({
   defaults: {
@@ -10,6 +10,7 @@ export const $app = map<AppState>({
   isMobile: false,
   type: 'buy',
   warning: [],
+  currentPrice: null,
 });
 
 const setter = ({
@@ -18,6 +19,7 @@ const setter = ({
   isMobile,
   type,
   warnings,
+  currentPrice,
 }: AppStateSetter) => {
   const app = $app.get();
 
@@ -29,6 +31,7 @@ const setter = ({
   const localIsMobile = isMobile ?? app.isMobile;
   const localType = type ?? app.type;
   const localWarnings = warnings ?? app.warning;
+  const localCurrentPrice = currentPrice ?? app.currentPrice;
 
   $app.set({
     defaults: localDefaults,
@@ -36,5 +39,10 @@ const setter = ({
     isMobile: localIsMobile,
     type: localType,
     warning: localWarnings,
+    currentPrice: localCurrentPrice,
   });
+};
+
+export const setValue = (value: Value) => {
+  setter(value);
 };

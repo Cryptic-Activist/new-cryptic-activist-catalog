@@ -10,12 +10,15 @@ type Defaults = {
   cryptocurrency: Cryptocurrency | null;
 };
 
+type CurrentPrice = number | null;
+
 export type AppState = {
   isMobile: boolean;
   dimensions: Dimensions;
   warning: string[];
   type: Type;
   defaults: Defaults;
+  currentPrice: CurrentPrice;
 };
 
 export type AppStateSetter = {
@@ -27,4 +30,7 @@ export type AppStateSetter = {
     fiat?: Fiat | null;
     cryptocurrency?: Cryptocurrency | null;
   };
+  currentPrice?: CurrentPrice;
 };
+
+export type Value = AppStateSetter;

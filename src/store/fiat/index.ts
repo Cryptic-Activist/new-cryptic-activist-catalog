@@ -12,6 +12,6 @@ const setter = ({ id, name, symbol }: FiatSetter) => {
   });
 };
 
-export const setFiat = async (fiat: Fiat) => {
+export const setFiat = (fiat: Fiat) => {
   setter(fiat);
 };

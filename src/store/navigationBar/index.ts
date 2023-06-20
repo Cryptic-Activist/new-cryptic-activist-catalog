@@ -57,19 +57,19 @@ export const toggleDrawer = (drawer: Drawer) => {
   setter({ drawers });
 };
 
-export const toggleModal = async (modal: Modal) => {
+export const toggleModal = (modal: Modal) => {
   const modals = $navigationBar.get().modals;
   modals[modal] = !modals[modal];
   setter({ modals });
 };
 
-export const toggleTooltip = async (tooltip: Tooltip) => {
+export const toggleTooltip = (tooltip: Tooltip) => {
   const tooltips = $navigationBar.get().tooltips;
   tooltips[tooltip] = !tooltips[tooltip];
   setter({ tooltips });
 };
 
-export const resetNavigationBar = async () => {
+export const resetNavigationBar = () => {
   setter({
     drawers: {
       user: false,

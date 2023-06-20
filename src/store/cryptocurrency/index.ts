@@ -17,6 +17,6 @@ const setter = ({ coingeckoId, id, name, symbol }: CryptocurrencySetter) => {
   });
 };
 
-export const setCryptocurrency = async (cryptocurrency: Cryptocurrency) => {
+export const setCryptocurrency = (cryptocurrency: Cryptocurrency) => {
   setter(cryptocurrency);
 };

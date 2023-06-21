@@ -1,11 +1,11 @@
-import { Montserrat } from 'next/font/google';
+import { Lato } from 'next/font/google';
 
 import { AllModals, Footer, InitialSettings, NavigationBar } from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
 
-const montserrat = Montserrat({ subsets: ['latin'] });
+const lato = Lato({ weight: '400', subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +18,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <title>Cryptic Activist Catalog</title>
       </head>
-      <body className={`${montserrat.className}`}>
+      <body className={`${lato.className}`}>
         <InitialSettings />
         <AllModals />
         <NavigationBar />

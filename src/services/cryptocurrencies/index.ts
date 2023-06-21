@@ -3,7 +3,7 @@ import { AxiosResponse, fetchGet } from '@/services/axios';
 
 export const fetchCryptocurrencies =
   async (): Promise<AxiosResponse | null> => {
-    const response = await fetchGet(`${CRYPTOCURRENCY_API}/cryptocurrencies`);
+    const response = await fetchGet(CRYPTOCURRENCY_API + '/cryptocurrencies');
 
     if (response.status !== 200) {
       return null;

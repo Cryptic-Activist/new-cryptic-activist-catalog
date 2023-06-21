@@ -3,7 +3,7 @@ import { Fiat } from '@/store/fiat/types';
 
 type Dimensions = [number, number];
 
-type Type = 'buy' | 'sell';
+export type Type = 'buy' | 'sell';
 
 type Defaults = {
   fiat: Fiat | null;
@@ -34,3 +34,5 @@ export type AppStateSetter = {
 };
 
 export type Value = AppStateSetter;
+
+export type SetCurrentPrice = (id: string, fiatSymbol: string) => Promise<void>;

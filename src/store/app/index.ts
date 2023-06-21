@@ -1,5 +1,6 @@
+import { fetchCurrentPrice } from '@/services/app';
 import { map } from 'nanostores';
-import { AppState, AppStateSetter, Value } from './types';
+import { AppState, AppStateSetter, SetCurrentPrice, Value } from './types';
 
 export const $app = map<AppState>({
   defaults: {
@@ -45,4 +46,17 @@ const setter = ({
 
 export const setValue = (value: Value) => {
   setter(value);
+};
+
+export const setCurrentPrice: SetCurrentPrice = async (id, fiatSymbol) => {
+  const currentPrice = await fetchCurrentPrice(id, fiatSymbol);
+
+  if (!currentPrice) {
+    return;
+  }
+
+  const crypto = Object.values(currentPrice.data.results)[0] as object;
+  const price: number = Object.values(crypto)[0];
+
+  setter({ currentPrice: price });
 };

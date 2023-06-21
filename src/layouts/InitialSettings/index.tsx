@@ -10,7 +10,7 @@ const InitialSettings = () => {
   const { getFiats, getFiat, fiats } = useFiats();
   const { getCryptocurrencies, getCryptocurrency, cryptocurrencies } =
     useCryptocurrencies();
-  const { setValue } = useApp();
+  const { setValue, setCurrentPrice, app } = useApp();
 
   const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
     const cryptocurrency = getCryptocurrency(coinGeckoId);
@@ -56,6 +56,12 @@ const InitialSettings = () => {
       setDefaultFiat(DEFAULT_FIAT_SYMBOL);
     }
   }, [fiats.data]);
+
+  useEffect(() => {
+    setCurrentPrice();
+  }, [app.defaults.cryptocurrency?.coingeckoId, app.defaults.fiat?.symbol]);
+
+  console.log(app);
 
   return <></>;
 };

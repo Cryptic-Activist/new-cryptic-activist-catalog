@@ -36,7 +36,16 @@ const Selector: FC<SelectorProps> = ({ type }) => {
     }
   }, [defaults, type]);
 
-  return <button className={styles.container}>{label}</button>;
+  return (
+    <div className={styles.container}>
+      <label htmlFor={styles.selector} className={styles.label}>
+        {toCapitalize(type)}
+      </label>
+      <button className={styles.selector} id={styles.selector}>
+        {label}
+      </button>
+    </div>
+  );
 };
 
 export default Selector;

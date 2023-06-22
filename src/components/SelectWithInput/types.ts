@@ -1,4 +1,3 @@
 export type SelectWithInput = {
-  label: string;
-  placeholder: string;
+  type: 'payment-method' | 'amount';
 };

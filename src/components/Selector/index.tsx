@@ -2,7 +2,7 @@
 
 import { FC, useEffect, useState } from 'react';
 
-import { useApp } from '@/hooks';
+import { useApp, useNavigationBar } from '@/hooks';
 import { toCapitalize, toUpperCase } from '@/utils';
 
 import styles from './index.module.scss';
@@ -12,6 +12,7 @@ const Selector: FC<SelectorProps> = ({ type }) => {
   const [label, setLabel] = useState('No data');
 
   const { app } = useApp();
+  const { toggleModal } = useNavigationBar();
   const { defaults } = app;
 
   const buildLabel: BuildLabel = (symbol, name) => {
@@ -30,6 +31,15 @@ const Selector: FC<SelectorProps> = ({ type }) => {
     setLabel(localLabel);
   };
 
+  const handleClick = () => {
+    if (type === 'fiat') {
+      toggleModal('fiats');
+    }
+    if (type === 'cryptocurrency') {
+      toggleModal('cryptocurrencies');
+    }
+  };
+
   useEffect(() => {
     if (defaults.cryptocurrency && defaults.fiat) {
       getButtonLabel();
@@ -41,7 +51,11 @@ const Selector: FC<SelectorProps> = ({ type }) => {
       <label htmlFor={styles.selector} className={styles.label}>
         {toCapitalize(type)}
       </label>
-      <button className={styles.selector} id={styles.selector}>
+      <button
+        className={styles.selector}
+        id={styles.selector}
+        onClick={handleClick}
+      >
         {label}
       </button>
     </div>

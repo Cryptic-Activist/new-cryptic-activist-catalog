@@ -1,9 +1,13 @@
 'use client';
 
 import { useNavigationBar } from '@/hooks';
-import Login from '../Login';
-import Register from '../Register';
-import VerifyAccount from '../VerifyAccount';
+import {
+  Cryptocurrencies,
+  Fiats,
+  Login,
+  Register,
+  VerifyAccount,
+} from '@/layouts/Modals';
 
 const AllModals = () => {
   const { navigationBar } = useNavigationBar();
@@ -13,6 +17,8 @@ const AllModals = () => {
       {navigationBar.modals.login ? <Login /> : <></>}
       {navigationBar.modals.register ? <Register /> : <></>}
       {navigationBar.modals.verifyAccount ? <VerifyAccount /> : <></>}
+      {navigationBar.modals.fiats ? <Fiats /> : <></>}
+      {navigationBar.modals.cryptocurrencies ? <Cryptocurrencies /> : <></>}
     </>
   );
 };

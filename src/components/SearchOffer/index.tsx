@@ -3,7 +3,8 @@ import { FC } from 'react';
 import { Selector } from '@/components';
 
 import CurrentPrice from '../CurrentPrice';
-import SelectorWithInput from '../SelectWithInput';
+
+import { SelectWithInput } from '@/components';
 import TypeSelector from './TypeSelector';
 import styles from './index.module.scss';
 import { SearchOfferProps } from './types';
@@ -18,7 +19,10 @@ const SearchOffer: FC<SearchOfferProps> = () => {
           <CurrentPrice />
         </section>
         <section className={styles.section}>
-          <SelectorWithInput label="" />
+          <SelectWithInput type="payment-method" />
+        </section>
+        <section className={styles.section}>
+          <SelectWithInput type="amount" />
         </section>
       </div>
     </div>

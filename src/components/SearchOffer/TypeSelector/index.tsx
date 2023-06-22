@@ -1,18 +1,22 @@
 'use client';
 
 import { useApp } from '@/hooks';
+import { useEffect, useState } from 'react';
 
-import { useState } from 'react';
 import styles from './index.module.scss';
 import { Selected } from './types';
 
 const TypeSelector = () => {
-  const { app } = useApp();
+  const { setValue } = useApp();
   const [selected, setSelected] = useState<Selected>('buy');
 
   const selectType = () => {
     setSelected((prev) => (prev === 'buy' ? 'sell' : 'buy'));
   };
+
+  useEffect(() => {
+    setValue({ type: selected });
+  }, [selected]);
 
   return (
     <div className={styles.container}>

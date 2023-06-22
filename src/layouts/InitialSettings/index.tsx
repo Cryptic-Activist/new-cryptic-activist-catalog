@@ -61,8 +61,6 @@ const InitialSettings = () => {
     setCurrentPrice();
   }, [app.defaults.cryptocurrency?.coingeckoId, app.defaults.fiat?.symbol]);
 
-  console.log(app);
-
   return <></>;
 };
 

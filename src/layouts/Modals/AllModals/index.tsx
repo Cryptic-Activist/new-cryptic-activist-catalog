@@ -5,6 +5,7 @@ import {
   Cryptocurrencies,
   Fiats,
   Login,
+  PaymentMethods,
   Register,
   VerifyAccount,
 } from '@/layouts/Modals';
@@ -19,6 +20,7 @@ const AllModals = () => {
       {navigationBar.modals.verifyAccount ? <VerifyAccount /> : <></>}
       {navigationBar.modals.fiats ? <Fiats /> : <></>}
       {navigationBar.modals.cryptocurrencies ? <Cryptocurrencies /> : <></>}
+      {navigationBar.modals.paymentMethods ? <PaymentMethods /> : <></>}
     </>
   );
 };

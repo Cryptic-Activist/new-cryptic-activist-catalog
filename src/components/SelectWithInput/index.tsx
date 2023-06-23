@@ -61,7 +61,7 @@ const SelectorWithInput: FC<SelectWithInput> = ({ type }) => {
       toggleModal('fiats');
     }
     if (type === 'payment-method') {
-      toggleModal('cryptocurrencies');
+      toggleModal('paymentMethods');
     }
   };
 

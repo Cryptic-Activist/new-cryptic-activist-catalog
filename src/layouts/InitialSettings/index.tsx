@@ -3,13 +3,19 @@
 import { useEffect } from 'react';
 
 import { DEFAULT_CRYPTOCURRENCY_ID, DEFAULT_FIAT_SYMBOL } from '@/constants';
-import { useApp, useCryptocurrencies, useFiats } from '@/hooks';
+import {
+  useApp,
+  useCryptocurrencies,
+  useFiats,
+  usePaymentMethods,
+} from '@/hooks';
 import { CryptocurrencyCoinGeckoId, FiatSymbol } from './types';
 
 const InitialSettings = () => {
   const { getFiats, getFiat, fiats } = useFiats();
   const { getCryptocurrencies, getCryptocurrency, cryptocurrencies } =
     useCryptocurrencies();
+  const { getPaymentMethods, paymentMethods } = usePaymentMethods();
   const { setValue, setCurrentPrice, app } = useApp();
 
   const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
@@ -43,6 +49,7 @@ const InitialSettings = () => {
   useEffect(() => {
     getCryptocurrencies();
     getFiats();
+    getPaymentMethods();
   }, []);
 
   useEffect(() => {

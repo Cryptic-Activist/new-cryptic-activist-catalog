@@ -6,6 +6,7 @@ export const $app = map<AppState>({
   defaults: {
     cryptocurrency: null,
     fiat: null,
+    paymentMethod: null,
   },
   dimensions: [0, 0],
   isMobile: false,
@@ -27,6 +28,7 @@ const setter = ({
   const localDefaults = {
     fiat: defaults?.fiat ?? app.defaults.fiat,
     cryptocurrency: defaults?.cryptocurrency ?? app.defaults.cryptocurrency,
+    paymentMethod: defaults?.paymentMethod ?? app.defaults.paymentMethod,
   };
   const localDimensions = dimensions ?? app.dimensions;
   const localIsMobile = isMobile ?? app.isMobile;

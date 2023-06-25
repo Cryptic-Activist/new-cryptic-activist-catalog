@@ -4,6 +4,7 @@ export * from './cryptocurrency';
 export * from './fiat';
 export * from './fiats';
 export * from './navigationBar';
+export * from './paymentMethod';
 export * from './paymentMethodCategories';
 export * from './paymentMethods';
 export * from './user';

@@ -1,4 +1,5 @@
-import { $fiats, getFiats as getFiatsStore } from '@/store';
+import { $fiats, getFiats as getFiatsStore, setValue } from '@/store';
+import { Fiat } from '@/store/fiat/types';
 import { useStore } from '@nanostores/react';
 import { FiatSymbol } from './types';
 
@@ -24,7 +25,16 @@ const useFiats = () => {
 
     return fiat[0];
   };
-  return { fiats, getFiats, getFiat };
+
+  const setFiat = (fiat: Fiat) => {
+    setValue({
+      defaults: {
+        fiat: { id: fiat.id, name: fiat.name, symbol: fiat.symbol },
+      },
+    });
+  };
+
+  return { fiats, getFiats, getFiat, setFiat };
 };
 
 export default useFiats;

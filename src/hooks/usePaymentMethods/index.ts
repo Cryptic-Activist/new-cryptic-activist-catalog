@@ -1,3 +1,4 @@
+import { useApp } from '@/hooks';
 import {
   $paymentMethodCategories,
   $paymentMethods,
@@ -5,9 +6,12 @@ import {
   getPaymentMethodsByCategory as getPaymentMethodsByCategoryStore,
   getPaymentMethods as getPaymentMethodsStore,
 } from '@/store';
+import { PaymentMethod } from '@/store/paymentMethod/types';
 import { useStore } from '@nanostores/react';
 
 const usePaymentMethods = () => {
+  const { setValue } = useApp();
+
   const paymentMethods = useStore($paymentMethods);
   const paymentMethodCategories = useStore($paymentMethodCategories);
 
@@ -21,6 +25,14 @@ const usePaymentMethods = () => {
 
   const getPaymentMethodsByCategories = (categoryId: string) => {
     getPaymentMethodsByCategoryStore(categoryId);
+  };
+
+  const setPaymentMethod = (paymentMethod: PaymentMethod) => {
+    setValue({
+      defaults: {
+        paymentMethod: { id: paymentMethod.id, name: paymentMethod.name },
+      },
+    });
   };
 
   // const getPaymentMethod = (symbol: FiatSymbol) => {
@@ -48,6 +60,7 @@ const usePaymentMethods = () => {
     // getPaymentMethod,
     getPaymentMethodCategories,
     getPaymentMethodsByCategories,
+    setPaymentMethod,
   };
 };
 

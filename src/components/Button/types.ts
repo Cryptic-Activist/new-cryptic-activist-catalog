@@ -8,5 +8,6 @@ export type ButtonProps = {
   children: string | ReactElement[];
   theme?: Theme;
   padding?: string;
+  align?: 'left' | 'center' | 'right';
   onClick?: () => void;
 };

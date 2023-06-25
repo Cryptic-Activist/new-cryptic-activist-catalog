@@ -6,6 +6,7 @@ let ticking = false;
 
 const useHorizontalScroll = (ref: UseHorizontalScroll) => {
   const scrollHorizontally = (diff: number) => {
+    console.log({ ref });
     if (ref) {
       // @ts-ignore
       ref.current.scrollLeft += diff;
@@ -15,7 +16,7 @@ const useHorizontalScroll = (ref: UseHorizontalScroll) => {
   const replaceVerticalScrollByHorizontal = (e: any) => {
     diff = e.deltaY;
     if (!ticking) {
-      window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(() => {
         scrollHorizontally(diff);
         ticking = false;
       });

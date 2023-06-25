@@ -9,12 +9,15 @@ const Button: FC<ButtonProps> = ({
   href,
   theme = 'primary',
   padding,
+  align = 'center',
   onClick,
 }) => {
   const primary = theme === 'primary' ? styles.primary : null;
   const secondary = theme === 'secondary' ? styles.secondary : null;
   const ghost = theme === 'ghost' ? styles.ghost : null;
   const transparent = theme === 'transparent' ? styles.transparent : null;
+  const alignment =
+    align === 'center' ? 'center' : align === 'left' ? 'start' : 'end';
 
   return (
     <>
@@ -24,6 +27,7 @@ const Button: FC<ButtonProps> = ({
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
           style={{
             padding,
+            textAlign: alignment,
           }}
         >
           {children}
@@ -35,6 +39,7 @@ const Button: FC<ButtonProps> = ({
           onClick={onClick}
           style={{
             padding,
+            textAlign: alignment,
           }}
         >
           {children}

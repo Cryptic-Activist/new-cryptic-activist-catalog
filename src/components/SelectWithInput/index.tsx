@@ -1,16 +1,18 @@
 'use client';
 
 import { useApp, useNavigationBar } from '@/hooks';
-import { toUpperCase } from '@/utils';
+import { toCapitalize, toUpperCase } from '@/utils';
 import { FC, HTMLInputTypeAttribute } from 'react';
 import styles from './index.module.scss';
 import { SelectWithInput } from './types';
+
+const NO_DATA = 'No Data';
 
 const SelectorWithInput: FC<SelectWithInput> = ({ type }) => {
   const { app } = useApp();
   const { toggleModal } = useNavigationBar();
   const { defaults, type: typeApp } = app;
-  const { fiat } = defaults;
+  const { fiat, paymentMethod } = defaults;
 
   const getLabel = () => {
     if (type === 'payment-method' && typeApp === 'buy') {
@@ -35,7 +37,7 @@ const SelectorWithInput: FC<SelectWithInput> = ({ type }) => {
       return 'Any amount';
     }
 
-    return 'No Data';
+    return NO_DATA;
   };
 
   const getButtonLabel = () => {
@@ -43,9 +45,13 @@ const SelectorWithInput: FC<SelectWithInput> = ({ type }) => {
       return toUpperCase(fiat?.symbol);
     }
     if (type === 'payment-method') {
+      if (!paymentMethod) {
+        return 'All';
+      }
+      return toCapitalize(paymentMethod.name);
     }
 
-    return 'No Data';
+    return NO_DATA;
   };
 
   const getInputType = (): HTMLInputTypeAttribute => {

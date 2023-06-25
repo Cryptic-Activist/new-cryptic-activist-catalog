@@ -1,7 +1,9 @@
 import {
   $cryptocurrencies,
   getCryptocurrencies as getCryptocurrenciesStore,
+  setValue,
 } from '@/store';
+import { Cryptocurrency } from '@/store/cryptocurrency/types';
 import { useStore } from '@nanostores/react';
 import { CryptocurrencyCoinGeckoId } from './types';
 
@@ -30,7 +32,25 @@ const useCryptocurrency = () => {
     return cryptocurrency[0];
   };
 
-  return { cryptocurrencies, getCryptocurrencies, getCryptocurrency };
+  const setCryptocurrency = (cryptocurrency: Cryptocurrency) => {
+    setValue({
+      defaults: {
+        cryptocurrency: {
+          id: cryptocurrency.id,
+          name: cryptocurrency.name,
+          symbol: cryptocurrency.symbol,
+          coingeckoId: cryptocurrency.coingeckoId,
+        },
+      },
+    });
+  };
+
+  return {
+    cryptocurrencies,
+    getCryptocurrencies,
+    getCryptocurrency,
+    setCryptocurrency,
+  };
 };
 
 export default useCryptocurrency;

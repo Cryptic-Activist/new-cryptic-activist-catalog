@@ -1,11 +1,11 @@
-import { Lato } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 
 import { AllModals, Footer, InitialSettings, NavigationBar } from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
 
-const lato = Lato({ weight: '400', subsets: ['latin'] });
+const roboto = Roboto({ weight: '400', subsets: ['latin'], preload: true });
 
 export const metadata = {
   title: 'Create Next App',
@@ -18,7 +18,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <title>Cryptic Activist Catalog</title>
       </head>
-      <body className={`${lato.className}`}>
+      <body className={`${roboto.className}`}>
         <InitialSettings />
         <AllModals />
         <NavigationBar />

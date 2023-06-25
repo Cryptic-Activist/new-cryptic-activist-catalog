@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import { Selector } from '@/components';
+import { Button, Selector } from '@/components';
 
 import CurrentPrice from '../CurrentPrice';
 
@@ -23,6 +23,11 @@ const SearchOffer: FC<SearchOfferProps> = () => {
         </section>
         <section className={styles.section}>
           <SelectWithInput type="amount" />
+        </section>
+        <section className={styles.section}>
+          <Button type="button" padding="1rem 1rem" align="left">
+            Find Offer
+          </Button>
         </section>
       </div>
     </div>

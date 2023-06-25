@@ -15,8 +15,10 @@ const InitialSettings = () => {
   const { getFiats, getFiat, fiats } = useFiats();
   const { getCryptocurrencies, getCryptocurrency, cryptocurrencies } =
     useCryptocurrencies();
-  const { getPaymentMethods, paymentMethods } = usePaymentMethods();
+  const { getPaymentMethods } = usePaymentMethods();
   const { setValue, setCurrentPrice, app } = useApp();
+
+  console.log(app);
 
   const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
     const cryptocurrency = getCryptocurrency(coinGeckoId);

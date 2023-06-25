@@ -1,8 +1,4 @@
-export type PaymentMethod = {
-  id: string;
-  name: string;
-  symbol: string;
-};
+import { PaymentMethod } from '@/store/paymentMethod/types';
 
 export type PaymentMethodsState = {
   data?: PaymentMethod[];

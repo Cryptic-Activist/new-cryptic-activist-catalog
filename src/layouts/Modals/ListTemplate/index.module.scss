@@ -27,6 +27,32 @@
 
 .heading {
   font-size: $font-size-l;
-
   font-weight: 600;
+}
+
+.search {
+  display: flex;
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+  border-bottom: 1px solid $secondary;
+  width: fit-content;
+  input {
+    border: none;
+    font-size: $font-size-l;
+    padding-right: 1rem;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-size: $font-size-l;
+    }
+  }
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    svg {
+      font-size: $font-size-m;
+    }
+  }
 }

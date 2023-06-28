@@ -12,7 +12,7 @@ import styles from './index.module.scss';
 const Fiats = () => {
   const ref = useRef<HTMLUListElement | null>(null);
   const _scroll = useHorizontalScroll(ref);
-  const { fiats, setFiat } = useFiats();
+  const { fiatsList, setFiat, filterFiats } = useFiats();
 
   const selectFiat = (fiat: Fiat) => {
     setFiat(fiat);
@@ -20,9 +20,14 @@ const Fiats = () => {
   };
 
   return (
-    <ListTemplate width="70vw" height="70vh" heading="Fiats">
+    <ListTemplate
+      width="70vw"
+      height="70vh"
+      heading="Fiats"
+      onFilter={filterFiats}
+    >
       <ul className={styles.list} ref={ref}>
-        {fiats.data?.map((fiat, index) => (
+        {fiatsList?.map((fiat, index) => (
           <li key={index}>
             <button onClick={() => selectFiat(fiat)}>{`${toUpperCase(
               fiat.symbol

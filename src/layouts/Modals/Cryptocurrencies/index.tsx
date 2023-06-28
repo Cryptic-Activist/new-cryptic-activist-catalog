@@ -12,7 +12,8 @@ import styles from './index.module.scss';
 const Cryptocurrencies = () => {
   const ref = useRef<HTMLUListElement | null>(null);
   const _scroll = useHorizontalScroll(ref);
-  const { cryptocurrencies, setCryptocurrency } = useCryptocurrencies();
+  const { cryptocurrenciesList, setCryptocurrency, filterCryptocurrencies } =
+    useCryptocurrencies();
 
   const selectCryptocurrency = (cryptocurrency: Cryptocurrency) => {
     setCryptocurrency(cryptocurrency);
@@ -20,9 +21,14 @@ const Cryptocurrencies = () => {
   };
 
   return (
-    <ListTemplate width="70vw" height="70vh" heading="Cryptocurrencies">
+    <ListTemplate
+      width="70vw"
+      height="70vh"
+      heading="Cryptocurrencies"
+      onFilter={filterCryptocurrencies}
+    >
       <ul className={styles.list} ref={ref}>
-        {cryptocurrencies.data?.map((cryptocurrency, index) => (
+        {cryptocurrenciesList?.map((cryptocurrency, index) => (
           <li key={index}>
             <button
               onClick={() => selectCryptocurrency(cryptocurrency)}

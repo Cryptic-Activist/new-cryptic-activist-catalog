@@ -32,7 +32,12 @@ const ListTemplate: FC<ListTemplateProps> = ({
       <div className={styles.container} style={{ width, height }}>
         {heading && <h1 className={styles.heading}>{heading}</h1>}
         <div className={styles.search}>
-          <input type="text" placeholder="Search" onChange={handleSearch} />
+          <input
+            type="text"
+            placeholder="Search"
+            onChange={handleSearch}
+            autoFocus
+          />
           <button>
             <FaSearch />
           </button>

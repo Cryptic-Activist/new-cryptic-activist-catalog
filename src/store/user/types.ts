@@ -4,6 +4,9 @@ type User = {
     lastName: string;
   };
   username: string;
+  profileColor: string;
+  createdAt: string;
+  updatedAt: string;
 };
 
 export type UserState = {
@@ -15,7 +18,26 @@ export type UserState = {
 
 export type UserSetter = {
   data?: User;
-  loading: boolean;
-  fetched: boolean;
-  errors: string[];
+  loading?: boolean;
+  fetched?: boolean;
+  errors?: string[];
+};
+
+export type LoginUserParams = {
+  username: string;
+  password: string;
+};
+
+export type GetUserTokenResponse = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type GetUserInfoReturn = {
+  firstName: string;
+  lastName: string;
+  username: string;
+  profileColor: string;
+  createdAt: string;
+  updatedAt: string;
 };

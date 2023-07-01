@@ -1,6 +1,6 @@
 type Item = {
   label: string;
-  url: string;
+  href: string;
 };
 
 export type MenuListProps = {

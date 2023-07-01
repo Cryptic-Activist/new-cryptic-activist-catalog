@@ -2,7 +2,7 @@
 
 import { Button, MenuList, Tooltip } from '@/components';
 import { useNavigationBar, useOutsideClick, useUser } from '@/hooks';
-import { menuList } from './data';
+import { menuList, menuUserList } from './data';
 import styles from './index.module.scss';
 
 const Menu = () => {
@@ -13,7 +13,7 @@ const Menu = () => {
     toggleDrawer,
     toggleModal,
   } = useNavigationBar();
-  const { user } = useUser();
+  const { user } = useUser(false);
 
   const handleToggleUserDrawer = () => {
     toggleDrawer('user');
@@ -27,11 +27,11 @@ const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      <Button href="/">Home</Button>
-      <Button href="/vendors">Vendors</Button>
-      <Button href="/help">Help</Button>
+      {menuList.map(({ href, label }) => (
+        <Button href={href}>{label}</Button>
+      ))}
       <Tooltip position="bottom" spacing={55}>
-        {user.data && !user.loading ? (
+        {user.data && user.fetched ? (
           <Button theme="transparent" onClick={handleToggleUserDrawer}>
             {user.data.names.firstName}
           </Button>
@@ -40,11 +40,10 @@ const Menu = () => {
             Login
           </Button>
         )}
-        {user.loading ? <Button theme="transparent">Loading</Button> : <></>}
         {userDrawer ? (
           <>
             {/* @ts-ignore */}
-            <MenuList ref={ref} items={menuList} />
+            <MenuList ref={ref} items={menuUserList} />
           </>
         ) : (
           <></>

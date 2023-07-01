@@ -8,6 +8,7 @@ import {
   useCryptocurrencies,
   useFiats,
   usePaymentMethods,
+  useUser,
 } from '@/hooks';
 import { CryptocurrencyCoinGeckoId, FiatSymbol } from './types';
 
@@ -17,6 +18,7 @@ const InitialSettings = () => {
     useCryptocurrencies();
   const { getPaymentMethods } = usePaymentMethods();
   const { setValue, setCurrentPrice, app } = useApp();
+  const { user } = useUser(true);
 
   const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
     const cryptocurrency = getCryptocurrency(coinGeckoId);

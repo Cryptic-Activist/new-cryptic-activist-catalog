@@ -7,9 +7,9 @@ import type { MenuListProps } from './types';
 const MenuList: FC<MenuListProps> = forwardRef(({ items }, ref: any) => {
   return (
     <ul className={styles.container} ref={ref}>
-      {items.map(({ label, url }, index) => (
+      {items.map(({ label, href }, index) => (
         <li key={index}>
-          <Link href={url}>{label}</Link>
+          <Link href={href}>{label}</Link>
         </li>
       ))}
     </ul>

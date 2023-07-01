@@ -1,4 +1,10 @@
 export const menuList = [
-  { label: 'Account', url: '/account' },
-  { label: 'Messages', url: '/account/messages' },
+  { label: 'Home', href: '/' },
+  { label: 'Vendors', href: '/vendors' },
+  { label: 'Help', href: '/help' },
+];
+
+export const menuUserList = [
+  { label: 'Account', href: '/account' },
+  { label: 'Messages', href: '/account/messages' },
 ];

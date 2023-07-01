@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { FC } from 'react';
 
 import styles from './index.module.scss';
@@ -22,7 +23,7 @@ const Button: FC<ButtonProps> = ({
   return (
     <>
       {href ? (
-        <a
+        <Link
           href={href}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
           style={{
@@ -31,7 +32,7 @@ const Button: FC<ButtonProps> = ({
           }}
         >
           {children}
-        </a>
+        </Link>
       ) : (
         <button
           type={type}

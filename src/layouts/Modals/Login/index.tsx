@@ -5,10 +5,13 @@ import { Form, Input, Links } from '@/components/forms';
 import { Template } from '@/layouts/Modals';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
+import { useUser } from '@/hooks';
+import { LoginUserParams } from '@/store/user/types';
 import styles from './index.module.scss';
 import { loginResolver } from './zod';
 
 const Login = () => {
+  const { loginUser, user } = useUser(false);
   const links = [
     {
       label: "Don't have an account yet?",
@@ -33,7 +36,9 @@ const Login = () => {
     },
   ];
 
-  const onSubmit = async (data: any) => {};
+  const onSubmit = async (data: LoginUserParams) => {
+    await loginUser(data);
+  };
 
   return (
     <Template width="17rem" heading="Login">

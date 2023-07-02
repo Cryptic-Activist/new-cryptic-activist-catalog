@@ -1,3 +1,4 @@
+'use client';
 import {
   $navigationBar,
   resetNavigationBar as resetNavigationBarState,

@@ -1,3 +1,4 @@
+'use client';
 import { useApp } from '@/hooks';
 import {
   $paymentMethodCategories,

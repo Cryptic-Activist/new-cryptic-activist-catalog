@@ -8,11 +8,10 @@ import type {
 
 export const $paymentMethod = map<PaymentMethodState>({});
 
-const setter = ({ id, name, symbol }: PaymentMethodSetter) => {
+const setter = ({ id, name }: PaymentMethodSetter) => {
   $paymentMethod.set({
     id,
     name,
-    symbol,
   });
 };
 

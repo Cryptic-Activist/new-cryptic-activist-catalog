@@ -138,6 +138,12 @@ export const decodeAccessToken = async () => {
   }
 };
 
+export const logout = () => {
+  removeLocalStorage('accessToken');
+  removeLocalStorage('refreshToken');
+  setter({ data: undefined, errors: [], fetched: false, loading: false });
+};
+
 // export const resetPassword = async () => {};
 
 // export const verifyPasswordResetToken = async () => {};

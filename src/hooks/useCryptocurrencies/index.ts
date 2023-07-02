@@ -1,3 +1,4 @@
+'use client';
 import {
   $cryptocurrencies,
   getCryptocurrencies as getCryptocurrenciesStore,

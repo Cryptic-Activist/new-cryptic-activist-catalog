@@ -27,8 +27,10 @@ const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      {menuList.map(({ href, label }) => (
-        <Button href={href}>{label}</Button>
+      {menuList.map(({ href, label }, index) => (
+        <Button href={href} key={index}>
+          {label}
+        </Button>
       ))}
       <Tooltip position="bottom" spacing={55}>
         {user.data && user.fetched ? (

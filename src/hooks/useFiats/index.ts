@@ -1,3 +1,4 @@
+'use client';
 import { $fiats, getFiats as getFiatsStore, setValue } from '@/store';
 import { Fiat } from '@/store/fiat/types';
 import { toLowerCase } from '@/utils';

@@ -10,15 +10,25 @@
     box-sizing: border-box;
     list-style: none;
     display: flex;
-    a {
+    a,
+    button {
       box-sizing: border-box;
       padding: 0.6rem;
       width: 100%;
+      background-color: transparent;
+      font-size: 1rem;
+      text-align: left;
       color: $secondary;
-      text-decoration: none;
+      cursor: pointer;
       &:hover {
         background-color: $hover-button-background-color;
       }
+    }
+    a {
+      text-decoration: none;
+    }
+    button {
+      border: none;
     }
   }
 }

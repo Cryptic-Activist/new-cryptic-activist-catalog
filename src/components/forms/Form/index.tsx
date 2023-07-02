@@ -32,6 +32,7 @@ const Form: FC<FormProps> = ({
                   : child}
                 {errors[child.props.name] && (
                   <span className={styles.errorMessage}>
+                    {/* @ts-ignore */}
                     {errors[child.props.name]?.message}
                   </span>
                 )}

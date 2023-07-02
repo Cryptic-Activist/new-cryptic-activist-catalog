@@ -7,11 +7,12 @@ import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import { useUser } from '@/hooks';
 import { LoginUserParams } from '@/store/user/types';
+import { useEffect } from 'react';
 import styles from './index.module.scss';
 import { loginResolver } from './zod';
 
 const Login = () => {
-  const { loginUser, user } = useUser(false);
+  const { loginUser, user, isLoggedIn } = useUser(false);
   const links = [
     {
       label: "Don't have an account yet?",
@@ -39,6 +40,12 @@ const Login = () => {
   const onSubmit = async (data: LoginUserParams) => {
     await loginUser(data);
   };
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      toggleModal('login');
+    }
+  }, [user]);
 
   return (
     <Template width="17rem" heading="Login">

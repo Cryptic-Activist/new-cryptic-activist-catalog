@@ -1,3 +1,8 @@
+type Language = {
+  id: string;
+  name: string;
+};
+
 type User = {
   names: {
     firstName: string;
@@ -7,6 +12,7 @@ type User = {
   profileColor: string;
   createdAt: string;
   updatedAt: string;
+  languages: Language[];
 };
 
 export type UserState = {
@@ -40,4 +46,5 @@ export type GetUserInfoReturn = {
   profileColor: string;
   createdAt: string;
   updatedAt: string;
+  languages: Language[];
 };

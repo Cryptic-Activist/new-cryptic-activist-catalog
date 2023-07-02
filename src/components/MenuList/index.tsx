@@ -17,7 +17,7 @@ const MenuList: FC<MenuListProps> = forwardRef(({ items }, ref: any) => {
   return (
     <ul className={styles.container} ref={ref}>
       {items.map(({ label, href }, index) => (
-        <li key={index}>
+        <li key={index} onClick={() => toggleDrawer('user')}>
           <Link href={href}>{label}</Link>
         </li>
       ))}

@@ -47,6 +47,7 @@ const setUserInfo = (userInfo: GetUserInfoReturn) => ({
   profileColor: userInfo.profileColor,
   updatedAt: userInfo.updatedAt,
   username: userInfo.username,
+  languages: userInfo.languages,
 });
 
 const getUserToken = async ({

@@ -1,0 +1,25 @@
+@import '../../styles/globals.module.scss';
+
+.container {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.status {
+  height: 0.65rem;
+  width: 0.65rem;
+  border-radius: 10rem;
+}
+
+.online {
+  background-color: $status-online;
+}
+
+.offline {
+  background-color: $status-offline;
+}
+
+.away {
+  background-color: $status-away;
+}

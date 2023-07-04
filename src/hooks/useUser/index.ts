@@ -12,7 +12,7 @@ import { UseUserHasFetch } from './types';
 
 let count = 0;
 
-const useUser = (hasFetch: UseUserHasFetch) => {
+const useUser = (hasFetch: UseUserHasFetch = false) => {
   const user = useStore($user);
 
   useEffect(() => {

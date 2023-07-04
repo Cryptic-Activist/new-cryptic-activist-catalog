@@ -3,7 +3,7 @@ type Language = {
   name: string;
 };
 
-type User = {
+export type User = {
   names: {
     firstName: string;
     lastName: string;

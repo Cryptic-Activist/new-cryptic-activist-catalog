@@ -3,6 +3,7 @@
 .container {
   border-radius: 0.4rem;
   border: 1px solid $secondary;
+  box-shadow: 0px 0px 5px 1px $box-shadow-default-color;
 }
 
 .header {

@@ -1,8 +1,15 @@
 .container {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column {
+  display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
+
 .name {
   font-size: 2.2rem;
   font-weight: 500;

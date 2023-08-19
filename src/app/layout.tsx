@@ -18,7 +18,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
       <head>
         <title>Cryptic Activist Catalog</title>
       </head>
-      <body className={`${roboto.className}`}>
+      <body className={roboto.className}>
         <InitialSettings />
         <AllModals />
         <NavigationBar />

@@ -15,7 +15,7 @@ const ProfileNameUsername: FC<ProfileNameUsername> = ({ names, username }) => {
       </div>
       <Button href="/offer/create" theme="ghost">
         <p>Create Offer</p>
-        <Plus />
+        <Plus size={20} />
       </Button>
     </div>
   );

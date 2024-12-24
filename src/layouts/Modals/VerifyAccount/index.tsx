@@ -49,14 +49,14 @@ const VerifyAccount = () => {
               placeholder="Username"
             />
 
-            <Button type="submit" padding="1rem 0">
+            <Button type="submit" padding="1rem">
               Find User
             </Button>
           </Form>
         )}
         {step === 'verification' && (
           <Form onSubmit={onSubmitVerify} resolver={verifyAccountResolver}>
-            <Button type="submit" padding="1rem 0">
+            <Button type="submit" padding="1rem">
               Verify Account
             </Button>
           </Form>

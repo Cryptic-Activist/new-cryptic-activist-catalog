@@ -75,7 +75,7 @@ const Register = () => {
             label="Confirm Password"
             placeholder="Confirm Password"
           />
-          <Button type="submit" padding="1rem 0">
+          <Button type="submit" padding="1rem">
             Register
           </Button>
         </Form>

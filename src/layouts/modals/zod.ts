@@ -2,6 +2,6 @@ import { z } from 'zod';
 
 export const ZodFirstName = z.string().min(4);
 export const ZodLastName = z.string().min(4);
-export const ZodUsername = z.string().min(9);
+export const ZodUsername = z.string().min(8);
 export const ZodPassword = z.string().min(8);
 export const ZodConfirmPassword = z.string().min(8);

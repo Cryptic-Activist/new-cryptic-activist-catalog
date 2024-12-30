@@ -1,6 +1,7 @@
 import { map } from 'nanostores';
 
 import { fetchCryptocurrencies } from '@/services/cryptocurrencies';
+
 import type { CryptocurrenciesSetter, CryptocurrenciesState } from './types';
 
 export const $cryptocurrencies = map<CryptocurrenciesState>({
@@ -40,6 +41,6 @@ export const getCryptocurrencies = async () => {
     errors: [],
     fetched: true,
     loading: false,
-    data: cryptocurrencies!.data.results,
+    data: cryptocurrencies?.data.results,
   });
 };

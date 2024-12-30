@@ -42,3 +42,8 @@
 .hidden {
   display: none;
 }
+
+.errorMessage {
+  color: $secondary;
+  font-size: 0.9rem;
+}

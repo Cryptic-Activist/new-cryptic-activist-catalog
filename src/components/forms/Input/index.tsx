@@ -1,4 +1,5 @@
 'use client';
+
 import { FC } from 'react';
 
 import { toCapitalize } from '@/utils';
@@ -15,6 +16,7 @@ const Input: FC<InputProps> = ({
   label,
   sideButton,
   type,
+  errorMessage,
   ...rest
 }) => (
   <div className={styles.inputContainer}>
@@ -36,6 +38,9 @@ const Input: FC<InputProps> = ({
       id={id}
       {...rest}
     />
+    {errorMessage && (
+      <span className={styles.errorMessage}>{errorMessage.toString()}</span>
+    )}
   </div>
 );
 

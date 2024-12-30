@@ -1,13 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import { Button } from '@/components';
 import { Form, Input, Links } from '@/components/forms';
-import { Template } from '@/layouts/Modals';
-import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
-
 import { useUser } from '@/hooks';
+import { Template } from '@/layouts/modals';
+import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 import { LoginUserParams } from '@/store/user/types';
-import { useEffect } from 'react';
+
 import styles from './index.module.scss';
 import { loginResolver } from './zod';
 

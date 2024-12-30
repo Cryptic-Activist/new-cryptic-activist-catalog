@@ -1,6 +1,9 @@
 'use client';
-import { useUser } from '@/hooks';
+
 import { FC, useEffect } from 'react';
+
+import { useUser } from '@/hooks';
+
 import { ProtectedRouteProps } from './types';
 
 let count = 0;
@@ -9,7 +12,7 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
   const { user, isLoggedIn } = useUser();
 
   useEffect(() => {
-    console.log('is l;ogged:', user.fetched, user.data);
+    console.log('is logged:', user.fetched, user.data);
 
     if (count > 0) {
       if (user.fetched && user.data === undefined) {

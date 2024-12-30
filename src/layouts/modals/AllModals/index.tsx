@@ -6,9 +6,10 @@ import {
   Fiats,
   Login,
   PaymentMethods,
+  PrivateKeys,
   Register,
   VerifyAccount,
-} from '@/layouts/Modals';
+} from '@/layouts/modals';
 
 const AllModals = () => {
   const { navigationBar } = useNavigationBar();
@@ -21,6 +22,7 @@ const AllModals = () => {
       {navigationBar.modals.fiats ? <Fiats /> : <></>}
       {navigationBar.modals.cryptocurrencies ? <Cryptocurrencies /> : <></>}
       {navigationBar.modals.paymentMethods ? <PaymentMethods /> : <></>}
+      {navigationBar.modals.privateKeys ? <PrivateKeys /> : <></>}
     </>
   );
 };

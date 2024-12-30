@@ -38,16 +38,11 @@ const setter = ({
 }: NavigationBarStateSetter) => {
   const navbar = $navigationBar.get();
 
-  const localDrawers = drawers ?? navbar.drawers;
-  const localModals = modals ?? navbar.modals;
-  const localStatus = status ?? navbar.status;
-  const localTooltips = tooltips ?? navbar.tooltips;
-
   $navigationBar.set({
-    drawers: localDrawers,
-    modals: localModals,
-    status: localStatus,
-    tooltips: localTooltips,
+    drawers: drawers ?? navbar.drawers,
+    modals: modals ?? navbar.modals,
+    status: status ?? navbar.status,
+    tooltips: tooltips ?? navbar.tooltips,
   });
 };
 

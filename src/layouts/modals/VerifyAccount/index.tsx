@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { Button } from '@/components';
 import { Form, Input, Links } from '@/components/forms';
-import { Template } from '@/layouts/Modals';
+import { Template } from '@/layouts/modals';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import styles from './index.module.scss';

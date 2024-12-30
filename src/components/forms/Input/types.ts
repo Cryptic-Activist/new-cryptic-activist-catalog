@@ -1,4 +1,5 @@
 import { ReactElement } from 'react';
+import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
 
 type InputType = 'text' | 'email' | 'password' | 'hidden';
 
@@ -14,4 +15,9 @@ export type InputProps = {
   placeholder?: string;
   label?: string;
   sideButton?: ReactElement;
+  errorMessage?:
+    | string
+    | FieldError
+    | Merge<FieldError, FieldErrorsImpl<any>>
+    | undefined;
 };

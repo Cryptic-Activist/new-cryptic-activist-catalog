@@ -5,7 +5,7 @@ import {
   useNavigationBar,
   usePaymentMethods,
 } from '@/hooks';
-import { ListTemplate } from '@/layouts/Modals';
+import { ListTemplate } from '@/layouts/modals';
 
 import { PaymentMethod } from '@/store/paymentMethod/types';
 import { toCapitalize } from '@/utils';

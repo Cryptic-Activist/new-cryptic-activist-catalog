@@ -1,14 +1,17 @@
 'use client';
 
 import { Button } from '@/components';
-import { Form, Input, Links } from '@/components/forms';
-import { Template } from '@/layouts/Modals';
+import { Input, Links } from '@/components/forms';
+import { useRegister } from '@/hooks';
+import { Template } from '@/layouts/modals';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import styles from './index.module.scss';
-import { registerResolver } from './zod';
 
 const Register = () => {
+  const { registerForm, handleSubmit, formValues, onSubmit, errors } =
+    useRegister();
+
   const links = [
     {
       label: 'Already have an account',
@@ -26,12 +29,14 @@ const Register = () => {
     },
   ];
 
-  const onSubmit = async (data: any) => {};
-
   return (
-    <Template width="17rem" heading="Register">
+    <Template
+      width="17rem"
+      heading="Register"
+      successMessage={formValues.successMessage}
+    >
       <div className={styles.container}>
-        <Form onSubmit={onSubmit} resolver={registerResolver}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <Input
             type="text"
             name="names.firstName"
@@ -40,6 +45,8 @@ const Register = () => {
             disabled
             label="First Name"
             placeholder="First Name"
+            register={registerForm}
+            value={formValues.names.firstName}
           />
           <Input
             type="text"
@@ -49,6 +56,8 @@ const Register = () => {
             disabled
             label="Last Name"
             placeholder="Last Name"
+            register={registerForm}
+            value={formValues.names.lastName}
           />
           <Input
             type="text"
@@ -58,6 +67,8 @@ const Register = () => {
             disabled
             label="Username"
             placeholder="Username"
+            register={registerForm}
+            value={formValues.username}
           />
           <Input
             type="password"
@@ -66,19 +77,23 @@ const Register = () => {
             required
             label="Password"
             placeholder="Password"
+            register={registerForm}
+            errorMessage={errors['password']?.message}
           />
           <Input
             type="password"
-            name="password2"
-            id="password2"
+            name="confirmPassword"
+            id="confirmPassword"
             required
             label="Confirm Password"
             placeholder="Confirm Password"
+            register={registerForm}
+            errorMessage={errors['confirmPassword']?.message}
           />
           <Button type="submit" padding="1rem">
             Register
           </Button>
-        </Form>
+        </form>
 
         <Links links={links} />
       </div>

@@ -7,11 +7,19 @@ import { useNavigationBar } from '@/hooks';
 import styles from './index.module.scss';
 import type { TemplateProps } from './types';
 
-const Template: FC<TemplateProps> = ({ children, width, heading }) => {
-  const { resetNavigationBar } = useNavigationBar();
+const Template: FC<TemplateProps> = ({
+  children,
+  width,
+  heading,
+  successMessage,
+  allowClose = true,
+}) => {
+  const { resetNavigationBar, navigationBar } = useNavigationBar();
 
   const closeModal = () => {
-    resetNavigationBar();
+    if (allowClose) {
+      resetNavigationBar();
+    }
   };
 
   return (
@@ -19,7 +27,11 @@ const Template: FC<TemplateProps> = ({ children, width, heading }) => {
       <div className={styles.bg} onClick={closeModal} />
       <div className={styles.container} style={{ width }}>
         {heading && <h1 className={styles.heading}>{heading}</h1>}
-        {children}
+        {navigationBar.status === 'loading' ? (
+          <p>Loading</p>
+        ) : (
+          <>{successMessage ? <p>{successMessage}</p> : { ...children }}</>
+        )}
       </div>
     </>
   );

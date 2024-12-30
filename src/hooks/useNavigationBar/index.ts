@@ -1,4 +1,5 @@
 'use client';
+
 import {
   $navigationBar,
   resetNavigationBar as resetNavigationBarState,
@@ -22,6 +23,8 @@ const useNavigationBar = () => {
   const resetNavigationBar = () => {
     resetNavigationBarState();
   };
+
+  console.log({ navigationBar });
 
   return { navigationBar, toggleDrawer, toggleModal, resetNavigationBar };
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import { useCryptocurrencies, useHorizontalScroll } from '@/hooks';
-import { ListTemplate } from '@/layouts/Modals';
+import { ListTemplate } from '@/layouts/modals';
 
 import { toggleModal } from '@/store';
 import { Cryptocurrency } from '@/store/cryptocurrency/types';

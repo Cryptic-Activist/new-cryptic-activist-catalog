@@ -1,7 +1,7 @@
 'use client';
 
 import { useFiats, useHorizontalScroll } from '@/hooks';
-import { ListTemplate } from '@/layouts/Modals';
+import { ListTemplate } from '@/layouts/modals';
 
 import { toggleModal } from '@/store';
 import { Fiat } from '@/store/fiat/types';

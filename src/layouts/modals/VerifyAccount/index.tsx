@@ -1,17 +1,32 @@
 'use client';
+
 import { useState } from 'react';
 
 import { Button } from '@/components';
-import { Form, Input, Links } from '@/components/forms';
+import { Input, Links } from '@/components/forms';
+import { useVerifyAccount } from '@/hooks';
 import { Template } from '@/layouts/modals';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import styles from './index.module.scss';
-import { Step } from './types';
-import { verifyAccountResolver } from './zod';
 
 const VerifyAccount = () => {
-  const [step, setStep] = useState<Step>('username');
+  const {
+    onSubmitFindUser,
+    onSubmitVerifyPrivateKeys,
+    usernameRegister,
+    privateKeysRegister,
+    handleSubmitUsername,
+    handleSubmitPrivateKeys,
+
+    step,
+    usernameErrors,
+    privateKeysErrors,
+  } = useVerifyAccount();
+
+  const [privateKeysArray, setPrivateKeysArray] = useState<string[]>(
+    Array(12).fill('')
+  );
   const links = [
     {
       label: "Don't have an account yet?",
@@ -29,17 +44,17 @@ const VerifyAccount = () => {
     },
   ];
 
-  const onSubmitFindUser = async (data: any) => {
-    setStep('verification');
-  };
-
-  const onSubmitVerify = async (data: any) => {};
-
   return (
-    <Template width="17rem" heading="Verify Account">
+    <Template
+      width={`${step === 'verification' ? '40rem' : '18rem'}`}
+      heading="Verify Account"
+    >
       <div className={styles.container}>
         {step === 'username' && (
-          <Form onSubmit={onSubmitFindUser} resolver={verifyAccountResolver}>
+          <form
+            onSubmit={handleSubmitUsername(onSubmitFindUser)}
+            className={styles.verifyAccountUsernameForm}
+          >
             <Input
               type="text"
               name="username"
@@ -47,22 +62,52 @@ const VerifyAccount = () => {
               required
               label="Username"
               placeholder="Username"
+              register={usernameRegister}
+              errorMessage={usernameErrors['username']?.message}
             />
 
             <Button type="submit" padding="1rem">
               Find User
             </Button>
-          </Form>
+          </form>
         )}
         {step === 'verification' && (
-          <Form onSubmit={onSubmitVerify} resolver={verifyAccountResolver}>
+          <form
+            onSubmit={handleSubmitPrivateKeys(onSubmitVerifyPrivateKeys)}
+            className={styles.verifyAccountPrivateKeysForm}
+          >
+            <ul className={styles.verifyAccountList}>
+              {privateKeysArray.map((privateKeyInput, index) => {
+                const privateKeyNumber = index + 1;
+
+                return (
+                  <li key={index}>
+                    <Input
+                      key={index}
+                      label={`${privateKeyNumber}`}
+                      register={privateKeysRegister}
+                      type="text"
+                      name={`privateKey${privateKeyNumber}`}
+                      id={`privateKey${privateKeyNumber}`}
+                      required
+                      // value={}
+                      width="9rem"
+                      errorMessage={
+                        privateKeysErrors[`privateKey${privateKeyNumber}`]
+                          ?.message
+                      }
+                    />
+                  </li>
+                );
+              })}
+            </ul>
             <Button type="submit" padding="1rem">
               Verify Account
             </Button>
-          </Form>
+          </form>
         )}
-
-        <Links links={links} />
+        {step === 'success' && <p>Private Keys were verified</p>}
+        {step !== 'success' && <Links links={links} />}
       </div>
     </Template>
   );

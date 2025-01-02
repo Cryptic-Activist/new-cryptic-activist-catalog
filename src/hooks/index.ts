@@ -8,3 +8,4 @@ export { default as usePaymentMethods } from './usePaymentMethods';
 export { default as useUser } from './useUser';
 export { default as useRegister } from './useRegister';
 export { default as usePrivateKeys } from './usePrivateKeys';
+export { default as useVerifyAccount } from './useVerifyAccount';

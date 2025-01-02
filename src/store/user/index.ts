@@ -6,8 +6,10 @@ import {
   getBearerToken,
   getLocalStorage,
   removeLocalStorage,
+  setCookie,
   setLocalStorage,
 } from '@/utils';
+
 import type {
   GetUserInfoReturn,
   GetUserTokenResponse,
@@ -61,7 +63,7 @@ const getUserToken = async ({
 
   if (response.status !== 200) return null;
 
-  return response.data.results;
+  return response.data;
 };
 
 const getUserInfoFromToken = async (
@@ -74,9 +76,11 @@ const getUserInfoFromToken = async (
     }
   );
 
+  console.log({ response });
+
   if (response.status !== 200) return null;
 
-  return response.data.results;
+  return response.data;
 };
 
 const getResetPasswordToken = async () => {};
@@ -92,6 +96,16 @@ export const loginUser = async (userData: LoginUserParams) => {
       setter({ errors: ['Unable to login'], loading: false });
       return;
     }
+    setCookie({
+      name: 'accessToken',
+      value: tokens.accessToken,
+      expiresInHours: 1,
+    });
+    setCookie({
+      name: 'refreshToken',
+      value: tokens.refreshToken,
+      expiresInHours: 2,
+    });
     setLocalStorage('accessToken', tokens.accessToken);
     setLocalStorage('refreshToken', tokens.refreshToken);
 

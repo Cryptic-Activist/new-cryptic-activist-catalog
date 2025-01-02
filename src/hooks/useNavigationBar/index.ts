@@ -24,8 +24,6 @@ const useNavigationBar = () => {
     resetNavigationBarState();
   };
 
-  console.log({ navigationBar });
-
   return { navigationBar, toggleDrawer, toggleModal, resetNavigationBar };
 };
 

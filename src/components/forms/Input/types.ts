@@ -20,4 +20,5 @@ export type InputProps = {
     | FieldError
     | Merge<FieldError, FieldErrorsImpl<any>>
     | undefined;
+  width?: string;
 };

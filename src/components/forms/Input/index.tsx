@@ -17,6 +17,7 @@ const Input: FC<InputProps> = ({
   sideButton,
   type,
   errorMessage,
+  width,
   ...rest
 }) => (
   <div className={styles.inputContainer}>
@@ -36,6 +37,9 @@ const Input: FC<InputProps> = ({
       })}
       type={type}
       id={id}
+      style={{
+        width,
+      }}
       {...rest}
     />
     {errorMessage && (

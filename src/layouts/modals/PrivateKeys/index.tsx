@@ -23,16 +23,20 @@ const PrivateKeys = () => {
           <strong>Cryptic Activist</strong> platform such as:
         </p>
         <section className={styles.importantSection}>
-          {IMPORTANT_ACTIONS.map((action) => (
-            <span className={styles.important}>{action}</span>
+          {IMPORTANT_ACTIONS.map((action, index) => (
+            <span className={styles.important} key={index}>
+              {action}
+            </span>
           ))}
         </section>
         <p>{`Make sure to store these ${register.privateKeys?.length} words private keys somewhere safe. It
             won't be available to retrieve at any time.`}</p>
 
         <ul className={styles.privateKeysList}>
-          {register.privateKeys?.map((privateKey) => (
-            <span className={styles.important}>{privateKey}</span>
+          {register.privateKeys?.map((privateKey, index) => (
+            <span className={styles.important} key={index}>
+              {privateKey}
+            </span>
           ))}
         </ul>
 

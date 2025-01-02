@@ -9,3 +9,4 @@ export * from './paymentMethodCategories';
 export * from './paymentMethods';
 export * from './user';
 export * from './register';
+export * from './verifyAccount';

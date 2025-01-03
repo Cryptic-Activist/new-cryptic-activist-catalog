@@ -1,12 +1,13 @@
 'use client';
 
+import { useRef } from 'react';
+
 import { useCryptocurrencies, useHorizontalScroll } from '@/hooks';
 import { ListTemplate } from '@/layouts/modals';
-
 import { toggleModal } from '@/store';
 import { Cryptocurrency } from '@/store/cryptocurrency/types';
 import { toCapitalize, toUpperCase } from '@/utils';
-import { useRef } from 'react';
+
 import styles from './index.module.scss';
 
 const Cryptocurrencies = () => {

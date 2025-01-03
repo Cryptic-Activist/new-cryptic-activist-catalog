@@ -76,8 +76,6 @@ const getUserInfoFromToken = async (
     }
   );
 
-  console.log({ response });
-
   if (response.status !== 200) return null;
 
   return response.data;

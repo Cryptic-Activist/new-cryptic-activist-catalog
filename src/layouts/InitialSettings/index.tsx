@@ -10,6 +10,7 @@ import {
   usePaymentMethods,
   useUser,
 } from '@/hooks';
+
 import { CryptocurrencyCoinGeckoId, FiatSymbol } from './types';
 
 const InitialSettings = () => {
@@ -23,29 +24,34 @@ const InitialSettings = () => {
   const setDefaultCryptocurrency = (coinGeckoId: CryptocurrencyCoinGeckoId) => {
     const cryptocurrency = getCryptocurrency(coinGeckoId);
 
-    setValue({
-      defaults: {
-        cryptocurrency: {
-          coingeckoId: cryptocurrency?.coingeckoId!,
-          id: cryptocurrency?.id!,
-          name: cryptocurrency?.name!,
-          symbol: cryptocurrency?.symbol!,
+    if (cryptocurrency) {
+      setValue({
+        defaults: {
+          cryptocurrency: {
+            coingeckoId: cryptocurrency.coingeckoId,
+            id: cryptocurrency.id,
+            name: cryptocurrency.name,
+            symbol: cryptocurrency.symbol,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   const setDefaultFiat = (symbol: FiatSymbol) => {
     const fiat = getFiat(symbol);
-    setValue({
-      defaults: {
-        fiat: {
-          id: fiat?.id!,
-          name: fiat?.name!,
-          symbol: fiat?.symbol!,
+
+    if (fiat) {
+      setValue({
+        defaults: {
+          fiat: {
+            id: fiat.id,
+            name: fiat.name,
+            symbol: fiat.symbol,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   useEffect(() => {

@@ -1,5 +1,7 @@
-import { fetchCurrentPrice } from '@/services/app';
 import { map } from 'nanostores';
+
+import { fetchCurrentPrice } from '@/services/app';
+
 import { AppState, AppStateSetter, SetCurrentPrice, Value } from './types';
 
 export const $app = map<AppState>({
@@ -25,24 +27,17 @@ const setter = ({
 }: AppStateSetter) => {
   const app = $app.get();
 
-  const localDefaults = {
-    fiat: defaults?.fiat ?? app.defaults.fiat,
-    cryptocurrency: defaults?.cryptocurrency ?? app.defaults.cryptocurrency,
-    paymentMethod: defaults?.paymentMethod ?? app.defaults.paymentMethod,
-  };
-  const localDimensions = dimensions ?? app.dimensions;
-  const localIsMobile = isMobile ?? app.isMobile;
-  const localType = type ?? app.type;
-  const localWarnings = warnings ?? app.warning;
-  const localCurrentPrice = currentPrice ?? app.currentPrice;
-
   $app.set({
-    defaults: localDefaults,
-    dimensions: localDimensions,
-    isMobile: localIsMobile,
-    type: localType,
-    warning: localWarnings,
-    currentPrice: localCurrentPrice,
+    defaults: {
+      fiat: defaults?.fiat ?? app.defaults.fiat,
+      cryptocurrency: defaults?.cryptocurrency ?? app.defaults.cryptocurrency,
+      paymentMethod: defaults?.paymentMethod ?? app.defaults.paymentMethod,
+    },
+    dimensions: dimensions ?? app.dimensions,
+    isMobile: isMobile ?? app.isMobile,
+    type: type ?? app.type,
+    warning: warnings ?? app.warning,
+    currentPrice: currentPrice ?? app.currentPrice,
   });
 };
 
@@ -57,7 +52,7 @@ export const setCurrentPrice: SetCurrentPrice = async (id, fiatSymbol) => {
     return;
   }
 
-  const crypto = Object.values(currentPrice.data.results)[0] as object;
+  const crypto = Object.values(currentPrice.data)[0] as object;
   const price: number = Object.values(crypto)[0];
 
   setter({ currentPrice: price });

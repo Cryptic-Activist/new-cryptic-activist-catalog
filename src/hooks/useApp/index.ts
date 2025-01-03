@@ -1,19 +1,14 @@
 'use client';
-import { useStore } from '@nanostores/react';
 
 import {
   $app,
   setCurrentPrice as setCurrentPriceStore,
-  setValue as setValueStore,
+  setValue,
 } from '@/store';
-import { Value } from '@/store/app/types';
+import { useStore } from '@nanostores/react';
 
 const useApp = () => {
   const app = useStore($app);
-
-  const setValue = (value: Value) => {
-    setValueStore(value);
-  };
 
   const setCurrentPrice = async () => {
     if (app.defaults.cryptocurrency?.coingeckoId && app.defaults.fiat?.symbol) {
@@ -23,6 +18,8 @@ const useApp = () => {
       );
     }
   };
+
+  console.log({ app });
 
   return { app, setValue, setCurrentPrice };
 };

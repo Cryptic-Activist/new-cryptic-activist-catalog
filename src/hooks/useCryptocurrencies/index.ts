@@ -1,4 +1,7 @@
 'use client';
+
+import { useState } from 'react';
+
 import {
   $cryptocurrencies,
   getCryptocurrencies as getCryptocurrenciesStore,
@@ -7,7 +10,7 @@ import {
 import { Cryptocurrency } from '@/store/cryptocurrency/types';
 import { toLowerCase } from '@/utils';
 import { useStore } from '@nanostores/react';
-import { useState } from 'react';
+
 import { CryptocurrencyCoinGeckoId } from './types';
 
 const useCryptocurrency = () => {
@@ -25,7 +28,7 @@ const useCryptocurrency = () => {
       return null;
     }
 
-    const cryptocurrency = cryptocurrencies.data.filter(
+    const cryptocurrency = cryptocurrencies.data?.filter(
       (crypto) => crypto.coingeckoId === coingeckoId
     );
 

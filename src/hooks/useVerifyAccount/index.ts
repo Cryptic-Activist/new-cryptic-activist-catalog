@@ -42,7 +42,6 @@ const useVerifyAccount = () => {
 
   const onSubmitFindUser = (data: any) => {
     setUsername({ username: data['username'] });
-    console.log({ data });
     setStep('verification');
   };
 

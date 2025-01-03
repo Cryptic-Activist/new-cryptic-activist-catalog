@@ -55,8 +55,6 @@ export const submitVerifyPrivateKeys = async (
     { ...params }
   );
 
-  console.log({ response });
-
   if (response.status !== 200) {
     setter({ isSubmitted: false });
     return false;

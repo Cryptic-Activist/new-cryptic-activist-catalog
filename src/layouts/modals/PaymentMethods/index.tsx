@@ -1,15 +1,16 @@
 'use client';
 
+import { useRef } from 'react';
+
 import {
   useHorizontalScroll,
   useNavigationBar,
   usePaymentMethods,
 } from '@/hooks';
 import { ListTemplate } from '@/layouts/modals';
-
 import { PaymentMethod } from '@/store/paymentMethod/types';
 import { toCapitalize } from '@/utils';
-import { useRef } from 'react';
+
 import styles from './index.module.scss';
 
 const PaymentMethods = () => {
@@ -28,7 +29,7 @@ const PaymentMethods = () => {
     <ListTemplate
       width="20vw"
       height="25vh"
-      heading="PaymentMethods"
+      heading="Payment Methods"
       onFilter={filterPaymentMethods}
     >
       <ul className={styles.list} ref={ref}>

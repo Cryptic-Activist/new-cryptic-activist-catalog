@@ -18,6 +18,7 @@ const Input: FC<InputProps> = ({
   type,
   errorMessage,
   width,
+  focus = true,
   ...rest
 }) => (
   <div className={styles.inputContainer}>
@@ -39,6 +40,7 @@ const Input: FC<InputProps> = ({
       id={id}
       style={{
         width,
+        ...(focus && { borderColor: '#000' }),
       }}
       {...rest}
     />

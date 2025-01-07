@@ -33,6 +33,7 @@
   transition: border-color 0.2s ease-in-out;
   width: 100%;
   box-sizing: border-box;
+
   &:focus {
     outline: none;
     border-color: $secondary;

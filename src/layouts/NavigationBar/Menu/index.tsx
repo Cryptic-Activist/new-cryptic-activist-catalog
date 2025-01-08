@@ -1,7 +1,10 @@
 'use client';
 
-import { Button, MenuList, Tooltip } from '@/components';
+import { FaWallet } from 'react-icons/fa6';
+
+import { Button, Tooltip } from '@/components';
 import { useNavigationBar, useOutsideClick, useUser } from '@/hooks';
+
 import { menuList, menuUserList } from './data';
 import styles from './index.module.scss';
 
@@ -23,6 +26,10 @@ const Menu = () => {
     toggleModal('login');
   };
 
+  const handleToggleBlockchain = () => {
+    toggleModal('blockchain');
+  };
+
   const ref = useOutsideClick(handleToggleUserDrawer);
 
   return (
@@ -32,6 +39,12 @@ const Menu = () => {
           {label}
         </Button>
       ))}
+      {user.data && user.fetched && (
+        <Button theme="transparent" onClick={handleToggleBlockchain}>
+          {/* <FaWallet /> */}
+          Connect Wallet
+        </Button>
+      )}
       <Tooltip position="bottom" spacing={55}>
         {user.data && user.fetched ? (
           <Button theme="transparent" onClick={handleToggleUserDrawer}>

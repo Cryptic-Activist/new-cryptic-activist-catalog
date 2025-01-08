@@ -19,8 +19,6 @@ const useApp = () => {
     }
   };
 
-  console.log({ app });
-
   return { app, setValue, setCurrentPrice };
 };
 

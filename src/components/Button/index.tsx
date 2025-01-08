@@ -11,6 +11,8 @@ const Button: FC<ButtonProps> = ({
   theme = 'primary',
   padding,
   align = 'center',
+  size = 16,
+  fullWidth = false,
   onClick,
 }) => {
   const primary = theme === 'primary' ? styles.primary : null;
@@ -29,6 +31,8 @@ const Button: FC<ButtonProps> = ({
           style={{
             padding,
             textAlign: alignment,
+            fontSize: `${size}px`,
+            ...(fullWidth ? { width: '100%' } : {}),
           }}
         >
           {children}
@@ -41,6 +45,8 @@ const Button: FC<ButtonProps> = ({
           style={{
             padding,
             textAlign: alignment,
+            fontSize: `${size}px`,
+            ...(fullWidth ? { width: '100%' } : {}),
           }}
         >
           {children}

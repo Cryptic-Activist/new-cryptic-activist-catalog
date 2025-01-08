@@ -1,7 +1,6 @@
 export { default as Brand } from './Brand';
 export { default as Button } from './Button';
 export { default as CurrentPrice } from './CurrentPrice';
-export { default as MenuList } from './MenuList';
 export { default as ProfileImage } from './ProfileImage';
 export { default as ProfileInfo } from './ProfileInfo';
 export { default as ProfileNameUsername } from './ProfileNameUsername';

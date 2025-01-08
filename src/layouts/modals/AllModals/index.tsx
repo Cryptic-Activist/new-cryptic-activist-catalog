@@ -2,6 +2,7 @@
 
 import { useNavigationBar } from '@/hooks';
 import {
+  Blockchain,
   Cryptocurrencies,
   Fiats,
   Login,
@@ -23,6 +24,7 @@ const AllModals = () => {
       {navigationBar.modals.cryptocurrencies ? <Cryptocurrencies /> : <></>}
       {navigationBar.modals.paymentMethods ? <PaymentMethods /> : <></>}
       {navigationBar.modals.privateKeys ? <PrivateKeys /> : <></>}
+      {navigationBar.modals.blockchain ? <Blockchain /> : <></>}
     </>
   );
 };

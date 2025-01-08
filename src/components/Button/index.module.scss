@@ -1,4 +1,4 @@
-@import '../../styles/globals.module.scss';
+@use '../../styles/globals.module.scss';
 
 .button {
   padding: 0.5rem 0.8rem;
@@ -15,31 +15,31 @@
 }
 
 .primary {
-  background-color: $secondary;
-  color: $primary;
-  border: 1px solid $secondary;
-  box-shadow: 0px 0px 4px 1px $box-shadow-default-color;
+  background-color: globals.$secondary;
+  color: globals.$primary;
+  border: 1px solid globals.$secondary;
+  box-shadow: 0px 0px 4px 1px globals.$box-shadow-default-color;
 }
 
 .secondary {
-  background-color: $primary;
-  color: $secondary;
-  border: 1px solid $secondary;
-  box-shadow: 0px 0px 4px 1px $box-shadow-default-color;
+  background-color: globals.$primary;
+  color: globals.$secondary;
+  border: 1px solid globals.$secondary;
+  box-shadow: 0px 0px 4px 1px globals.$box-shadow-default-color;
 }
 
 .ghost {
-  background-color: $white;
-  color: $secondary;
-  border: 1px solid $secondary;
-  box-shadow: 0px 0px 4px 1px $box-shadow-default-color;
+  background-color: globals.$white;
+  color: globals.$secondary;
+  border: 1px solid globals.$secondary;
+  box-shadow: 0px 0px 4px 1px globals.$box-shadow-default-color;
 }
 
 .transparent {
   background-color: transparent;
-  color: $secondary;
+  color: globals.$secondary;
   border: none;
   &:hover {
-    background-color: $hover-button-background-color;
+    background-color: globals.$hover-button-background-color;
   }
 }

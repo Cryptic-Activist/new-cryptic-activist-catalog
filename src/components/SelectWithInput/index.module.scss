@@ -1,4 +1,4 @@
-@import '../../styles/globals.module.scss';
+@use '../../styles/globals.module.scss';
 
 .container {
   display: flex;
@@ -23,7 +23,7 @@
   box-sizing: border-box;
   align-items: center;
   input {
-    font-size: $font-size-m;
+    font-size: globals.$font-size-m;
     padding: 0.8rem;
     background-color: transparent;
     border: none;
@@ -42,13 +42,13 @@
   }
   button {
     background-color: transparent;
-    border: 1px solid $grey;
+    border: 1px solid globals.$grey;
     border-radius: 0.4rem;
     height: fit-content;
     width: fit-content;
     margin: 0 0.5rem;
     padding: 0.4rem 0.6rem;
-    font-size: $font-size-m;
+    font-size: globals.$font-size-m;
     color: #6c6c6c;
     cursor: pointer;
     white-space: nowrap;

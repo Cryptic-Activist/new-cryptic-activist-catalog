@@ -1,4 +1,4 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .container {
   display: flex;
@@ -7,8 +7,8 @@
 }
 
 .message {
-  font-size: $font-size-m;
-  color: $secondary;
+  font-size: globals.$font-size-m;
+  color: globals.$secondary;
 }
 
 .importantSection {
@@ -19,10 +19,10 @@
 }
 
 .important {
-  font-size: $font-size-l;
-  background-color: $secondary;
-  color: $primary;
-  border-radius: $border-radius-4;
+  font-size: globals.$font-size-l;
+  background-color: globals.$secondary;
+  color: globals.$primary;
+  border-radius: globals.$border-radius-4;
   padding: 0.4rem 0.8rem;
   text-wrap: nowrap;
 }

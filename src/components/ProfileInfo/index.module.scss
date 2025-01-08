@@ -1,13 +1,13 @@
-@import '../../styles/globals.module.scss';
+@use '../../styles/globals.module.scss';
 
 .container {
   border-radius: 0.4rem;
-  border: 1px solid $secondary;
-  box-shadow: 0px 0px 5px 1px $box-shadow-default-color;
+  border: 1px solid globals.$secondary;
+  box-shadow: 0px 0px 5px 1px globals.$box-shadow-default-color;
 }
 
 .header {
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid globals.$secondary;
   border-bottom-right-radius: 0.4rem;
   border-bottom-left-radius: 0.4rem;
   padding: 1rem;

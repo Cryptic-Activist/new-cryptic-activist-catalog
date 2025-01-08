@@ -1,10 +1,10 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .container {
   display: flex;
   flex-direction: column;
   border-radius: 0.4rem;
-  border: 1px solid $secondary;
+  border: 1px solid globals.$secondary;
   width: 100%;
-  background-color: $white;
+  background-color: globals.$white;
 }

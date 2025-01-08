@@ -1,4 +1,4 @@
-@import '../../styles/globals.module.scss';
+@use '../../styles/globals.module.scss';
 
 .container {
   display: flex;
@@ -17,7 +17,7 @@
 
 .statement {
   font-size: 0.85rem;
-  color: $secondary;
+  color: globals.$secondary;
 }
 
 .positive,
@@ -35,13 +35,13 @@
 }
 
 .positive {
-  border-color: rgba($feedback-positive, 0.55);
-  background-color: rgba($feedback-positive, 0.1);
-  color: $feedback-positive;
+  border-color: rgba(globals.$feedback-positive, 0.55);
+  background-color: rgba(globals.$feedback-positive, 0.1);
+  color: globals.$feedback-positive;
 }
 
 .negative {
-  border-color: rgba($feedback-negative, 0.55);
-  background-color: rgba($feedback-negative, 0.1);
-  color: $feedback-negative;
+  border-color: rgba(globals.$feedback-negative, 0.55);
+  background-color: rgba(globals.$feedback-negative, 0.1);
+  color: globals.$feedback-negative;
 }

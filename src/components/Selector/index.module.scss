@@ -1,4 +1,4 @@
-@import '../../styles/globals.module.scss';
+@use '../../styles/globals.module.scss';
 
 .container {
   display: flex;
@@ -13,8 +13,8 @@
 
 .selector {
   border-radius: 0.4rem;
-  border: 1px solid $secondary;
-  background-color: $white;
+  border: 1px solid globals.$secondary;
+  background-color: globals.$white;
   font-size: 1rem;
   padding: 0.8rem;
   cursor: pointer;

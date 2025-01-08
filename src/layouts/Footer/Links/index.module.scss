@@ -1,4 +1,4 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .sideLinks {
   display: flex;
@@ -11,7 +11,7 @@
   gap: 1.5rem;
   .heading {
     font-size: 1.1rem;
-    color: $secondary;
+    color: globals.$secondary;
   }
   .list {
     display: flex;
@@ -20,7 +20,7 @@
     li {
       list-style: none;
       a {
-        color: $secondary;
+        color: globals.$secondary;
         text-decoration: none;
       }
     }

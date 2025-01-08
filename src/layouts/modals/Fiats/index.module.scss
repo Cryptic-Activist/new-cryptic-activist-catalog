@@ -1,4 +1,4 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .list {
   display: flex;
@@ -14,14 +14,14 @@
     background: transparent;
   }
   &::-webkit-scrollbar-thumb {
-    background: $secondary;
+    background: globals.$secondary;
   }
 
   li {
     list-style: none;
     button {
       cursor: pointer;
-      font-size: $font-size-l;
+      font-size: globals.$font-size-l;
       background-color: transparent;
       border: none;
       padding: 0.4rem 0.6rem;

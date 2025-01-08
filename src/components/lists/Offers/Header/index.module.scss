@@ -1,10 +1,10 @@
-@import '../../../../styles/globals.module.scss';
+@use '../../../../styles/globals.module.scss';
 
 .header {
   width: 100%;
   padding: 0.8rem;
   border-radius: 0.4rem;
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid globals.$secondary;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -13,6 +13,6 @@
 .columnButton {
   background-color: transparent;
   border: none;
-  font-size: $font-size-m;
+  font-size: globals.$font-size-m;
   font-weight: 600;
 }

@@ -1,4 +1,4 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .inputContainer {
   display: flex;
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: space-between;
   a {
-    color: $primary;
+    color: globals.$primary;
     text-decoration: none;
     font-weight: 700;
   }
@@ -24,9 +24,9 @@
 
 .input {
   background-color: white;
-  color: $secondary;
+  color: globals.$secondary;
   padding: 1rem;
-  border: 1px solid $input-border-color;
+  border: 1px solid globals.$input-border-color;
   border-radius: 0.4rem;
   box-shadow: 0 0px 6px -2px rgb(0, 0, 0, 0.3);
   font-size: 1rem;
@@ -36,7 +36,7 @@
 
   &:focus {
     outline: none;
-    border-color: $secondary;
+    border-color: globals.$secondary;
   }
 }
 
@@ -45,6 +45,6 @@
 }
 
 .errorMessage {
-  color: $secondary;
+  color: globals.$secondary;
   font-size: 0.9rem;
 }

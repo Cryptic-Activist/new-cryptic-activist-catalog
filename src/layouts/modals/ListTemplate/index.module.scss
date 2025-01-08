@@ -1,4 +1,4 @@
-@import '../../../styles/globals.module.scss';
+@use '../../../styles/globals.module.scss';
 
 .bg {
   position: fixed;
@@ -6,18 +6,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $semi-transparent-background;
+  background-color: globals.$semi-transparent-background;
   z-index: 9;
 }
 
 .container {
-  background-color: $white;
+  background-color: globals.$white;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2rem;
-  box-shadow: 0px 0px 6px 0px $box-shadow-default-color;
+  box-shadow: 0px 0px 6px 0px globals.$box-shadow-default-color;
   border-radius: 0.4rem;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@
 }
 
 .heading {
-  font-size: $font-size-l;
+  font-size: globals.$font-size-l;
   font-weight: 600;
 }
 
@@ -34,17 +34,17 @@
   display: flex;
   padding-bottom: 0.5rem;
   padding-right: 1rem;
-  border-bottom: 1px solid $secondary;
+  border-bottom: 1px solid globals.$secondary;
   width: fit-content;
   input {
     border: none;
-    font-size: $font-size-l;
+    font-size: globals.$font-size-l;
     padding-right: 1rem;
     &:focus {
       outline: none;
     }
     &::placeholder {
-      font-size: $font-size-l;
+      font-size: globals.$font-size-l;
     }
   }
   button {
@@ -52,7 +52,7 @@
     border: none;
     background-color: transparent;
     svg {
-      font-size: $font-size-m;
+      font-size: globals.$font-size-m;
     }
   }
 }

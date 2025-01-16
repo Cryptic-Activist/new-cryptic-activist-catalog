@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { FC } from 'react';
 
-import { Brand } from './types';
+import type { Brand } from './types';
 
 import styles from './index.module.scss';
 

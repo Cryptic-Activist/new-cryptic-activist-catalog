@@ -1,8 +1,11 @@
 'use client';
-import { formatFullDate } from '@/utils';
+
 import { FC } from 'react';
+
+import { formatFullDate } from '@/utils';
+
 import styles from './index.module.scss';
-import { ProfileInfoProps } from './types';
+import type { ProfileInfoProps } from './types';
 
 const ProfileInfo: FC<ProfileInfoProps> = ({ user }) => {
   return (

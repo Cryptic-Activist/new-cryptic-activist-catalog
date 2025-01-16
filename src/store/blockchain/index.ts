@@ -4,6 +4,7 @@ import type {
   BlockchainSetter,
   BlockchainState,
   SetBlockchainParam,
+  SetEthereumProviderParam,
 } from './types';
 
 export const $blockchain = map<BlockchainState>();
@@ -20,4 +21,10 @@ const setter = ({ blockchain: bc, wallet, provider }: BlockchainSetter) => {
 
 export const setBlockchain = async (blockchain: SetBlockchainParam) => {
   setter({ blockchain });
+};
+
+export const setEthereumProvider = async (
+  provider: SetEthereumProviderParam
+) => {
+  setter({ provider });
 };

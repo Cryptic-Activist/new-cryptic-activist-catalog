@@ -1,9 +1,8 @@
 import { FC } from 'react';
 
 import Link from './Link';
-
 import styles from './index.module.scss';
-import { LinksProps } from './types';
+import type { LinksProps } from './types';
 
 const Links: FC<LinksProps> = ({ links }) => (
   <div className={styles.links}>

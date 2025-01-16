@@ -15,3 +15,5 @@ export type BlockchainSetter = {
 };
 
 export type SetBlockchainParam = Blockchain;
+
+export type SetEthereumProviderParam = BrowserProvider;

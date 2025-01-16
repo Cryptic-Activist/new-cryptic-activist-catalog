@@ -17,6 +17,7 @@ const Blockchain = () => {
             <Button
               onClick={onClick}
               size={18}
+              padding="0.8rem 1rem"
               type="button"
               align="center"
               fullWidth

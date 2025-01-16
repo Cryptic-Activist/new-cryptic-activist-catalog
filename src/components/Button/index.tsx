@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { FC } from 'react';
 
 import styles from './index.module.scss';
-import { ButtonProps } from './types';
+import type { ButtonProps } from './types';
 
 const Button: FC<ButtonProps> = ({
   children,

@@ -2,7 +2,7 @@ import { default as NextLink } from 'next/link';
 import type { FC } from 'react';
 
 import styles from './index.module.scss';
-import { LinkProps } from './types';
+import type { LinkProps } from './types';
 
 const Link: FC<LinkProps> = ({ href, label, type = 'button', onClick }) => {
   return (

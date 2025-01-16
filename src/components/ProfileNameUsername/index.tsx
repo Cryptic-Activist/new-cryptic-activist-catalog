@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { Button } from '@/components';
 import styles from './index.module.scss';
-import { ProfileNameUsername } from './types';
+import type { ProfileNameUsername } from './types';
 
 const ProfileNameUsername: FC<ProfileNameUsername> = ({ names, username }) => {
   const fullname = [names?.firstName ?? '', names?.lastName ?? ''].join(' ');

@@ -1,10 +1,11 @@
 'use client';
 
-import { getInitials } from '@/utils';
 import { FC } from 'react';
 
+import { getInitials } from '@/utils';
+
 import styles from './index.module.scss';
-import { ProfileImageProps } from './types';
+import type { ProfileImageProps } from './types';
 
 const ProfileImage: FC<ProfileImageProps> = ({ size, user }) => {
   const s =

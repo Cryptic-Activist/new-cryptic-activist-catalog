@@ -1,13 +1,12 @@
 import { FC } from 'react';
 
 import { Button, Selector } from '@/components';
+import { SelectWithInput } from '@/components';
 
 import CurrentPrice from '../CurrentPrice';
-
-import { SelectWithInput } from '@/components';
 import TypeSelector from './TypeSelector';
 import styles from './index.module.scss';
-import { SearchOfferProps } from './types';
+import type { SearchOfferProps } from './types';
 
 const SearchOffer: FC<SearchOfferProps> = () => {
   return (

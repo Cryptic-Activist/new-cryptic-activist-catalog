@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 
 import styles from './index.module.scss';
-import { FeedbackCountProps } from './types';
+import type { FeedbackCountProps } from './types';
 
 const FeedbackCount: FC<FeedbackCountProps> = ({
   negativeCount,

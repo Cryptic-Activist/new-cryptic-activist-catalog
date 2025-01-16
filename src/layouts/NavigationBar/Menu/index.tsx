@@ -3,7 +3,12 @@
 import { FaWallet } from 'react-icons/fa6';
 
 import { Button, Tooltip } from '@/components';
-import { useNavigationBar, useOutsideClick, useUser } from '@/hooks';
+import {
+  useBlockchain,
+  useNavigationBar,
+  useOutsideClick,
+  useUser,
+} from '@/hooks';
 
 import { menuList, menuUserList } from './data';
 import styles from './index.module.scss';
@@ -17,6 +22,7 @@ const Menu = () => {
     toggleModal,
   } = useNavigationBar();
   const { user } = useUser(false);
+  const { blockchain, getAccountAddress } = useBlockchain();
 
   const handleToggleUserDrawer = () => {
     toggleDrawer('user');
@@ -39,10 +45,19 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {user.data && user.fetched && (
-        <Button theme="transparent" onClick={handleToggleBlockchain}>
-          {/* <FaWallet /> */}
+      {user.data && user.fetched && !blockchain.provider && (
+        <Button
+          theme="transparent"
+          type="button"
+          onClick={handleToggleBlockchain}
+        >
           Connect Wallet
+        </Button>
+      )}
+      {user.data && user.fetched && blockchain.provider && (
+        <Button theme="transparent" type="button" onClick={getAccountAddress}>
+          <FaWallet />
+          <p>p</p>
         </Button>
       )}
       <Tooltip position="bottom" spacing={55}>

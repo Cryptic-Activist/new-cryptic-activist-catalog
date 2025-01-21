@@ -2,7 +2,15 @@ import { map } from 'nanostores';
 
 import { fetchCurrentPrice } from '@/services/app';
 
-import { AppState, AppStateSetter, SetCurrentPrice, Value } from './types';
+import {
+  AppState,
+  AppStateSetter,
+  SetCurrentPrice,
+  ToastContent,
+  ToastType,
+  Value,
+} from './types';
+import { generateUUID } from '@/utils';
 
 export const $app = map<AppState>({
   defaults: {
@@ -13,7 +21,7 @@ export const $app = map<AppState>({
   dimensions: [0, 0],
   isMobile: false,
   type: 'buy',
-  warning: [],
+  toasts: [],
   currentPrice: null,
 });
 
@@ -22,7 +30,7 @@ const setter = ({
   dimensions,
   isMobile,
   type,
-  warnings,
+  toasts,
   currentPrice,
 }: AppStateSetter) => {
   const app = $app.get();
@@ -36,7 +44,7 @@ const setter = ({
     dimensions: dimensions ?? app.dimensions,
     isMobile: isMobile ?? app.isMobile,
     type: type ?? app.type,
-    warning: warnings ?? app.warning,
+    toasts: toasts ?? app.toasts,
     currentPrice: currentPrice ?? app.currentPrice,
   });
 };
@@ -56,4 +64,28 @@ export const setCurrentPrice: SetCurrentPrice = async (id, fiatSymbol) => {
   const price: number = Object.values(crypto)[0];
 
   setter({ currentPrice: price });
+};
+
+export const addToast = (
+  type: ToastType,
+  content: ToastContent,
+  timeout: number
+) => {
+  let toasts = $app.get().toasts;
+  const uuid = generateUUID();
+
+  toasts.push({ type, content, timeout, id: uuid });
+
+  setter({ toasts });
+
+  setTimeout(() => {
+    removeToast(uuid);
+  }, timeout);
+};
+
+export const removeToast = (id: string) => {
+  const toasts = $app.get().toasts;
+  const filteredToasts = toasts.filter((toast) => toast.id !== id);
+
+  setter({ toasts: filteredToasts });
 };

@@ -9,11 +9,13 @@ import { LoginUserParams } from '@/store/user/types';
 import { useStore } from '@nanostores/react';
 import { useEffect } from 'react';
 import { UseUserHasFetch } from './types';
+import useApp from '../useApp';
 
 let count = 0;
 
 const useUser = (hasFetch: UseUserHasFetch = false) => {
   const user = useStore($user);
+  const { addToast } = useApp();
 
   useEffect(() => {
     const handleDecodeAccessToken = async () => {
@@ -27,7 +29,11 @@ const useUser = (hasFetch: UseUserHasFetch = false) => {
   }, []);
 
   const loginUser = async (userData: LoginUserParams) => {
-    await loginUserStore(userData);
+    const loggedIn = await loginUserStore(userData);
+
+    if (!loggedIn) {
+      addToast('error', 'Enable to login', 10000);
+    }
   };
 
   const logoutUser = () => {

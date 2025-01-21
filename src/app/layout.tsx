@@ -1,6 +1,12 @@
 import { Roboto } from 'next/font/google';
 
-import { AllModals, Footer, InitialSettings, NavigationBar } from '@/layouts';
+import {
+  AllModals,
+  Footer,
+  InitialSettings,
+  NavigationBar,
+  Toast,
+} from '@/layouts';
 
 import './index.css';
 import styles from './layout.module.scss';
@@ -22,6 +28,7 @@ function RootLayout({ children }: { children: React.ReactNode }) {
         <InitialSettings />
         <AllModals />
         <NavigationBar />
+        <Toast />
         <main className={styles.main}>{children}</main>
         <Footer />
       </body>

@@ -4,3 +4,4 @@ export * from './modals';
 export { default as NavigationBar } from './NavigationBar';
 export * from './sections';
 export * from './tooltips';
+export { default as Toast } from './Toast';

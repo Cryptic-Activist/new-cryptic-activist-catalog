@@ -113,15 +113,17 @@ export const loginUser = async (userData: LoginUserParams) => {
       removeLocalStorage('accessToken');
       removeLocalStorage('refreshToken');
       setter({ errors: ['Unable to login'], loading: false });
-      return;
+      return null;
     }
 
     setter({ data: setUserInfo(userInfo), fetched: true, loading: false });
+    return true;
   } catch (err) {
     removeLocalStorage('accessToken');
     removeLocalStorage('refreshToken');
 
     setter({ errors: ['Unable to login'], loading: false });
+    return null;
   }
 };
 

@@ -4,6 +4,8 @@ import {
   $app,
   setCurrentPrice as setCurrentPriceStore,
   setValue,
+  addToast,
+  removeToast,
 } from '@/store';
 import { useStore } from '@nanostores/react';
 
@@ -19,7 +21,7 @@ const useApp = () => {
     }
   };
 
-  return { app, setValue, setCurrentPrice };
+  return { app, setValue, setCurrentPrice, addToast, removeToast };
 };
 
 export default useApp;

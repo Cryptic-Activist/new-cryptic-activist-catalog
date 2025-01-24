@@ -1,14 +1,13 @@
 'use client';
 
+import { BuildLabel, SelectorProps } from './types';
 import { FC, useEffect, useState } from 'react';
-
-import { useApp, useNavigationBar } from '@/hooks';
 import { toCapitalize, toUpperCase } from '@/utils';
+import { useApp, useNavigationBar } from '@/hooks';
 
 import styles from './index.module.scss';
-import { BuildLabel, SelectorProps } from './types';
 
-const Selector: FC<SelectorProps> = ({ type }) => {
+const Selector: FC<SelectorProps> = ({ type, hasLabel = true }) => {
   const [label, setLabel] = useState('No data');
 
   const { app } = useApp();
@@ -48,9 +47,11 @@ const Selector: FC<SelectorProps> = ({ type }) => {
 
   return (
     <div className={styles.container}>
-      <label htmlFor={styles.selector} className={styles.label}>
-        {toCapitalize(type)}
-      </label>
+      {hasLabel && (
+        <label htmlFor={styles.selector} className={styles.label}>
+          {toCapitalize(type)}
+        </label>
+      )}
       <button
         className={styles.selector}
         id={styles.selector}

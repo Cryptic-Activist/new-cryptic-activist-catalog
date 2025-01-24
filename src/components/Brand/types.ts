@@ -1,3 +1,3 @@
-export type Brand = {
+export type BrandProps = {
   href?: string;
 };

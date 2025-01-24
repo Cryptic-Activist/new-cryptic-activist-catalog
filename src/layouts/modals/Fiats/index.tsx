@@ -1,13 +1,13 @@
 'use client';
 
-import { useFiats, useHorizontalScroll } from '@/hooks';
-import { ListTemplate } from '@/layouts/modals';
-
-import { toggleModal } from '@/store';
-import { Fiat } from '@/store/fiat/types';
 import { toCapitalize, toUpperCase } from '@/utils';
-import { useRef } from 'react';
+import { useFiats, useHorizontalScroll } from '@/hooks';
+
+import { Fiat } from '@/store/fiat/types';
+import { ListTemplate } from '@/layouts/modals';
 import styles from './index.module.scss';
+import { toggleModal } from '@/store';
+import { useRef } from 'react';
 
 const Fiats = () => {
   const ref = useRef<HTMLUListElement | null>(null);

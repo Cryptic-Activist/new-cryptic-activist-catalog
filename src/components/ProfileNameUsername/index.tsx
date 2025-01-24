@@ -1,11 +1,12 @@
-import { Plus } from 'lucide-react';
-import { FC } from 'react';
-
 import { Button } from '@/components';
+import { FC } from 'react';
+import type { ProfileNameUsernameProps } from './types';
 import styles from './index.module.scss';
-import type { ProfileNameUsername } from './types';
 
-const ProfileNameUsername: FC<ProfileNameUsername> = ({ names, username }) => {
+const ProfileNameUsername: FC<ProfileNameUsernameProps> = ({
+  names,
+  username,
+}) => {
   const fullname = [names?.firstName ?? '', names?.lastName ?? ''].join(' ');
   return (
     <div className={styles.container}>
@@ -13,9 +14,8 @@ const ProfileNameUsername: FC<ProfileNameUsername> = ({ names, username }) => {
         <h1 className={styles.name}>{fullname}</h1>
         <h2 className={styles.username}>{username}</h2>
       </div>
-      <Button href="/offer/create" theme="ghost">
+      <Button href="/offer/create" theme="primary" padding="1em">
         <p>Create Offer</p>
-        <Plus size={20} />
       </Button>
     </div>
   );

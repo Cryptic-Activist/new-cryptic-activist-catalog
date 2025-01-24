@@ -1,18 +1,16 @@
 'use client';
-import { $fiats, getFiats as getFiatsStore, setValue } from '@/store';
+
+import { $fiats, getFiats, setValue } from '@/store';
+
 import { Fiat } from '@/store/fiat/types';
-import { toLowerCase } from '@/utils';
-import { useStore } from '@nanostores/react';
-import { useState } from 'react';
 import { FiatSymbol } from './types';
+import { toLowerCase } from '@/utils';
+import { useState } from 'react';
+import { useStore } from '@nanostores/react';
 
 const useFiats = () => {
   const fiats = useStore($fiats);
   const [fiatsList, setFiatsList] = useState(fiats.data);
-
-  const getFiats = () => {
-    getFiatsStore();
-  };
 
   const getFiat = (symbol: FiatSymbol) => {
     if (!fiats.data) {

@@ -1,9 +1,9 @@
 'use client';
 
 import { BrowserProvider } from 'ethers';
-import { FaBitcoin } from 'react-icons/fa6';
 
 import { $blockchain, setBlockchain, setEthereumProvider } from '@/store';
+import { BitcoinLogo, EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
 import { useStore } from '@nanostores/react';
 
 import useNavigationBar from '../useNavigationBar';
@@ -56,17 +56,17 @@ const useBlockchain = () => {
     {
       label: 'ethereum',
       onClick: connectToEthereum,
-      icon: FaBitcoin,
+      icon: EthereumLogo,
     },
     {
       label: 'polygon',
       onClick: connectToPolygon,
-      icon: FaBitcoin,
+      icon: PolygonLogo,
     },
     {
       label: 'solana',
       onClick: connectToSolana,
-      icon: FaBitcoin,
+      icon: SolanaLogo,
     },
   ];
 

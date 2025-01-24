@@ -1,4 +1,4 @@
-export type ProfileNameUsername = {
+export type ProfileNameUsernameProps = {
   names?: {
     firstName: string;
     lastName: string;

@@ -9,4 +9,7 @@ export { default as SelectWithInput } from './SelectWithInput';
 export { default as Selector } from './Selector';
 export { default as Status } from './Status';
 export { default as Tooltip } from './Tooltip';
+export { default as Radio } from './Radio';
+export { default as ProgressBar } from './ProgressBar';
+export { default as SelectPaymentMethod } from './SelectPaymentMethod';
 export * from './lists';

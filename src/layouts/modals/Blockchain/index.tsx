@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import { Button } from '@/components';
 import useBlockchain from '@/hooks/useBlockchain';
@@ -12,7 +13,7 @@ const Blockchain = () => {
   return (
     <Template heading="Select Blockchain" width="fit-content">
       <ul className={styles.blockchainList}>
-        {blockchainsList.map(({ icon: Icon, label, onClick }, index) => (
+        {blockchainsList.map(({ icon, label, onClick }, index) => (
           <li key={index} className={styles.blockchainListItem}>
             <Button
               onClick={onClick}
@@ -22,7 +23,7 @@ const Blockchain = () => {
               align="center"
               fullWidth
             >
-              <Icon size={24} />
+              <Image src={icon} alt={`${label} logo`} width={24} height={24} />
               <span>{toCapitalize(label)}</span>
             </Button>
           </li>

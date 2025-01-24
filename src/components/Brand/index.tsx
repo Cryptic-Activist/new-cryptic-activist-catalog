@@ -1,11 +1,9 @@
-import Link from 'next/link';
+import type { BrandProps } from './types';
 import { FC } from 'react';
-
-import type { Brand } from './types';
-
+import Link from 'next/link';
 import styles from './index.module.scss';
 
-const Brand: FC<Brand> = ({ href = '/' }) => {
+const Brand: FC<BrandProps> = ({ href = '/' }) => {
   return (
     <Link className={styles.brand} href={href}>
       <h1>Cryptic Activist</h1>

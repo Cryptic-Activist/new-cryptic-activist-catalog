@@ -11,3 +11,4 @@ export * from './user';
 export * from './register';
 export * from './verifyAccount';
 export * from './blockchain';
+export * from './createOffer';

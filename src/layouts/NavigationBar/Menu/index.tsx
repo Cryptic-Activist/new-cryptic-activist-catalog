@@ -12,6 +12,7 @@ import {
 
 import { menuList, menuUserList } from './data';
 import styles from './index.module.scss';
+import { MenuList } from '@/layouts/tooltips';
 
 const Menu = () => {
   const {

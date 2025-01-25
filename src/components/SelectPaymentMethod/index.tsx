@@ -1,4 +1,6 @@
-import React, { FC } from 'react';
+'use client';
+
+import React, { FC, useState } from 'react';
 
 import { FaSearch } from 'react-icons/fa';
 import { SelectPaymentMethodProps } from './types';
@@ -6,8 +8,7 @@ import styles from './index.module.scss';
 import { usePaymentMethods } from '@/hooks';
 
 const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
-  handlePaymentMethodCategory,
-  handlePaymentMethodSelection,
+  handlePaymentMethod,
 }) => {
   const {
     paymentMethodCategories,
@@ -15,33 +16,62 @@ const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
     getPaymentMethodsByCategory,
   } = usePaymentMethods(true);
 
-  console.log({ paymentMethodCategories });
+  const [selectedCategoryIndex, setSelectedCategoryIndex] = useState<
+    null | number
+  >(null);
+  const [selectedPaymentMethodIndex, setSelectPaymentMethodIndex] = useState<
+    null | number
+  >(null);
+
+  const selectCategory = (id: string, index: number) => {
+    setSelectedCategoryIndex(index);
+    getPaymentMethodsByCategory(id);
+  };
+
+  const selectPaymentMethod = (id: string, index: number) => {
+    setSelectPaymentMethodIndex(index);
+    handlePaymentMethod(id);
+  };
 
   return (
     <div className={styles.container}>
-      <h3>Search all payment methods</h3>
       <div className={styles.searchContainer}>
-        <input className={styles.searchInput} />
+        <input
+          className={styles.searchInput}
+          placeholder="Search payment methods"
+        />
         <button className={styles.searchButton}>
           <FaSearch size={16} />
         </button>
       </div>
       <div className={styles.listContainer}>
         <ul className={styles.categoriesList}>
-          {paymentMethodCategories.data?.map((category) => (
-            <li key={category.id}>
-              <button onClick={() => getPaymentMethodsByCategory(category.id)}>
-                {category.name}
-              </button>
-            </li>
-          ))}
+          {paymentMethodCategories.data?.map((category, index) => {
+            const selected =
+              index === selectedCategoryIndex ? styles.selected : '';
+            return (
+              <li key={category.id} className={selected}>
+                <button onClick={() => selectCategory(category.id, index)}>
+                  {category.name}
+                </button>
+              </li>
+            );
+          })}
         </ul>
         <ul className={styles.paymentMethodsList}>
-          {paymentMethods.data?.map((paymentMethod) => (
-            <li key={paymentMethod.id}>
-              <button>{paymentMethod.name}</button>
-            </li>
-          ))}
+          {paymentMethods.data?.map((paymentMethod, index) => {
+            const selected =
+              index === selectedPaymentMethodIndex ? styles.selected : '';
+            return (
+              <li key={paymentMethod.id} className={selected}>
+                <button
+                  onClick={() => selectPaymentMethod(paymentMethod.id, index)}
+                >
+                  {paymentMethod.name}
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>

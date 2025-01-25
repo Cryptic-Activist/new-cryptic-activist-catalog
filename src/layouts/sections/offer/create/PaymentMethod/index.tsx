@@ -22,6 +22,10 @@ const CreateOfferPaymentMethod: FC<CreateOfferPaymentMethodProps> = ({
     setCreateOfferValues({ data: { paymentMethodType: value.value } });
   };
 
+  const selectPaymentMethod = (id: string) => {
+    console.log({ id });
+  };
+
   return (
     <>
       <Head>
@@ -60,7 +64,7 @@ const CreateOfferPaymentMethod: FC<CreateOfferPaymentMethodProps> = ({
             <h2 className={stylesCore.groupHeading}>
               Step 1: Select a payment method
             </h2>
-            <SelectPaymentMethod />
+            <SelectPaymentMethod handlePaymentMethod={selectPaymentMethod} />
           </section>
         </main>
         <aside className={stylesCore.aside}>

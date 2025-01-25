@@ -1,16 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Form, Input, Links } from '@/components/forms';
+import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import { Button } from '@/components';
-import { Form, Input, Links } from '@/components/forms';
-import { useUser } from '@/hooks';
-import { Template } from '@/layouts/modals';
-import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 import { LoginUserParams } from '@/store/user/types';
-
-import styles from './index.module.scss';
+import { Template } from '@/layouts/modals';
 import { loginResolver } from './zod';
+import styles from './index.module.scss';
+import { useEffect } from 'react';
+import { useUser } from '@/hooks';
 
 const Login = () => {
   const { loginUser, user, isLoggedIn } = useUser(false);
@@ -69,7 +68,7 @@ const Login = () => {
             placeholder="Password"
           />
 
-          <Button type="submit" padding="1rem">
+          <Button type="submit" padding="1rem" fullWidth>
             Login
           </Button>
         </Form>

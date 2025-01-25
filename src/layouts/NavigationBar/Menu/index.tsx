@@ -1,8 +1,7 @@
 'use client';
 
-import { FaWallet } from 'react-icons/fa6';
-
 import { Button, Tooltip } from '@/components';
+import { menuList, menuUserList } from './data';
 import {
   useBlockchain,
   useNavigationBar,
@@ -10,9 +9,9 @@ import {
   useUser,
 } from '@/hooks';
 
-import { menuList, menuUserList } from './data';
-import styles from './index.module.scss';
+import { FaWallet } from 'react-icons/fa6';
 import { MenuList } from '@/layouts/tooltips';
+import styles from './index.module.scss';
 
 const Menu = () => {
   const {
@@ -58,7 +57,6 @@ const Menu = () => {
       {user.data && user.fetched && blockchain.provider && (
         <Button theme="transparent" type="button" onClick={getAccountAddress}>
           <FaWallet />
-          <p>p</p>
         </Button>
       )}
       <Tooltip position="bottom" spacing={55}>

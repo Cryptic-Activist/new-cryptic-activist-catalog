@@ -3,15 +3,17 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   width: 100%;
+  box-shadow: 0 2px 4px 0px globals.$box-shadow-default-color;
+  border-radius: 2em 2em 1em 1em;
 }
 
 .searchContainer {
   display: flex;
   flex-direction: row;
   border: 1px solid globals.$border-color-dark;
-  border-radius: 2em;
+  border-bottom: none;
+  border-radius: 2em 2em 0 0;
   overflow: hidden;
 }
 
@@ -36,8 +38,9 @@
   display: grid;
   grid-template-columns: 20% 80%;
   border: 1px solid globals.$border-color-dark;
-  border-radius: 1em;
+  border-radius: 0 0 1em 1em;
   overflow: hidden;
+  height: 30rem;
 }
 
 .categoriesList,
@@ -65,4 +68,8 @@
 }
 
 .paymentMethodsList {
+}
+
+.selected {
+  background-color: globals.$primary;
 }

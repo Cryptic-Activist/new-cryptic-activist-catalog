@@ -36,7 +36,12 @@ const Radio: FC<RadioProps> = ({
                   ></div>
                 )}
               </span>
-              <label className={styles.label}>{item.label}</label>
+              <div className={styles.labelDescription}>
+                <label className={styles.label}>{item.label}</label>
+                {item.description && (
+                  <p className={styles.description}>{item.description}</p>
+                )}
+              </div>
             </button>
           </li>
         );

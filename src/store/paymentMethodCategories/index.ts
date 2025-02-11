@@ -1,15 +1,23 @@
-import { map } from 'nanostores';
+import type {
+  PaymentMethodCategoriesSetter,
+  PaymentMethodCategoriesState,
+} from './types';
 
 import { fetchPaymentMethodCategories } from '@/services/paymentMethodCategories';
-import type { PaymentMethodsSetter, PaymentMethodsState } from './types';
+import { map } from 'nanostores';
 
-export const $paymentMethodCategories = map<PaymentMethodsState>({
+export const $paymentMethodCategories = map<PaymentMethodCategoriesState>({
   errors: [],
   fetched: false,
   loading: false,
 });
 
-const setter = ({ errors, fetched, loading, data }: PaymentMethodsSetter) => {
+const setter = ({
+  errors,
+  fetched,
+  loading,
+  data,
+}: PaymentMethodCategoriesSetter) => {
   const paymentMethodCategories = $paymentMethodCategories.get();
 
   const localErrors = errors ?? paymentMethodCategories.errors;

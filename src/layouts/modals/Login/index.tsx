@@ -48,7 +48,7 @@ const Login = () => {
   }, [user]);
 
   return (
-    <Template width="17rem" heading="Login">
+    <Template width="20rem" heading="Login">
       <div className={styles.container}>
         <Form onSubmit={onSubmit} resolver={loginResolver}>
           <Input

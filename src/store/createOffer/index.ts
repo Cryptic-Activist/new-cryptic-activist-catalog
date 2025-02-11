@@ -29,10 +29,9 @@ const setter = ({ errors, fetched, loading, data }: CreateOfferSetter) => {
       },
       cryptocurrency: data?.cryptocurrency ?? createOffer.data?.cryptocurrency,
       fiat: data?.fiat ?? createOffer.data?.fiat,
-      paymentMethodType:
-        data?.paymentMethodType ?? createOffer.data?.paymentMethodType,
-      category: data?.category ?? createOffer.data?.category,
-      selection: data?.selection ?? createOffer.data?.selection,
+      offerType: data?.offerType ?? createOffer.data?.offerType,
+      paymentMethodId:
+        data?.paymentMethodId ?? createOffer.data?.paymentMethodId,
       isPaymentMethodCompleted:
         data?.isPaymentMethodCompleted ??
         createOffer.data?.isPaymentMethodCompleted,

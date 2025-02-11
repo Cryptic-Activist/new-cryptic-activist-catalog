@@ -1,9 +1,7 @@
 import { Cryptocurrency } from '@/store/cryptocurrency/types';
 import { Fiat } from '@/store/fiat/types';
 
-type PaymentMethodType = 'sell' | 'buy';
-
-type Category = any;
+type OfferType = 'sell' | 'buy';
 
 type TradePricingType = 'market' | 'fixed';
 
@@ -15,9 +13,8 @@ export type CreateOffer = {
   };
   cryptocurrency?: Cryptocurrency | null;
   fiat?: Fiat | null;
-  paymentMethodType?: PaymentMethodType;
-  category?: Category | null;
-  selection?: string | null;
+  offerType?: OfferType;
+  paymentMethodId?: string | null;
   isPaymentMethodCompleted?: boolean;
   tradePricingType?: TradePricingType;
   listAt?: number;

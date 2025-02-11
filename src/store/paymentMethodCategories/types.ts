@@ -1,10 +1,13 @@
-import { PaymentMethod } from '@/store/paymentMethod/types';
+export type PaymentMethodCategory = {
+  id: string;
+  name: string;
+};
 
-export type PaymentMethodsState = {
-  data?: PaymentMethod[];
+export type PaymentMethodCategoriesState = {
+  data?: PaymentMethodCategory[];
   loading: boolean;
   fetched: boolean;
   errors: string[];
 };
 
-export type PaymentMethodsSetter = PaymentMethodsState;
+export type PaymentMethodCategoriesSetter = PaymentMethodCategoriesState;

@@ -1,14 +1,13 @@
-import { z } from 'zod';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import {
   ZodConfirmPassword,
   ZodFirstName,
   ZodLastName,
   ZodPassword,
   ZodUsername,
-} from '../../layouts/modals/zod';
+} from '@/layouts/modals/zod';
+
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 export const RegisterCredrentials = z
   .object({

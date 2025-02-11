@@ -12,6 +12,7 @@ const Button: FC<ButtonProps> = ({
   align = 'center',
   size = 16,
   fullWidth = false,
+  isDisabled = false,
   onClick,
 }) => {
   const primary = theme === 'primary' ? styles.primary : null;
@@ -25,7 +26,7 @@ const Button: FC<ButtonProps> = ({
     <>
       {href ? (
         <Link
-          href={href}
+          href={isDisabled ? '#' : href}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
           style={{
             padding,
@@ -41,6 +42,7 @@ const Button: FC<ButtonProps> = ({
           type={type}
           className={`${styles.button} ${primary} ${secondary} ${ghost} ${transparent}`}
           onClick={onClick}
+          disabled={isDisabled}
           style={{
             padding,
             textAlign: alignment,

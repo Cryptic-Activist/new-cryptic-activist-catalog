@@ -11,5 +11,6 @@ export type ButtonProps = {
   align?: 'left' | 'center' | 'right';
   size?: number;
   fullWidth?: boolean;
+  isDisabled?: boolean;
   onClick?: () => void;
 };

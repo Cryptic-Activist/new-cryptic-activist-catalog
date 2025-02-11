@@ -1,9 +1,12 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 
 import { FaSearch } from 'react-icons/fa';
+import { PaymentMethod } from '@/store/paymentMethod/types';
+import { PaymentMethodCategory } from '@/store/paymentMethodCategories/types';
 import { SelectPaymentMethodProps } from './types';
+import { searchArrayOfObjects } from '@/utils';
 import styles from './index.module.scss';
 import { usePaymentMethods } from '@/hooks';
 
@@ -22,6 +25,11 @@ const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
   const [selectedPaymentMethodIndex, setSelectPaymentMethodIndex] = useState<
     null | number
   >(null);
+  const [localPaymentMethodCategories, setLocalPaymentMethodCategories] =
+    useState<PaymentMethodCategory[] | undefined>(paymentMethodCategories.data);
+  const [localPaymentMethods, setLocalPaymentMethods] = useState<
+    PaymentMethod[] | undefined
+  >(paymentMethods.data);
 
   const selectCategory = (id: string, index: number) => {
     setSelectedCategoryIndex(index);
@@ -33,12 +41,31 @@ const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
     handlePaymentMethod(id);
   };
 
+  const filterPaymentMethods = (event: ChangeEvent<HTMLInputElement>) => {
+    if (paymentMethods.data) {
+      const value = event.currentTarget.value;
+      const filtered = searchArrayOfObjects(
+        paymentMethods.data,
+        'name',
+        value
+      ) as PaymentMethod[];
+      setLocalPaymentMethods(filtered);
+      setSelectPaymentMethodIndex(null);
+    }
+  };
+
+  useEffect(() => {
+    setLocalPaymentMethods(paymentMethods.data);
+    setLocalPaymentMethodCategories(paymentMethodCategories.data);
+  }, [paymentMethods.data, paymentMethodCategories.data]);
+
   return (
     <div className={styles.container}>
       <div className={styles.searchContainer}>
         <input
           className={styles.searchInput}
           placeholder="Search payment methods"
+          onChange={filterPaymentMethods}
         />
         <button className={styles.searchButton}>
           <FaSearch size={16} />
@@ -46,7 +73,7 @@ const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
       </div>
       <div className={styles.listContainer}>
         <ul className={styles.categoriesList}>
-          {paymentMethodCategories.data?.map((category, index) => {
+          {localPaymentMethodCategories?.map((category, index) => {
             const selected =
               index === selectedCategoryIndex ? styles.selected : '';
             return (
@@ -59,7 +86,7 @@ const SelectPaymentMethod: FC<SelectPaymentMethodProps> = ({
           })}
         </ul>
         <ul className={styles.paymentMethodsList}>
-          {paymentMethods.data?.map((paymentMethod, index) => {
+          {localPaymentMethods?.map((paymentMethod, index) => {
             const selected =
               index === selectedPaymentMethodIndex ? styles.selected : '';
             return (

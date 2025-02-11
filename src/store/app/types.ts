@@ -23,7 +23,7 @@ type Defaults = {
   paymentMethod: PaymentMethod | null;
 };
 
-type CurrentPrice = number | null;
+export type CurrentPrice = number | null;
 
 export type AppState = {
   isMobile: boolean;

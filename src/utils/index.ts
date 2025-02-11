@@ -6,3 +6,4 @@ export * from './generators';
 export * from './scroll';
 export * from './string';
 export * from './trade';
+export * from './filters';

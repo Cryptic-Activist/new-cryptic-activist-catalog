@@ -12,4 +12,7 @@ export { default as Tooltip } from './Tooltip';
 export { default as Radio } from './Radio';
 export { default as ProgressBar } from './ProgressBar';
 export { default as SelectPaymentMethod } from './SelectPaymentMethod';
+export { default as PricingType } from './PricingType';
+export { default as MinusPlusInput } from './MinusPlusInput';
+export { default as ListAt } from './ListAt';
 export * from './lists';

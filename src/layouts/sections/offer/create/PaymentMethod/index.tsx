@@ -1,4 +1,5 @@
 import {
+  Button,
   ProgressBar,
   Radio,
   SelectPaymentMethod,
@@ -16,14 +17,18 @@ const CreateOfferPaymentMethod: FC<CreateOfferPaymentMethodProps> = ({
   setCreateOfferValues,
   createOffer,
 }) => {
-  console.log({ createOffer });
-
   const selectOfferType = (value: Item) => {
-    setCreateOfferValues({ data: { paymentMethodType: value.value } });
+    setCreateOfferValues({ data: { offerType: value.value } });
   };
 
   const selectPaymentMethod = (id: string) => {
-    console.log({ id });
+    setCreateOfferValues({ data: { paymentMethodId: id } });
+  };
+
+  const goToNextStep = () => {
+    setCreateOfferValues({
+      data: { section: { paymentMethod: false, tradePricing: true } },
+    });
   };
 
   return (
@@ -68,7 +73,27 @@ const CreateOfferPaymentMethod: FC<CreateOfferPaymentMethodProps> = ({
           </section>
         </main>
         <aside className={stylesCore.aside}>
-          <h3>About the Payment Method</h3>
+          <h3 className={stylesCore.asideHeading}>About the Payment Method</h3>
+          <section className={stylesCore.horizontalGroup}>
+            <p className={stylesCore.asideStatement}>
+              In this step you'll be asked for the payment method of your offer
+            </p>
+            <p className={stylesCore.asideStatement}>
+              Make your selection on payment method and move onto the next step.
+            </p>
+          </section>
+          <Button
+            fullWidth
+            padding="1em"
+            type="button"
+            theme={
+              createOffer.data?.isPaymentMethodCompleted ? 'primary' : 'ghost'
+            }
+            isDisabled={!createOffer.data?.isPaymentMethodCompleted}
+            onClick={goToNextStep}
+          >
+            Go the next step: Trade pricing
+          </Button>
         </aside>
       </div>
     </>

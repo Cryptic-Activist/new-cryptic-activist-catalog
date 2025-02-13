@@ -11,7 +11,7 @@ import { Template } from '@/layouts/modals';
 import styles from './index.module.scss';
 
 const PrivateKeys = () => {
-  const { register } = useRegister(false);
+  const { register } = useRegister();
   const { handleCopyPrivateKeysToClipboard, onAccountVerification } =
     usePrivateKeys();
 

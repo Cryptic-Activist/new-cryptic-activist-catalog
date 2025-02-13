@@ -23,8 +23,6 @@ const MinusPlusInput: FC<MinusPLusInputProps> = ({
   const decreaseValue = () => {
     const newValue = value - step;
 
-    console.log({ min, newValue });
-
     if (min && newValue >= min) {
       onChange(newValue);
       return;
@@ -34,8 +32,6 @@ const MinusPlusInput: FC<MinusPLusInputProps> = ({
 
   const increaseValue = () => {
     const newValue = value + step;
-
-    console.log({ newValue, max });
 
     if (max && newValue <= max) {
       onChange(newValue);

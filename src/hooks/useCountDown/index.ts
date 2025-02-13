@@ -30,8 +30,13 @@ const useCountdown = () => {
     }${remainingSeconds}.${remainingMilliseconds}`;
   };
 
+  const formatTimeToSeconds = (miliseconds: number) => {
+    return (miliseconds / 1000).toFixed(0) + 's';
+  };
+
   return {
     timeLeftInMiliseconds: timeLeft,
+    timeLeftInSeconds: formatTimeToSeconds(timeLeft),
     timeLeftFormatted: formatTime(timeLeft),
     startCountDown,
   };

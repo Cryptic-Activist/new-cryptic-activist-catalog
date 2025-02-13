@@ -5,7 +5,7 @@ import { resetNavigationBar, toggleModal } from '@/store';
 import { copyToClipboard } from '@/utils';
 
 const usePrivateKeys = () => {
-  const { register } = useRegister(false);
+  const { register } = useRegister();
 
   const handleCopyPrivateKeysToClipboard = () => {
     if (register.privateKeys) {

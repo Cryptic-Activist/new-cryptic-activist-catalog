@@ -9,8 +9,16 @@ import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 import styles from './index.module.scss';
 
 const Register = () => {
-  const { registerForm, handleSubmit, formValues, onSubmit, errors, mutation } =
-    useRegister();
+  const {
+    registerForm,
+    handleSubmit,
+    formValues,
+    onSubmit,
+    errors,
+    mutation,
+    query,
+    timeLeftInSeconds,
+  } = useRegister();
 
   const links = [
     {
@@ -44,7 +52,7 @@ const Register = () => {
             required
             disabled
             label="First Name"
-            placeholder="First Name"
+            placeholder={query.isPending ? '...' : 'First Name'}
             register={registerForm}
             value={formValues.names.firstName}
           />
@@ -55,7 +63,7 @@ const Register = () => {
             required
             disabled
             label="Last Name"
-            placeholder="Last Name"
+            placeholder={query.isPending ? '...' : 'Last Name'}
             register={registerForm}
             value={formValues.names.lastName}
           />
@@ -66,7 +74,7 @@ const Register = () => {
             required
             disabled
             label="Username"
-            placeholder="Username"
+            placeholder={query.isPending ? '...' : 'Username'}
             register={registerForm}
             value={formValues.username}
           />
@@ -92,10 +100,11 @@ const Register = () => {
           />
           <Button type="submit" padding="1rem" fullWidth>
             <>
-              {mutation.isPending && 'Registrating...'}
+              {mutation.isPending && 'Registering...'}
               {mutation.error && 'Error'}
               {mutation.isIdle && 'Register'}
-              {mutation.isSuccess && 'Registered'}
+              {mutation.isSuccess &&
+                `Registered. Next step in ${timeLeftInSeconds}`}
             </>
           </Button>
         </form>

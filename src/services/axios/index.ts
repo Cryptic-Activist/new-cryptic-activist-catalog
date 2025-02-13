@@ -4,10 +4,19 @@ export type { AxiosResponse } from 'axios';
 
 export const fetchGet = async (
   endpoint: string,
-  headers?: AxiosRequestHeaders | any
+  headers?: AxiosRequestHeaders | any,
+  timeout = 5000
 ) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+
   try {
-    const response = axios.get(endpoint, { headers });
+    const response = axios.get(endpoint, {
+      headers,
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     return response;
   } catch (error) {
     throw error;
@@ -17,28 +26,60 @@ export const fetchGet = async (
 export const fetchPost = async (
   endpoint: string,
   body: object,
-  headers?: AxiosRequestHeaders | any
+  headers?: AxiosRequestHeaders | any,
+  timeout = 5000
 ) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+
   try {
-    const response = axios.post(endpoint, body, { headers });
+    const response = axios.post(endpoint, body, {
+      headers,
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     return response;
   } catch (error) {
     throw error;
   }
 };
 
-export const fetchPut = async (endpoint: string, params: object) => {
+export const fetchPut = async (
+  endpoint: string,
+  params: object,
+  timeout = 5000
+) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+
   try {
-    const response = axios.put(endpoint, params);
+    const response = axios.put(endpoint, params, {
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     return response;
   } catch (error) {
     throw error;
   }
 };
 
-export const fetchDelete = async (endpoint: string, params: object) => {
+export const fetchDelete = async (
+  endpoint: string,
+  params: object,
+  timeout = 5000
+) => {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+
   try {
-    const response = axios.delete(endpoint, params);
+    const response = axios.delete(endpoint, {
+      ...params,
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
     return response;
   } catch (error) {
     throw error;

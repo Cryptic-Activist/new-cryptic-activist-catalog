@@ -66,7 +66,7 @@ const VerifyAccount = () => {
               errorMessage={usernameErrors['username']?.message}
             />
 
-            <Button type="submit" padding="1rem">
+            <Button type="submit" padding="1rem" fullWidth>
               Find User
             </Button>
           </form>

@@ -4,21 +4,31 @@ import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import {
-  $register,
   getRandomCredentials,
   onSubmitUserRegistration,
-} from '@/store';
+} from '@/services/register';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
-import { useStore } from '@nanostores/react';
 
 import { registerResolver } from './zod';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { $register, setRegisterPrivateKeys } from '@/store';
+import { useStore } from '@nanostores/react';
+import { useCountDown } from '..';
 
-const useRegister = (fetchRandomCredentials = true) => {
+const useRegister = () => {
   const register = useStore($register);
+  const { startCountDown, timeLeftInSeconds } = useCountDown();
   const mutation = useMutation({
-    mutationKey: ['register', 'credentials'],
+    mutationKey: ['register'],
     mutationFn: onSubmitUserRegistration,
+    retry: 3,
+  });
+  const query = useQuery({
+    queryKey: ['register'],
+    queryFn: getRandomCredentials,
+    retry: 3,
+    gcTime: 0,
+    staleTime: 0,
   });
 
   const {
@@ -28,18 +38,6 @@ const useRegister = (fetchRandomCredentials = true) => {
     formState: { errors },
     getValues,
   } = useForm({ resolver: registerResolver });
-
-  useEffect(() => {
-    if (fetchRandomCredentials) {
-      getRandomCredentials().then();
-    }
-  }, [fetchRandomCredentials]);
-
-  useEffect(() => {
-    setValue('names.firstName', register.firstName);
-    setValue('names.lastName', register.lastName);
-    setValue('username', register.username);
-  }, [register]);
 
   const onSubmit = async (data: any) => {
     setValue('successMessage', undefined);
@@ -53,11 +51,22 @@ const useRegister = (fetchRandomCredentials = true) => {
   };
 
   useEffect(() => {
+    if (query.data) {
+      setValue('names.firstName', query.data?.names[0]);
+      setValue('names.lastName', query.data?.names[1]);
+      setValue('username', query.data?.username);
+    }
+  }, [query.data]);
+
+  useEffect(() => {
     if (mutation.data) {
+      setRegisterPrivateKeys(mutation.data.privateKeys);
+      const countdownMs = 5000;
+      startCountDown(countdownMs);
       setTimeout(() => {
         resetNavigationBar();
         toggleModal('privateKeys');
-      }, 5000);
+      }, countdownMs);
     }
   }, [mutation.data]);
 
@@ -66,9 +75,10 @@ const useRegister = (fetchRandomCredentials = true) => {
     registerForm,
     handleSubmit,
     onSubmit,
-    register,
     errors,
+    query,
     mutation,
+    register,
     formValues: {
       names: {
         firstName: getValues('names.firstName'),
@@ -79,6 +89,7 @@ const useRegister = (fetchRandomCredentials = true) => {
       confirmPassword: getValues('confirmPassword'),
       successMessage: getValues('successMessage'),
     },
+    timeLeftInSeconds,
   };
 };
 

@@ -12,7 +12,12 @@ export type RegisterSetter = RandomCredentials & {
   privateKeys?: string[];
 };
 
-export type UserRegistrationParams = RandomCredentials & {
+export type UserRegistrationParams = {
+  names: {
+    firstName?: string;
+    lastName?: string;
+  };
+  username?: string;
   password: string;
-  confirmPasword: string;
+  confirmPassword: string;
 };

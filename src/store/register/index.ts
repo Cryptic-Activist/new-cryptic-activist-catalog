@@ -52,7 +52,5 @@ export const onSubmitUserRegistration = async (
     return false;
   }
 
-  setter({ privateKeys: response.data.privateKeys });
-
   return true;
 };

@@ -9,7 +9,7 @@ import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 import styles from './index.module.scss';
 
 const Register = () => {
-  const { registerForm, handleSubmit, formValues, onSubmit, errors } =
+  const { registerForm, handleSubmit, formValues, onSubmit, errors, mutation } =
     useRegister();
 
   const links = [
@@ -31,7 +31,7 @@ const Register = () => {
 
   return (
     <Template
-      width="17rem"
+      width="20rem"
       heading="Register"
       successMessage={formValues.successMessage}
     >
@@ -90,8 +90,13 @@ const Register = () => {
             register={registerForm}
             errorMessage={errors['confirmPassword']?.message}
           />
-          <Button type="submit" padding="1rem">
-            Register
+          <Button type="submit" padding="1rem" fullWidth>
+            <>
+              {mutation.isPending && 'Registrating...'}
+              {mutation.error && 'Error'}
+              {mutation.isIdle && 'Register'}
+              {mutation.isSuccess && 'Registered'}
+            </>
           </Button>
         </form>
 

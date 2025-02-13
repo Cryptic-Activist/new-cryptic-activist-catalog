@@ -12,9 +12,14 @@ import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 import { useStore } from '@nanostores/react';
 
 import { registerResolver } from './zod';
+import { useMutation } from '@tanstack/react-query';
 
 const useRegister = (fetchRandomCredentials = true) => {
   const register = useStore($register);
+  const mutation = useMutation({
+    mutationKey: ['register', 'credentials'],
+    mutationFn: onSubmitUserRegistration,
+  });
 
   const {
     register: registerForm,
@@ -38,20 +43,23 @@ const useRegister = (fetchRandomCredentials = true) => {
 
   const onSubmit = async (data: any) => {
     setValue('successMessage', undefined);
-    const isSubmitted = await onSubmitUserRegistration(data);
+    const { confirmPassword, names, password, username } = data;
+    mutation.mutate({
+      confirmPassword,
+      password,
+      username,
+      names,
+    });
+  };
 
-    if (isSubmitted) {
-      setValue(
-        'successMessage',
-        'The next step is crucial. Make sure to follow the next instructions since it wont able available anymore.'
-      );
-
+  useEffect(() => {
+    if (mutation.data) {
       setTimeout(() => {
         resetNavigationBar();
         toggleModal('privateKeys');
       }, 5000);
     }
-  };
+  }, [mutation.data]);
 
   return {
     getRandomCredentials,
@@ -60,6 +68,7 @@ const useRegister = (fetchRandomCredentials = true) => {
     onSubmit,
     register,
     errors,
+    mutation,
     formValues: {
       names: {
         firstName: getValues('names.firstName'),

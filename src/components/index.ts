@@ -15,4 +15,5 @@ export { default as SelectPaymentMethod } from './SelectPaymentMethod';
 export { default as PricingType } from './PricingType';
 export { default as MinusPlusInput } from './MinusPlusInput';
 export { default as ListAt } from './ListAt';
+export { default as QueryProvider } from './QueryProvider';
 export * from './lists';

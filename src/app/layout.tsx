@@ -10,6 +10,7 @@ import {
 
 import './index.css';
 import styles from './layout.module.scss';
+import { QueryProvider } from '@/components';
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'], preload: true });
 
@@ -25,12 +26,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <title>Cryptic Activist Catalog</title>
       </head>
       <body className={roboto.className}>
-        <InitialSettings />
-        <AllModals />
-        <NavigationBar />
-        <Toast />
-        <main className={styles.main}>{children}</main>
-        <Footer />
+        <QueryProvider>
+          <InitialSettings />
+          <AllModals />
+          <NavigationBar />
+          <Toast />
+          <main className={styles.main}>{children}</main>
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

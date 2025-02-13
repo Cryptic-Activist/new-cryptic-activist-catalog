@@ -7,3 +7,26 @@
 .blockchainListItem {
   list-style: none;
 }
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blockchainListItemIconLabel {
+  display: flex;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 1.2rem;
+  width: fit-content;
+  height: fit-content;
+  align-self: end;
+}
+
+.statement {
+  font-size: 0.8rem;
+  text-align: start;;
+}

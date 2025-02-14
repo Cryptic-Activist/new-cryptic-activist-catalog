@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 import {
   getRandomCredentials,
@@ -14,6 +14,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { $register, setRegisterPrivateKeys } from '@/store';
 import { useStore } from '@nanostores/react';
 import { useCountDown } from '..';
+import { OnSubmit, OnSubmitPayload } from './types';
 
 const useRegister = () => {
   const register = useStore($register);
@@ -30,7 +31,6 @@ const useRegister = () => {
     gcTime: 0,
     staleTime: 0,
   });
-
   const {
     register: registerForm,
     handleSubmit,
@@ -39,8 +39,9 @@ const useRegister = () => {
     getValues,
   } = useForm({ resolver: registerResolver });
 
-  const onSubmit = async (data: any) => {
+  const onSubmit: OnSubmit = async (data) => {
     setValue('successMessage', undefined);
+
     const { confirmPassword, names, password, username } = data;
     mutation.mutate({
       confirmPassword,

@@ -4,15 +4,20 @@ import { Form, Input, Links } from '@/components/forms';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import { Button } from '@/components';
-import { LoginUserParams } from '@/store/user/types';
 import { Template } from '@/layouts/modals';
-import { loginResolver } from './zod';
 import styles from './index.module.scss';
 import { useEffect } from 'react';
 import { useUser } from '@/hooks';
 
 const Login = () => {
-  const { loginUser, user, isLoggedIn } = useUser(false);
+  const {
+    user,
+    errors,
+    loginFormRegister,
+    isLoggedIn,
+    onSubmit,
+    handleSubmit,
+  } = useUser();
   const links = [
     {
       label: "Don't have an account yet?",
@@ -37,10 +42,6 @@ const Login = () => {
     },
   ];
 
-  const onSubmit = async (data: LoginUserParams) => {
-    await loginUser(data);
-  };
-
   useEffect(() => {
     if (isLoggedIn()) {
       toggleModal('login');
@@ -50,7 +51,7 @@ const Login = () => {
   return (
     <Template width="20rem" heading="Login">
       <div className={styles.container}>
-        <Form onSubmit={onSubmit} resolver={loginResolver}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <Input
             type="text"
             name="username"
@@ -58,6 +59,8 @@ const Login = () => {
             required
             label="Username"
             placeholder="Username"
+            register={loginFormRegister}
+            errorMessage={errors['username']?.message}
           />
           <Input
             type="password"
@@ -66,12 +69,14 @@ const Login = () => {
             required
             label="Password"
             placeholder="Password"
+            register={loginFormRegister}
+            errorMessage={errors['password']?.message}
           />
 
           <Button type="submit" padding="1rem" fullWidth>
             Login
           </Button>
-        </Form>
+        </form>
 
         <Links links={links} />
       </div>

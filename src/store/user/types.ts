@@ -15,36 +15,16 @@ export type User = {
   languages: Language[];
 };
 
-export type UserState = {
-  data?: User;
-  loading: boolean;
-  fetched: boolean;
-  errors: string[];
-};
+export type UserState = User;
 
 export type UserSetter = {
-  data?: User;
-  loading?: boolean;
-  fetched?: boolean;
-  errors?: string[];
-};
-
-export type LoginUserParams = {
-  username: string;
-  password: string;
-};
-
-export type GetUserTokenResponse = {
-  accessToken: string;
-  refreshToken: string;
-};
-
-export type GetUserInfoReturn = {
-  firstName: string;
-  lastName: string;
-  username: string;
-  profileColor: string;
-  createdAt: string;
-  updatedAt: string;
-  languages: Language[];
+  names?: {
+    firstName?: string;
+    lastName?: string;
+  };
+  username?: string;
+  profileColor?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  languages?: Language[];
 };

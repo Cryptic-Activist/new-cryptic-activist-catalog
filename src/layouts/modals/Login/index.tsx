@@ -1,23 +1,15 @@
 'use client';
 
-import { Form, Input, Links } from '@/components/forms';
+import { Input, Links } from '@/components/forms';
 import { resetNavigationBar, toggleModal } from '@/store/navigationBar';
 
 import { Button } from '@/components';
 import { Template } from '@/layouts/modals';
 import styles from './index.module.scss';
-import { useEffect } from 'react';
 import { useUser } from '@/hooks';
 
 const Login = () => {
-  const {
-    user,
-    errors,
-    loginFormRegister,
-    isLoggedIn,
-    onSubmit,
-    handleSubmit,
-  } = useUser();
+  const { errors, loginFormRegister, onSubmit, handleSubmit } = useUser();
   const links = [
     {
       label: "Don't have an account yet?",
@@ -41,12 +33,6 @@ const Login = () => {
       },
     },
   ];
-
-  useEffect(() => {
-    if (isLoggedIn()) {
-      toggleModal('login');
-    }
-  }, [user]);
 
   return (
     <Template width="20rem" heading="Login">

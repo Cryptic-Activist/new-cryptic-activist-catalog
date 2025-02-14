@@ -12,7 +12,7 @@ import {
 } from './types';
 import { fetchGet, fetchPost } from '../axios';
 import { USER_API } from '@/constants';
-import { setUserInfo } from '@/store';
+import { resetUserInfo, setUserInfo } from '@/store';
 
 const getUserToken = async ({
   password,
@@ -54,13 +54,16 @@ export const decodeAccessToken = async () => {
     if (!userInfo) {
       removeLocalStorage('accessToken');
       removeLocalStorage('refreshToken');
-      return null;
+      throw Error('Unable to decode token');
     }
 
+    setUserInfo(userInfo);
     return userInfo;
   } catch (err) {
     removeLocalStorage('accessToken');
     removeLocalStorage('refreshToken');
+
+    throw Error('Unable to decode token');
   }
 };
 
@@ -105,4 +108,5 @@ export const login = async (userData: LoginUserParams) => {
 export const logout = () => {
   removeLocalStorage('accessToken');
   removeLocalStorage('refreshToken');
+  resetUserInfo();
 };

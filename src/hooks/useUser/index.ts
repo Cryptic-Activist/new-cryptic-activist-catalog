@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import { decodeAccessToken, login, logout } from '@/services/user';
-import { $user } from '@/store';
+import { $user, setValue, toggleModal } from '@/store';
 
 import useApp from '../useApp';
 import { useForm } from 'react-hook-form';
@@ -16,14 +16,18 @@ const useUser = () => {
   const { addToast } = useApp();
   const mutation = useMutation({
     mutationFn: login,
-    mutationKey: ['login'],
+    mutationKey: ['loginMutation'],
   });
-  const query = useQuery({ queryKey: ['login'], queryFn: decodeAccessToken });
+  const query = useQuery({
+    queryKey: ['loginQuery'],
+    queryFn: decodeAccessToken,
+  });
   const {
     register: loginFormRegister,
     handleSubmit,
     formState: { errors },
     getValues,
+    setValue,
   } = useForm({ resolver: loginResolver });
 
   const onSubmit: OnSubmit = (data) => {
@@ -32,33 +36,15 @@ const useUser = () => {
   };
 
   useEffect(() => {
-    if (mutation.error) {
-      console.log({ error: mutation.error });
+    if (mutation.error || query.error) {
       addToast('error', 'Unable to login', 10000);
+      setValue('username', '');
+      setValue('password', '');
     }
-  }, [mutation.error]);
-
-  // useEffect(() => {
-  //   const handleDecodeAccessToken = async () => {
-  //     await decodeAccessToken();
-  //   };
-
-  //   if (count === 0 && hasFetch) {
-  //     handleDecodeAccessToken().catch();
-  //     count++;
-  //   }
-  // }, []);
-
-  // const loginUser = async (userData: LoginUserParams) => {
-  //   const loggedIn = await loginUserStore(userData);
-
-  //   if (!loggedIn) {
-  //     addToast('error', 'Enable to login', 10000);
-  //   }
-  // };
+  }, [mutation.error, query.error]);
 
   const isLoggedIn = () => {
-    return typeof query.data !== undefined;
+    return typeof query.data !== 'undefined' && query.data !== null;
   };
 
   return {

@@ -6,12 +6,12 @@ import styles from './index.module.scss';
 import type { MenuListProps } from './types';
 
 const MenuList: FC<MenuListProps> = forwardRef(({ items }, ref: any) => {
-  const { logoutUser } = useUser(false);
+  const { logout } = useUser();
   const { toggleDrawer } = useNavigationBar();
 
   const handleLogout = () => {
     toggleDrawer('user');
-    logoutUser();
+    logout();
   };
 
   return (

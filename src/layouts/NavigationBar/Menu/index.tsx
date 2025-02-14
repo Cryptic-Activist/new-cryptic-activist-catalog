@@ -21,7 +21,12 @@ const Menu = () => {
     toggleDrawer,
     toggleModal,
   } = useNavigationBar();
-  const { user } = useUser(false);
+  const {
+    user,
+    mutation: userMutation,
+    query: userQuery,
+    isLoggedIn,
+  } = useUser();
   const { blockchain, getAccountAddress } = useBlockchain();
 
   const handleToggleUserDrawer = () => {
@@ -45,7 +50,7 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {user.data && user.fetched && !blockchain.provider && (
+      {userMutation.data && (
         <Button
           theme="transparent"
           type="button"
@@ -54,15 +59,15 @@ const Menu = () => {
           Connect Wallet
         </Button>
       )}
-      {user.data && user.fetched && blockchain.provider && (
+      {userMutation.data && blockchain.provider && (
         <Button theme="transparent" type="button" onClick={getAccountAddress}>
           <FaWallet />
         </Button>
       )}
       <Tooltip position="bottom" spacing={55}>
-        {user.data && user.fetched ? (
+        {isLoggedIn() ? (
           <Button theme="transparent" onClick={handleToggleUserDrawer}>
-            {user.data.names.firstName}
+            {user.names?.firstName}
           </Button>
         ) : (
           <Button theme="transparent" onClick={handleToggleLogin}>

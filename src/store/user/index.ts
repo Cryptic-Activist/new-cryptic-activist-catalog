@@ -4,6 +4,8 @@ import type { UserSetter, UserState } from './types';
 
 export const $user = map<UserState>();
 
+console.log($user.get());
+
 const setter = ({
   createdAt,
   languages,
@@ -39,4 +41,9 @@ export const setUserInfo = (userInfo: UserSetter) => {
     username: userInfo.username,
     languages: userInfo.languages,
   });
+};
+
+export const resetUserInfo = () => {
+  // @ts-ignore
+  $user.set({});
 };

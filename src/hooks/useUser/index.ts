@@ -22,7 +22,6 @@ const useUser = () => {
   const {
     register: loginFormRegister,
     handleSubmit,
-    setValue,
     formState: { errors },
     getValues,
   } = useForm({ resolver: loginResolver });

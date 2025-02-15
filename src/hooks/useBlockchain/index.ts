@@ -34,8 +34,8 @@ const useBlockchain = () => {
       throw Error('Unable to connect to Ethereum blockchain');
     }
 
-    setBlockchain('ethereum');
-    setEthereumProvider(provider);
+    // setBlockchain('ethereum');
+    // setEthereumProvider(provider);
     resetNavigationBar();
     return provider;
   };

@@ -4,8 +4,6 @@ import type { UserSetter, UserState } from './types';
 
 export const $user = map<UserState>();
 
-console.log($user.get());
-
 const setter = ({
   createdAt,
   languages,

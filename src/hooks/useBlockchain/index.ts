@@ -8,6 +8,7 @@ import { useStore } from '@nanostores/react';
 
 import useNavigationBar from '../useNavigationBar';
 import { BlockchainsList } from './types';
+import { useQueries, useQuery } from '@tanstack/react-query';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
@@ -26,17 +27,27 @@ const useBlockchain = () => {
       return provider;
     };
 
-  const connectToEthereum = async () => {
+  const checkForEthereumProvider = async () => {
     const provider = await loadEthereumBlockchainData();
 
     if (!provider) {
-      console.log('Unable to connect to Ethereum blockchain');
-      return;
+      throw Error('Unable to connect to Ethereum blockchain');
     }
 
     setBlockchain('ethereum');
     setEthereumProvider(provider);
     resetNavigationBar();
+    return provider;
+  };
+
+  const checkForPolygonProvider = () => {
+    setBlockchain('polygon');
+    throw Error('Unable to connect to Polygon blockchain');
+  };
+
+  const checkForSolanaProvider = () => {
+    setBlockchain('solana');
+    throw Error('Unable to connect to Solana blockchain');
   };
 
   const getAccountAddress = async () => {
@@ -44,35 +55,39 @@ const useBlockchain = () => {
     console.log({ account: account[0] });
   };
 
-  const connectToPolygon = () => {
-    setBlockchain('polygon');
-  };
-
-  const connectToSolana = () => {
-    setBlockchain('solana');
-  };
-
   const blockchainsList: BlockchainsList = [
     {
       label: 'ethereum',
-      onClick: connectToEthereum,
+      onConnect: checkForEthereumProvider,
       icon: EthereumLogo,
+      onClick: getAccountAddress,
     },
     {
       label: 'polygon',
-      onClick: connectToPolygon,
+      onConnect: checkForPolygonProvider,
       icon: PolygonLogo,
+      onClick: () => null,
     },
     {
       label: 'solana',
-      onClick: connectToSolana,
+      onConnect: checkForSolanaProvider,
       icon: SolanaLogo,
+      onClick: () => null,
     },
   ];
+
+  const queries = useQueries({
+    queries: blockchainsList.map((chain) => ({
+      queryKey: ['blockchain', chain.label],
+      queryFn: chain.onConnect,
+      staleTime: Infinity,
+    })),
+  });
 
   return {
     blockchain,
     blockchainsList,
+    queries,
     setBlockchain,
     loadEthereumBlockchainData,
     getAccountAddress,

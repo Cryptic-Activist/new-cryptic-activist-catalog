@@ -50,7 +50,7 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {userMutation.data && (
+      {isLoggedIn() && (
         <Button
           theme="transparent"
           type="button"
@@ -59,7 +59,7 @@ const Menu = () => {
           Connect Wallet
         </Button>
       )}
-      {userMutation.data && blockchain.provider && (
+      {isLoggedIn() && blockchain.provider && (
         <Button theme="transparent" type="button" onClick={getAccountAddress}>
           <FaWallet />
         </Button>
@@ -71,7 +71,8 @@ const Menu = () => {
           </Button>
         ) : (
           <Button theme="transparent" onClick={handleToggleLogin}>
-            Login
+            {userQuery.isPending ? 'Loading' : ''}
+            {userQuery.isSuccess ? 'Login' : ''}
           </Button>
         )}
         {userDrawer ? (

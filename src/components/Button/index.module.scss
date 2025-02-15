@@ -43,3 +43,8 @@
     background-color: globals.$hover-button-background-color;
   }
 }
+
+.disabled {
+  color: color-mix(in srgb, currentColor 50%, transparent);
+  background-color: #edbe28;
+}

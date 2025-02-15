@@ -16,10 +16,10 @@ const useUser = () => {
   const { addToast } = useApp();
   const mutation = useMutation({
     mutationFn: login,
-    mutationKey: ['loginMutation'],
+    mutationKey: ['login'],
   });
   const query = useQuery({
-    queryKey: ['loginQuery'],
+    queryKey: ['login'],
     queryFn: decodeAccessToken,
   });
   const {
@@ -43,8 +43,14 @@ const useUser = () => {
     }
   }, [mutation.error, query.error]);
 
+  useEffect(() => {
+    if (mutation.isSuccess) {
+      toggleModal('login');
+    }
+  }, [mutation.isSuccess]);
+
   const isLoggedIn = () => {
-    return typeof query.data !== 'undefined' && query.data !== null;
+    return Object.entries(user).length > 0;
   };
 
   return {

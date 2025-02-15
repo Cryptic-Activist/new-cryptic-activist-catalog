@@ -7,26 +7,33 @@ import { Template } from '@/layouts/modals';
 import { toCapitalize } from '@/utils';
 
 import styles from './index.module.scss';
+import { WalletName } from '@/hooks/useBlockchain/types';
 
 const Blockchain = () => {
-  const { blockchainsList, queries } = useBlockchain();
+  const { walletsList, queries } = useBlockchain();
 
-  const handleConnect = (onClick: () => void, isAvailable: boolean) => {
+  const handleConnect = (
+    onClick: (wallet: WalletName) => void,
+    wallet: WalletName,
+    isAvailable: boolean
+  ) => {
     if (isAvailable) {
-      onClick();
+      onClick(wallet);
     }
   };
 
   return (
     <Template heading="Select Blockchain" width="20rem">
-      <ul className={styles.blockchainList}>
-        {blockchainsList.map(({ icon, label, onClick }, index) => {
+      <ul className={styles.walletList}>
+        {walletsList.map(({ icon, label, onClick }, index) => {
           const isUnavailable =
             queries[index].isPending || queries[index].isError;
           return (
-            <li key={index} className={styles.blockchainListItem}>
+            <li key={index} className={styles.walletListItem}>
               <Button
-                onClick={() => handleConnect(onClick, queries[index].isSuccess)}
+                onClick={() =>
+                  handleConnect(onClick, label, queries[index].isSuccess)
+                }
                 size={18}
                 padding="0.8rem 1rem"
                 type="button"
@@ -36,7 +43,7 @@ const Blockchain = () => {
                 isDisabled={isUnavailable}
               >
                 <div className={styles.buttonContainer}>
-                  <div className={styles.blockchainListItemIconLabel}>
+                  <div className={styles.walletListItemIconLabel}>
                     <Image
                       src={icon}
                       alt={`${label} logo`}

@@ -50,7 +50,7 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {isLoggedIn() && (
+      {isLoggedIn() && !blockchain.wallet && !blockchain.provider && (
         <Button
           theme="transparent"
           type="button"
@@ -59,8 +59,8 @@ const Menu = () => {
           Connect Wallet
         </Button>
       )}
-      {isLoggedIn() && blockchain.provider && (
-        <Button theme="transparent" type="button" onClick={getAccountAddress}>
+      {isLoggedIn() && blockchain.provider && blockchain.account && (
+        <Button theme="transparent" type="button">
           <FaWallet />
         </Button>
       )}

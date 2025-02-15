@@ -1,10 +1,10 @@
-.blockchainList {
+.walletList {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.blockchainListItem {
+.walletListItem {
   list-style: none;
 }
 
@@ -14,7 +14,7 @@
   gap: 0.5rem;
 }
 
-.blockchainListItemIconLabel {
+.walletListItemIconLabel {
   display: flex;
   gap: 1rem;
 }

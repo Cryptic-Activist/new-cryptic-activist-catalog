@@ -1,96 +1,132 @@
 'use client';
 
-import { BrowserProvider } from 'ethers';
-
-import { $blockchain, setBlockchain, setEthereumProvider } from '@/store';
-import { BitcoinLogo, EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
+import {
+  $blockchain,
+  setAccount,
+  setBlockchain,
+  setProvider,
+  setWallet,
+  toggleModal,
+} from '@/store';
+import { EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
 import { useStore } from '@nanostores/react';
 
 import useNavigationBar from '../useNavigationBar';
-import { BlockchainsList } from './types';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { WalletName, WalletsList } from './types';
+import { useQueries } from '@tanstack/react-query';
+import { getAccountAddress, getProvider } from '@/services/blockchain';
+import { useEffect } from 'react';
+import { setLocalStorage } from '@/utils';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
   const { resetNavigationBar } = useNavigationBar();
 
-  const loadEthereumBlockchainData =
-    async (): Promise<BrowserProvider | null> => {
-      // @ts-ignore
-      if (window && !window.ethereum) {
-        console.log('Metamask is not installed');
-        return null;
-      }
-
-      // @ts-ignore
-      const provider = new BrowserProvider(window.ethereum);
-      return provider;
-    };
-
-  const checkForEthereumProvider = async () => {
-    const provider = await loadEthereumBlockchainData();
+  const checkForMetamask = async () => {
+    const provider = await getProvider();
 
     if (!provider) {
-      throw Error('Unable to connect to Ethereum blockchain');
+      throw Error('Unable to get the provider');
     }
 
-    // setBlockchain('ethereum');
-    // setEthereumProvider(provider);
-    resetNavigationBar();
+    const { ethereum } = window;
+
+    if (!ethereum.isMetaMask) {
+      throw Error('Unable to get MetaMask');
+    }
+
     return provider;
   };
 
-  const checkForPolygonProvider = () => {
-    setBlockchain('polygon');
-    throw Error('Unable to connect to Polygon blockchain');
+  const checkForTrustWallet = async () => {
+    const provider = await getProvider();
+
+    if (!provider) {
+      throw Error('Unable to get the provider');
+    }
+
+    const { ethereum } = window;
+
+    if (!ethereum.isTrust) {
+      throw Error('Unable to get Trust Wallet');
+    }
+
+    return provider;
   };
 
-  const checkForSolanaProvider = () => {
-    setBlockchain('solana');
-    throw Error('Unable to connect to Solana blockchain');
+  const checkForCoinbase = async () => {
+    const provider = await getProvider();
+
+    if (!provider) {
+      throw Error('Unable to get the provider');
+    }
+
+    const { ethereum } = window;
+
+    if (!ethereum.isCoinbaseWallet) {
+      throw Error('Unable to get Coinbase Walelt');
+    }
+
+    return provider;
   };
 
-  const getAccountAddress = async () => {
-    const account = await blockchain.provider?.send('eth_requestAccounts', []);
-    console.log({ account: account[0] });
+  const selectWallet = async (wallet: WalletName) => {
+    const provider = await getProvider();
+
+    if (provider) {
+      setProvider(provider);
+      setWallet(wallet);
+      setLocalStorage('connectedWallet', wallet);
+    }
+
+    toggleModal('blockchain');
   };
 
-  const blockchainsList: BlockchainsList = [
+  const walletsList: WalletsList = [
     {
-      label: 'ethereum',
-      onConnect: checkForEthereumProvider,
+      label: 'metamask',
+      onConnect: checkForMetamask,
       icon: EthereumLogo,
-      onClick: getAccountAddress,
+      onClick: selectWallet,
     },
     {
-      label: 'polygon',
-      onConnect: checkForPolygonProvider,
+      label: 'trust',
+      onConnect: checkForTrustWallet,
       icon: PolygonLogo,
-      onClick: () => null,
+      onClick: selectWallet,
     },
     {
-      label: 'solana',
-      onConnect: checkForSolanaProvider,
+      label: 'coinbase',
+      onConnect: checkForCoinbase,
       icon: SolanaLogo,
-      onClick: () => null,
+      onClick: selectWallet,
     },
   ];
 
+  useEffect(() => {
+    if (blockchain.provider) {
+      getAccountAddress(blockchain.provider).then((accountAddress) => {
+        setAccount({ address: accountAddress });
+      });
+    }
+  }, [blockchain.provider]);
+
   const queries = useQueries({
-    queries: blockchainsList.map((chain) => ({
-      queryKey: ['blockchain', chain.label],
-      queryFn: chain.onConnect,
+    queries: walletsList.map((wallet) => ({
+      queryKey: ['wallet', wallet.label],
+      queryFn: wallet.onConnect,
       staleTime: Infinity,
     })),
   });
 
   return {
     blockchain,
-    blockchainsList,
+    walletsList,
     queries,
     setBlockchain,
-    loadEthereumBlockchainData,
+    setProvider,
     getAccountAddress,
+    selectWallet,
   };
 };
 

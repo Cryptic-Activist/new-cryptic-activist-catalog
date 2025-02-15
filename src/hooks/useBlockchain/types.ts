@@ -1,8 +1,10 @@
-import { Blockchain } from '@/store/blockchain/types';
+import { Wallet } from '@/store/blockchain/types';
 
-export type BlockchainsList = {
-  label: Blockchain;
+export type WalletName = Wallet;
+
+export type WalletsList = {
+  label: Wallet;
   icon: string;
   onConnect: () => void;
-  onClick: () => void;
+  onClick: (wallet: WalletName) => void;
 }[];

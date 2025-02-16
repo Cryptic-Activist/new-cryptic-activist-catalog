@@ -6,5 +6,5 @@ export type WalletsList = {
   label: Wallet;
   icon: string;
   onConnect: () => void;
-  onClick: (wallet: WalletName) => void;
+  // onClick: (wallet: WalletName) => void;
 }[];

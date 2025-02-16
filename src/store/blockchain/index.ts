@@ -4,15 +4,16 @@ import type {
   Account,
   BlockchainSetter,
   BlockchainState,
-  SetBlockchainParam,
-  SetEthereumProviderParam,
-  Wallet,
+  SetChainParam,
+  SetProviderParam,
 } from './types';
+import { Connector } from 'wagmi';
 
 export const $blockchain = map<BlockchainState>();
 
 const setter = ({
-  blockchain: bc,
+  connector,
+  chain,
   wallet,
   provider,
   account,
@@ -20,25 +21,30 @@ const setter = ({
   const blockchain = $blockchain.get();
 
   $blockchain.set({
-    blockchain: bc ?? blockchain.blockchain,
+    connector: connector ?? blockchain.connector,
+    chain: chain ?? blockchain.chain,
     wallet: wallet ?? blockchain.wallet,
     provider: provider ?? blockchain.provider,
     account: account ?? blockchain.account,
   });
 };
 
-export const setBlockchain = async (blockchain: SetBlockchainParam) => {
-  setter({ blockchain });
+export const setChain = (chain: SetChainParam) => {
+  setter({ chain });
 };
 
-export const setProvider = async (provider: SetEthereumProviderParam) => {
+export const setProvider = (provider: SetProviderParam) => {
   setter({ provider });
 };
 
-export const setWallet = async (wallet: Wallet) => {
+export const setWallet = (wallet: string) => {
   setter({ wallet });
 };
 
-export const setAccount = async (account: Account) => {
+export const setAccount = (account: Account) => {
   setter({ account });
+};
+
+export const setConnector = (connector: Connector) => {
+  setter({ connector });
 };

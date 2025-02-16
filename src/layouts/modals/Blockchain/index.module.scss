@@ -1,3 +1,5 @@
+@use '../../../styles/globals.module.scss';
+
 .walletList {
   display: flex;
   flex-direction: column;
@@ -10,14 +12,13 @@
 
 .buttonContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.5rem;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
 }
 
-.walletListItemIconLabel {
-  display: flex;
-  gap: 1rem;
-}
 
 .label {
   font-size: 1.2rem;
@@ -28,5 +29,15 @@
 
 .statement {
   font-size: 0.8rem;
-  text-align: start;;
+  text-align: start;
+}
+
+.tag {
+  background-color: globals.$secondary;
+  color: globals.$primary;
+  padding: 0.2em; 
+  border-radius: 0.3em;
+  font-size: 0.8rem;
+  width: fit-content;
+  height: fit-content;
 }

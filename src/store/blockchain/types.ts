@@ -1,27 +1,25 @@
-import { BrowserProvider } from 'ethers';
-
-export type Blockchain = 'ethereum' | 'polygon' | 'solana';
-
-export type Wallet = 'metamask' | 'trust' | 'coinbase';
+import { Connector, WagmiProvider } from 'wagmi';
 
 export type Account = {
   address: string;
 };
 
 export type BlockchainState = {
-  blockchain: Blockchain | null;
-  wallet: Wallet | null;
-  provider: BrowserProvider | null;
-  account: Account | null;
+  connector: Connector;
+  chain: any;
+  wallet: string;
+  provider: typeof WagmiProvider;
+  account: Account;
 };
 
 export type BlockchainSetter = {
-  blockchain?: Blockchain | null;
-  wallet?: Wallet | null;
-  provider?: BrowserProvider | null;
-  account?: Account | null;
+  connector?: Connector;
+  chain?: any;
+  wallet?: string;
+  provider?: typeof WagmiProvider;
+  account?: Account;
 };
 
-export type SetBlockchainParam = Blockchain;
+export type SetChainParam = any;
 
-export type SetEthereumProviderParam = BrowserProvider;
+export type SetProviderParam = typeof WagmiProvider;

@@ -3,130 +3,43 @@
 import {
   $blockchain,
   setAccount,
-  setBlockchain,
+  setChain,
+  setConnector,
   setProvider,
   setWallet,
   toggleModal,
 } from '@/store';
 import { EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
 import { useStore } from '@nanostores/react';
+import { Connector, useConnect, WagmiProvider, useAccount } from 'wagmi';
 
-import useNavigationBar from '../useNavigationBar';
-import { WalletName, WalletsList } from './types';
-import { useQueries } from '@tanstack/react-query';
-import { getAccountAddress, getProvider } from '@/services/blockchain';
-import { useEffect } from 'react';
-import { setLocalStorage } from '@/utils';
+import { connectWallet } from '@/services/blockchain';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
-  const { resetNavigationBar } = useNavigationBar();
+  const { connect, connectors } = useConnect();
+  const { chain } = useAccount();
 
-  const checkForMetamask = async () => {
-    const provider = await getProvider();
+  const onConnectWallet = async (connector: Connector) => {
+    const wallet = await connectWallet(connector);
 
-    if (!provider) {
-      throw Error('Unable to get the provider');
-    }
-
-    const { ethereum } = window;
-
-    if (!ethereum.isMetaMask) {
-      throw Error('Unable to get MetaMask');
-    }
-
-    return provider;
-  };
-
-  const checkForTrustWallet = async () => {
-    const provider = await getProvider();
-
-    if (!provider) {
-      throw Error('Unable to get the provider');
-    }
-
-    const { ethereum } = window;
-
-    if (!ethereum.isTrust) {
-      throw Error('Unable to get Trust Wallet');
-    }
-
-    return provider;
-  };
-
-  const checkForCoinbase = async () => {
-    const provider = await getProvider();
-
-    if (!provider) {
-      throw Error('Unable to get the provider');
-    }
-
-    const { ethereum } = window;
-
-    if (!ethereum.isCoinbaseWallet) {
-      throw Error('Unable to get Coinbase Walelt');
-    }
-
-    return provider;
-  };
-
-  const selectWallet = async (wallet: WalletName) => {
-    const provider = await getProvider();
-
-    if (provider) {
-      setProvider(provider);
-      setWallet(wallet);
-      setLocalStorage('connectedWallet', wallet);
-    }
-
+    setProvider(wallet.provider);
+    setConnector(wallet.connector);
+    setAccount({ address: wallet.accountAddress });
+    setChain(chain);
+    setWallet(wallet.connector.name);
+    connect({ connector });
     toggleModal('blockchain');
   };
 
-  const walletsList: WalletsList = [
-    {
-      label: 'metamask',
-      onConnect: checkForMetamask,
-      icon: EthereumLogo,
-      onClick: selectWallet,
-    },
-    {
-      label: 'trust',
-      onConnect: checkForTrustWallet,
-      icon: PolygonLogo,
-      onClick: selectWallet,
-    },
-    {
-      label: 'coinbase',
-      onConnect: checkForCoinbase,
-      icon: SolanaLogo,
-      onClick: selectWallet,
-    },
-  ];
-
-  useEffect(() => {
-    if (blockchain.provider) {
-      getAccountAddress(blockchain.provider).then((accountAddress) => {
-        setAccount({ address: accountAddress });
-      });
-    }
-  }, [blockchain.provider]);
-
-  const queries = useQueries({
-    queries: walletsList.map((wallet) => ({
-      queryKey: ['wallet', wallet.label],
-      queryFn: wallet.onConnect,
-      staleTime: Infinity,
-    })),
-  });
+  console.log(blockchain);
 
   return {
     blockchain,
-    walletsList,
-    queries,
-    setBlockchain,
+    connectors,
+    connect,
     setProvider,
-    getAccountAddress,
-    selectWallet,
+    onConnectWallet,
   };
 };
 

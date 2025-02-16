@@ -3,6 +3,7 @@
 import {
   $blockchain,
   resetBlockchain,
+  resetNavigationBar,
   setAccount,
   setBalance,
   setChain,
@@ -11,11 +12,10 @@ import {
   setWallet,
   toggleModal,
 } from '@/store';
-import { EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
 import { useStore } from '@nanostores/react';
 import { Connector, useConnect, useAccountEffect, useBalance } from 'wagmi';
 
-import { useUser } from '@/hooks';
+import { useNavigationBar, useUser } from '@/hooks';
 import { useEffect } from 'react';
 
 const useBlockchain = () => {
@@ -23,15 +23,21 @@ const useBlockchain = () => {
   const { connect, connectors } = useConnect();
   const balance = useBalance({ address: blockchain.account?.address });
   const { isLoggedIn } = useUser();
+  const { toggleDrawer, navigationBar } = useNavigationBar();
 
   const onConnectWallet = async (connector: Connector) => {
     connect({ connector });
     toggleModal('blockchain');
   };
 
+  const onDisconnectWallet = async () => {
+    await blockchain.connector?.disconnect();
+  };
+
   const isWalletConnected =
     isLoggedIn() &&
     blockchain.provider &&
+    blockchain.account?.address &&
     blockchain.account?.address?.length > 0;
 
   useAccountEffect({
@@ -45,6 +51,7 @@ const useBlockchain = () => {
       setProvider(provider);
     },
     onDisconnect() {
+      resetNavigationBar();
       resetBlockchain();
     },
   });
@@ -62,6 +69,7 @@ const useBlockchain = () => {
     connect,
     setProvider,
     onConnectWallet,
+    onDisconnectWallet,
   };
 };
 

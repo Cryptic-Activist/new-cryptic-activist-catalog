@@ -41,10 +41,11 @@ const ProfileImage: FC<ProfileImageProps> = ({ size, user }) => {
           height: s.height,
           width: s.width,
           fontSize: s.fontSize,
+          color: user?.profileColor,
         }),
       }}
     >
-      {getInitials(user?.names.firstName ?? '', user?.names.lastName ?? '')}
+      {getInitials(user?.names?.firstName ?? '', user?.names?.lastName ?? '')}
     </div>
   );
 };

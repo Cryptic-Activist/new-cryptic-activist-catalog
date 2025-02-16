@@ -1,4 +1,4 @@
-import { Connector, WagmiProvider } from 'wagmi';
+import { Connector } from 'wagmi';
 
 export type Account = {
   address: `0x${string}`;
@@ -12,12 +12,12 @@ export type Balance = {
 };
 
 export type BlockchainState = {
-  connector: Connector;
-  chain: any;
-  wallet: string;
-  provider: any;
-  account: Account;
-  balance: Balance;
+  connector?: Connector;
+  chain?: any;
+  wallet?: string;
+  provider?: any;
+  account?: Account;
+  balance?: Balance;
 };
 
 export type BlockchainSetter = {

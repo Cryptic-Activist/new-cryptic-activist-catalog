@@ -57,7 +57,7 @@ export const setBalance = (balance: Balance) => {
 };
 
 export const resetBlockchain = () => {
-  setter({
+  $blockchain.set({
     connector: undefined,
     chain: undefined,
     wallet: undefined,

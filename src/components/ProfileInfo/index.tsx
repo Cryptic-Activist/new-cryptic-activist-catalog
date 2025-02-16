@@ -14,7 +14,7 @@ const ProfileInfo: FC<ProfileInfoProps> = ({ user }) => {
       <ul className={styles.list}>
         <li>
           Languages:{' '}
-          {user?.languages.map((language, index) => (
+          {user?.languages?.map((language, index) => (
             <span key={index}>{language.name}</span>
           ))}
         </li>

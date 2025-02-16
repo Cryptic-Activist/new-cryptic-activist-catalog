@@ -1,7 +1,9 @@
 import { SetCookieParams } from './types';
 
-export const copyToClipboard = (text: string) =>
+export const copyToClipboard = (text?: string | `0x${string}`) => {
+  if (!text) return;
   navigator.clipboard.writeText(text);
+};
 
 export const setLocalStorage = (key: string, value: string) =>
   localStorage.setItem(key, value);

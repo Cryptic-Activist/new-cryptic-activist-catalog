@@ -13,12 +13,9 @@ const Account = () => {
   return (
     <ProtectedRoute>
       <div className={styles.container}>
-        <ProfileImageInfo user={user.data} />
+        <ProfileImageInfo user={user} />
         <div className={styles.mainInfo}>
-          <ProfileNameUsername
-            names={user.data?.names}
-            username={user.data?.username}
-          />
+          <ProfileNameUsername names={user?.names} username={user?.username} />
           <Status status="offline" />
           <FeedbackCount positiveCount={13} negativeCount={2} />
         </div>

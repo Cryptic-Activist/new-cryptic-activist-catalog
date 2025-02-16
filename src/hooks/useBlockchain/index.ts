@@ -15,7 +15,7 @@ import {
 import { useStore } from '@nanostores/react';
 import { Connector, useConnect, useAccountEffect, useBalance } from 'wagmi';
 
-import { useNavigationBar, useUser } from '@/hooks';
+import { useUser } from '@/hooks';
 import { useEffect } from 'react';
 
 const useBlockchain = () => {
@@ -23,7 +23,6 @@ const useBlockchain = () => {
   const { connect, connectors } = useConnect();
   const balance = useBalance({ address: blockchain.account?.address });
   const { isLoggedIn } = useUser();
-  const { toggleDrawer, navigationBar } = useNavigationBar();
 
   const onConnectWallet = async (connector: Connector) => {
     connect({ connector });

@@ -1,16 +1,19 @@
 import Link from 'next/link';
 import { FC, forwardRef } from 'react';
 
-import { useNavigationBar, useUser } from '@/hooks';
+import { useBlockchain, useNavigationBar, useUser } from '@/hooks';
 import styles from './index.module.scss';
 import type { MenuListProps } from './types';
+import { resetNavigationBar } from '@/store';
 
 const MenuList: FC<MenuListProps> = forwardRef(({ items }, ref: any) => {
   const { logout } = useUser();
   const { toggleDrawer } = useNavigationBar();
+  const { onDisconnectWallet } = useBlockchain();
 
   const handleLogout = () => {
-    toggleDrawer('user');
+    resetNavigationBar();
+    onDisconnectWallet();
     logout();
   };
 

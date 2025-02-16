@@ -2,7 +2,9 @@
 
 import {
   $blockchain,
+  resetBlockchain,
   setAccount,
+  setBalance,
   setChain,
   setConnector,
   setProvider,
@@ -11,32 +13,52 @@ import {
 } from '@/store';
 import { EthereumLogo, PolygonLogo, SolanaLogo } from '@/assets';
 import { useStore } from '@nanostores/react';
-import { Connector, useConnect, WagmiProvider, useAccount } from 'wagmi';
+import { Connector, useConnect, useAccountEffect, useBalance } from 'wagmi';
 
-import { connectWallet } from '@/services/blockchain';
+import { useUser } from '@/hooks';
+import { useEffect } from 'react';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
   const { connect, connectors } = useConnect();
-  const { chain } = useAccount();
+  const balance = useBalance({ address: blockchain.account?.address });
+  const { isLoggedIn } = useUser();
 
   const onConnectWallet = async (connector: Connector) => {
-    const wallet = await connectWallet(connector);
-
-    setProvider(wallet.provider);
-    setConnector(wallet.connector);
-    setAccount({ address: wallet.accountAddress });
-    setChain(chain);
-    setWallet(wallet.connector.name);
     connect({ connector });
     toggleModal('blockchain');
   };
 
-  console.log(blockchain);
+  const isWalletConnected =
+    isLoggedIn() &&
+    blockchain.provider &&
+    blockchain.account?.address?.length > 0;
+
+  useAccountEffect({
+    async onConnect({ address, chain, connector, isReconnected }) {
+      const provider = await connector.getProvider();
+
+      setAccount({ address });
+      setChain(chain);
+      setConnector(connector);
+      setWallet(connector.name);
+      setProvider(provider);
+    },
+    onDisconnect() {
+      resetBlockchain();
+    },
+  });
+
+  useEffect(() => {
+    if (balance.isSuccess) {
+      setBalance(balance.data);
+    }
+  }, [balance.isSuccess]);
 
   return {
     blockchain,
     connectors,
+    isWalletConnected,
     connect,
     setProvider,
     onConnectWallet,

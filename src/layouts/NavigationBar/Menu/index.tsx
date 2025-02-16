@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Tooltip } from '@/components';
+import { Button, ConnectedWallet, Tooltip } from '@/components';
 import { menuList, menuUserList } from './data';
 import {
   useBlockchain,
@@ -27,7 +27,7 @@ const Menu = () => {
     query: userQuery,
     isLoggedIn,
   } = useUser();
-  const { blockchain, getAccountAddress } = useBlockchain();
+  const { blockchain, isWalletConnected } = useBlockchain();
 
   const handleToggleUserDrawer = () => {
     toggleDrawer('user');
@@ -50,7 +50,7 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {isLoggedIn() && !blockchain.wallet && !blockchain.provider && (
+      {!isWalletConnected && (
         <Button
           theme="transparent"
           type="button"
@@ -59,11 +59,7 @@ const Menu = () => {
           Connect Wallet
         </Button>
       )}
-      {isLoggedIn() && blockchain.provider && blockchain.account && (
-        <Button theme="transparent" type="button">
-          <FaWallet />
-        </Button>
-      )}
+      {isWalletConnected && <ConnectedWallet />}
       <Tooltip position="bottom" spacing={55}>
         {isLoggedIn() ? (
           <Button theme="transparent" onClick={handleToggleUserDrawer}>

@@ -16,4 +16,5 @@ export { default as PricingType } from './PricingType';
 export { default as MinusPlusInput } from './MinusPlusInput';
 export { default as ListAt } from './ListAt';
 export { default as QueryProvider } from './QueryProvider';
+export { default as ConnectedWallet } from './ConnectedWallet';
 export * from './lists';

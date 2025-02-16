@@ -2,6 +2,7 @@ import { map } from 'nanostores';
 
 import type {
   Account,
+  Balance,
   BlockchainSetter,
   BlockchainState,
   SetChainParam,
@@ -17,6 +18,7 @@ const setter = ({
   wallet,
   provider,
   account,
+  balance,
 }: BlockchainSetter) => {
   const blockchain = $blockchain.get();
 
@@ -26,6 +28,7 @@ const setter = ({
     wallet: wallet ?? blockchain.wallet,
     provider: provider ?? blockchain.provider,
     account: account ?? blockchain.account,
+    balance: balance ?? blockchain.balance,
   });
 };
 
@@ -47,4 +50,18 @@ export const setAccount = (account: Account) => {
 
 export const setConnector = (connector: Connector) => {
   setter({ connector });
+};
+
+export const setBalance = (balance: Balance) => {
+  setter({ balance });
+};
+
+export const resetBlockchain = () => {
+  setter({
+    connector: undefined,
+    chain: undefined,
+    wallet: undefined,
+    provider: undefined,
+    account: undefined,
+  });
 };

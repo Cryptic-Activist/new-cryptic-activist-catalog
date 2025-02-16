@@ -11,7 +11,7 @@ import styles from './index.module.scss';
 import { WalletName } from '@/hooks/useBlockchain/types';
 import { ProviderProps } from './types';
 import { useQuery } from '@tanstack/react-query';
-import { checkInstalledWallet, getProvider } from '@/services/blockchain';
+import { checkInstalledWallet } from '@/services/blockchain';
 
 const Provider: FC<ProviderProps> = ({ connector, onConnectWallet }) => {
   const { data: isWalletAvailable } = useQuery({

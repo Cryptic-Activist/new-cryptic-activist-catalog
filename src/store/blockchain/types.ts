@@ -1,25 +1,34 @@
 import { Connector, WagmiProvider } from 'wagmi';
 
 export type Account = {
-  address: string;
+  address: `0x${string}`;
+};
+
+export type Balance = {
+  decimals: number;
+  formatted: string;
+  symbol: string;
+  value: bigint;
 };
 
 export type BlockchainState = {
   connector: Connector;
   chain: any;
   wallet: string;
-  provider: typeof WagmiProvider;
+  provider: any;
   account: Account;
+  balance: Balance;
 };
 
 export type BlockchainSetter = {
   connector?: Connector;
   chain?: any;
   wallet?: string;
-  provider?: typeof WagmiProvider;
+  provider?: any;
   account?: Account;
+  balance?: Balance;
 };
 
 export type SetChainParam = any;
 
-export type SetProviderParam = typeof WagmiProvider;
+export type SetProviderParam = any;

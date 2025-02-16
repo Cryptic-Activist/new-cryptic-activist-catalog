@@ -11,6 +11,7 @@ import type {
 export const $navigationBar = map<NavigationBarState>({
   drawers: {
     user: false,
+    wallet: false,
   },
   tooltips: {
     user: false,
@@ -68,6 +69,7 @@ export const resetNavigationBar = () => {
   setter({
     drawers: {
       user: false,
+      wallet: false,
     },
     tooltips: {
       user: false,

@@ -2,6 +2,7 @@ type NavigationBarStatus = 'idle' | 'loading' | 'success' | 'failed';
 
 export type Drawers = {
   user: boolean;
+  wallet: boolean;
 };
 
 type Tooltips = {
@@ -35,7 +36,7 @@ export type NavigationBarStateSetter = {
   status?: NavigationBarStatus;
 };
 
-export type Drawer = 'user';
+export type Drawer = 'user' | 'wallet';
 
 export type ToggleDrawerActionPayload = {
   drawer: Drawer;

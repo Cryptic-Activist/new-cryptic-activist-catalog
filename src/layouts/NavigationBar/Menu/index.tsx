@@ -50,7 +50,7 @@ const Menu = () => {
           {label}
         </Button>
       ))}
-      {!isWalletConnected && (
+      {isLoggedIn() && !isWalletConnected && (
         <Button
           theme="transparent"
           type="button"

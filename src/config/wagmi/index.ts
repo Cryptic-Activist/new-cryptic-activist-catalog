@@ -4,7 +4,7 @@ import { injected, metaMask, safe, coinbaseWallet } from 'wagmi/connectors';
 
 export const wagmiConfig = createConfig({
   chains: [mainnet, base],
-  connectors: [metaMask(), coinbaseWallet()],
+  connectors: [metaMask(), coinbaseWallet(), injected()],
   transports: {
     [mainnet.id]: http(),
     [base.id]: http(),

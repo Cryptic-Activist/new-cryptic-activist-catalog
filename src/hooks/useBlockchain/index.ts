@@ -17,6 +17,8 @@ import { Connector, useConnect, useAccountEffect, useBalance } from 'wagmi';
 
 import { useUser } from '@/hooks';
 import { useEffect } from 'react';
+import { getCookie } from '@/utils';
+import { BRAVE_WALLET } from '@/constants';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
@@ -24,12 +26,20 @@ const useBlockchain = () => {
   const balance = useBalance({ address: blockchain.account?.address });
   const { isLoggedIn } = useUser();
 
+  const resetWalletNavigation = () => {
+    resetNavigationBar();
+    resetBlockchain();
+  };
+
   const onConnectWallet = async (connector: Connector) => {
     connect({ connector });
     toggleModal('blockchain');
   };
 
-  const onDisconnectWallet = async () => {
+  const onDisconnectWallet = async (connector: Connector) => {
+    if (connector.name === BRAVE_WALLET) {
+      resetWalletNavigation();
+    }
     await blockchain.connector?.disconnect();
   };
 
@@ -50,16 +60,21 @@ const useBlockchain = () => {
       setProvider(provider);
     },
     onDisconnect() {
-      resetNavigationBar();
-      resetBlockchain();
+      resetWalletNavigation();
     },
   });
+
+  const onReconnectWallet = () => {
+    // const walletCookie = getCookie();
+  };
 
   useEffect(() => {
     if (balance.isSuccess) {
       setBalance(balance.data);
     }
   }, [balance.isSuccess]);
+
+  useEffect(() => {}, []);
 
   return {
     blockchain,

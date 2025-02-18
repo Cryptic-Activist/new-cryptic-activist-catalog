@@ -36,8 +36,8 @@ const useBlockchain = () => {
     toggleModal('blockchain');
   };
 
-  const onDisconnectWallet = async (connector: Connector) => {
-    if (connector.name === BRAVE_WALLET) {
+  const onDisconnectWallet = async () => {
+    if (blockchain.connector?.name === BRAVE_WALLET) {
       resetWalletNavigation();
     }
     await blockchain.connector?.disconnect();

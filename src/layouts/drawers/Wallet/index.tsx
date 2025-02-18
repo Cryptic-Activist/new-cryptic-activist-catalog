@@ -81,10 +81,7 @@ const Wallet = () => {
               {isCopied ? 'Address copied' : blockchain.account?.address}
             </p>
           </button>
-          <button
-            className={styles.disconnect}
-            onClick={() => onDisconnectWallet(blockchain.connector)}
-          >
+          <button className={styles.disconnect} onClick={onDisconnectWallet}>
             <FaPowerOff size={24} />
           </button>
         </div>

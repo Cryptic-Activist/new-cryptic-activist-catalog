@@ -1,7 +1,9 @@
 import { Connector } from 'wagmi';
 
+export type Address = `0x${string}`;
+
 export type Account = {
-  address: `0x${string}`;
+  address: Address;
 };
 
 export type Balance = {

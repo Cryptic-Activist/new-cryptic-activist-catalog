@@ -3,13 +3,15 @@ type Language = {
   name: string;
 };
 
+export type ProfileColor = `#${number}`;
+
 export type User = {
   names: {
     firstName: string;
     lastName: string;
   };
   username: string;
-  profileColor: string;
+  profileColor: ProfileColor;
   createdAt: string;
   updatedAt: string;
   languages: Language[];
@@ -23,7 +25,7 @@ export type UserSetter = {
     lastName?: string;
   };
   username?: string;
-  profileColor?: string;
+  profileColor?: ProfileColor;
   createdAt?: string;
   updatedAt?: string;
   languages?: Language[];

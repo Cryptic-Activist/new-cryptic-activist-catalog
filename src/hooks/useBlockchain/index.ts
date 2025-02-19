@@ -12,13 +12,13 @@ import {
   setWallet,
   toggleModal,
 } from '@/store';
-import { useStore } from '@nanostores/react';
-import { Connector, useConnect, useAccountEffect, useBalance } from 'wagmi';
+import { BRAVE_WALLET, WAGNI_LOCALSTORAGE } from '@/constants';
+import { Connector, useAccountEffect, useBalance, useConnect } from 'wagmi';
+import { getCookie, removeLocalStorage } from '@/utils';
 
-import { useUser } from '@/hooks';
 import { useEffect } from 'react';
-import { getCookie } from '@/utils';
-import { BRAVE_WALLET } from '@/constants';
+import { useStore } from '@nanostores/react';
+import { useUser } from '@/hooks';
 
 const useBlockchain = () => {
   const blockchain = useStore($blockchain);
@@ -32,15 +32,25 @@ const useBlockchain = () => {
   };
 
   const onConnectWallet = async (connector: Connector) => {
+    console.log({ connector });
     connect({ connector });
     toggleModal('blockchain');
+  };
+
+  const clearConnectedWalletLocalStorage = () => {
+    WAGNI_LOCALSTORAGE.forEach((storage) => {
+      console.log(storage);
+      removeLocalStorage(storage);
+    });
   };
 
   const onDisconnectWallet = async () => {
     if (blockchain.connector?.name === BRAVE_WALLET) {
       resetWalletNavigation();
+      clearConnectedWalletLocalStorage();
     }
-    await blockchain.connector?.disconnect();
+    const disconnected = await blockchain.connector?.disconnect();
+    console.log({ disconnected });
   };
 
   const isWalletConnected =
@@ -48,6 +58,13 @@ const useBlockchain = () => {
     blockchain.provider &&
     blockchain.account?.address &&
     blockchain.account?.address?.length > 0;
+
+  // console.log({
+  //   isWalletConnected,
+  //   provider: blockchain.provider,
+  //   blockchainAddress: blockchain.account?.address,
+  //   blockchainAddressLength: blockchain.account?.address?.length,
+  // });
 
   useAccountEffect({
     async onConnect({ address, chain, connector, isReconnected }) {

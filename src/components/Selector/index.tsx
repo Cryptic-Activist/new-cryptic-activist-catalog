@@ -19,13 +19,20 @@ const Selector: FC<SelectorProps> = ({ type, hasLabel = true }) => {
   };
 
   const getButtonLabel = () => {
-    const localLabel =
-      type === 'cryptocurrency'
-        ? buildLabel(
-            defaults.cryptocurrency?.symbol!,
-            defaults.cryptocurrency?.name!
-          )
-        : buildLabel(defaults.fiat?.symbol!, defaults.fiat?.name!);
+    let localLabel = 'No Data';
+    switch (type) {
+      case 'cryptocurrency': {
+        localLabel = buildLabel(
+          defaults.cryptocurrency?.symbol!,
+          defaults.cryptocurrency?.name!
+        );
+        break;
+      }
+      case 'fiat': {
+        localLabel = buildLabel(defaults.fiat?.symbol!, defaults.fiat?.name!);
+        break;
+      }
+    }
 
     setLabel(localLabel);
   };
@@ -43,7 +50,10 @@ const Selector: FC<SelectorProps> = ({ type, hasLabel = true }) => {
     if (defaults.cryptocurrency && defaults.fiat) {
       getButtonLabel();
     }
+    console.log({ defaults });
   }, [defaults, type]);
+
+  console.log({ label });
 
   return (
     <div className={styles.container}>
@@ -52,11 +62,7 @@ const Selector: FC<SelectorProps> = ({ type, hasLabel = true }) => {
           {toCapitalize(type)}
         </label>
       )}
-      <button
-        className={styles.selector}
-        id={styles.selector}
-        onClick={handleClick}
-      >
+      <button className={styles.selector} onClick={handleClick}>
         {label}
       </button>
     </div>

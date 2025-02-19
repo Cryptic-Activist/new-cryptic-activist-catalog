@@ -1,12 +1,69 @@
 'use client';
 
-import React, { FC, MouseEvent, useEffect, useState } from 'react';
-
-import styles from './index.module.scss';
+import { AccountInfoProps, ValueContainerProps } from './types';
+import { BRAVE_WALLET, COINBASE_WALLET, METAMASK } from '@/constants';
+import { Brave, Coinbase, MetaMask } from '@/assets';
 import { FaChevronRight, FaPowerOff } from 'react-icons/fa';
+import React, { FC, useEffect, useState } from 'react';
 import { useBlockchain, useNavigationBar, useUser } from '@/hooks';
-import { ValueContainerProps } from './types';
+
 import { copyToClipboard } from '@/utils';
+import styles from './index.module.scss';
+
+const AccountInfo: FC<AccountInfoProps> = ({
+  address,
+  isCopied,
+  onCopyAddress,
+  profileColor,
+  providerName,
+}) => {
+  const [providerImage, setProviderImage] = useState();
+
+  useEffect(() => {
+    const getProviderImage = () => {
+      switch (providerName) {
+        case METAMASK: {
+          return MetaMask.src;
+        }
+        case BRAVE_WALLET: {
+          return Brave.src;
+        }
+        case COINBASE_WALLET: {
+          return Coinbase.src;
+        }
+      }
+    };
+
+    const providerImage = getProviderImage();
+    setProviderImage(providerImage);
+  }, []);
+
+  return (
+    <button
+      className={styles.accountInfo}
+      type="button"
+      onClick={onCopyAddress}
+    >
+      <div className={styles.profileColorProvider}>
+        <span
+          className={styles.profileColor}
+          style={{
+            backgroundColor: profileColor,
+          }}
+        />
+        <div
+          className={styles.provider}
+          style={{
+            backgroundImage: `url(${providerImage})`,
+          }}
+          title={providerName}
+        />
+      </div>
+
+      <p className={styles.address}>{isCopied ? 'Address copied' : address}</p>
+    </button>
+  );
+};
 
 const ValueContainer: FC<ValueContainerProps> = ({ label, value }) => {
   const valueType = typeof value;
@@ -62,25 +119,13 @@ const Wallet = () => {
       </button>
       <div className={styles.content}>
         <div className={styles.header}>
-          <button
-            className={styles.accountInfo}
-            type="button"
-            onClick={onCopyAddress}
-          >
-            <div className={styles.profileColorProvider}>
-              <span
-                className={styles.profileColor}
-                style={{
-                  backgroundColor: user.profileColor,
-                }}
-              />
-              <span className={styles.provider} />
-            </div>
-
-            <p className={styles.address}>
-              {isCopied ? 'Address copied' : blockchain.account?.address}
-            </p>
-          </button>
+          <AccountInfo
+            address={blockchain.account?.address}
+            isCopied={isCopied}
+            onCopyAddress={onCopyAddress}
+            profileColor={user.profileColor}
+            providerName={blockchain.wallet}
+          />
           <button className={styles.disconnect} onClick={onDisconnectWallet}>
             <FaPowerOff size={24} />
           </button>

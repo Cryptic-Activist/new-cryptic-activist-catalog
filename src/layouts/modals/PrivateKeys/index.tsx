@@ -1,18 +1,17 @@
 'use client';
 
-import React from 'react';
-import { FaClone } from 'react-icons/fa';
+import { usePrivateKeys, useRegister } from '@/hooks';
 
 import { Button } from '@/components';
+import { FaClone } from 'react-icons/fa';
 import { IMPORTANT_ACTIONS } from '@/constants/layouts';
-import { usePrivateKeys, useRegister } from '@/hooks';
+import React from 'react';
 import { Template } from '@/layouts/modals';
-
 import styles from './index.module.scss';
 
 const PrivateKeys = () => {
   const { register } = useRegister();
-  const { handleCopyPrivateKeysToClipboard, onAccountVerification } =
+  const { handleCopyPrivateKeysToClipboard, onAccountVerification, isCopied } =
     usePrivateKeys();
 
   return (
@@ -47,7 +46,7 @@ const PrivateKeys = () => {
             theme="secondary"
             onClick={handleCopyPrivateKeysToClipboard}
           >
-            <span>Copy</span>
+            <span>{isCopied ? 'Copied' : 'Copy'}</span>
             <FaClone size="1.2rem" />
           </Button>
           <Button

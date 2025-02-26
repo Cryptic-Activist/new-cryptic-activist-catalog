@@ -12,3 +12,4 @@ export { default as useVerifyAccount } from './useVerifyAccount';
 export { default as useBlockchain } from './useBlockchain';
 export { default as useCountDown } from './useCountDown';
 export { default as useCreateOffer } from './useCreateOffer';
+export { default as useWallet } from './useWallet';

@@ -1,4 +1,4 @@
-@use '../../../../styles/globals.module.scss';
+@use "../../../../styles/globals.module.scss";
 
 .container {
   width: 90%;
@@ -8,7 +8,6 @@
   gap: 1rem;
   padding: 1rem 0;
   box-sizing: border-box !important;
-  position: relative;
 }
 
 .main {
@@ -23,11 +22,9 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: fit-content;
-  box-sizing: border-box !important;
   width: 100%;
   position: sticky;
-  top: 0;
+  top: 1rem;
 }
 
 .heading {

@@ -18,20 +18,20 @@ export type Toast = {
 };
 
 type Defaults = {
-  fiat: Fiat | null;
-  cryptocurrency: Cryptocurrency | null;
-  paymentMethod: PaymentMethod | null;
+  fiat?: Fiat;
+  cryptocurrency?: Cryptocurrency;
+  paymentMethod?: PaymentMethod;
 };
 
-export type CurrentPrice = number | null;
+export type CurrentPrice = number;
 
 export type AppState = {
   isMobile: boolean;
   dimensions: Dimensions;
   toasts: Toast[];
   type: Type;
-  defaults: Defaults;
-  currentPrice: CurrentPrice;
+  defaults?: Defaults;
+  currentPrice?: CurrentPrice;
 };
 
 export type AppStateSetter = {

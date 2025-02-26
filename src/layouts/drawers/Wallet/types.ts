@@ -9,6 +9,9 @@ export type AccountInfoProps = {
   address?: Address;
   profileColor: `#${number}`;
   isCopied: boolean;
-  providerName?: string;
+  provider?: {
+    image?: string;
+    name?: string;
+  };
   onCopyAddress: () => void;
 };

@@ -32,14 +32,12 @@ const useBlockchain = () => {
   };
 
   const onConnectWallet = async (connector: Connector) => {
-    console.log({ connector });
     connect({ connector });
     toggleModal('blockchain');
   };
 
   const clearConnectedWalletLocalStorage = () => {
     WAGNI_LOCALSTORAGE.forEach((storage) => {
-      console.log(storage);
       removeLocalStorage(storage);
     });
   };
@@ -49,8 +47,7 @@ const useBlockchain = () => {
       resetWalletNavigation();
       clearConnectedWalletLocalStorage();
     }
-    const disconnected = await blockchain.connector?.disconnect();
-    console.log({ disconnected });
+    await blockchain.connector?.disconnect();
   };
 
   const isWalletConnected =
@@ -58,13 +55,6 @@ const useBlockchain = () => {
     blockchain.provider &&
     blockchain.account?.address &&
     blockchain.account?.address?.length > 0;
-
-  // console.log({
-  //   isWalletConnected,
-  //   provider: blockchain.provider,
-  //   blockchainAddress: blockchain.account?.address,
-  //   blockchainAddressLength: blockchain.account?.address?.length,
-  // });
 
   useAccountEffect({
     async onConnect({ address, chain, connector, isReconnected }) {
@@ -90,8 +80,6 @@ const useBlockchain = () => {
       setBalance(balance.data);
     }
   }, [balance.isSuccess]);
-
-  useEffect(() => {}, []);
 
   return {
     blockchain,

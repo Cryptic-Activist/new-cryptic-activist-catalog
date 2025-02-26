@@ -50,10 +50,7 @@ const Selector: FC<SelectorProps> = ({ type, hasLabel = true }) => {
     if (defaults.cryptocurrency && defaults.fiat) {
       getButtonLabel();
     }
-    console.log({ defaults });
   }, [defaults, type]);
-
-  console.log({ label });
 
   return (
     <div className={styles.container}>

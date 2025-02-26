@@ -5,39 +5,17 @@ import { BRAVE_WALLET, COINBASE_WALLET, METAMASK } from '@/constants';
 import { Brave, Coinbase, MetaMask } from '@/assets';
 import { FaChevronRight, FaPowerOff } from 'react-icons/fa';
 import React, { FC, useEffect, useState } from 'react';
-import { useBlockchain, useNavigationBar, useUser } from '@/hooks';
 
-import { copyToClipboard } from '@/utils';
 import styles from './index.module.scss';
+import { useWallet } from '@/hooks';
 
 const AccountInfo: FC<AccountInfoProps> = ({
   address,
   isCopied,
   onCopyAddress,
   profileColor,
-  providerName,
+  provider,
 }) => {
-  const [providerImage, setProviderImage] = useState();
-
-  useEffect(() => {
-    const getProviderImage = () => {
-      switch (providerName) {
-        case METAMASK: {
-          return MetaMask.src;
-        }
-        case BRAVE_WALLET: {
-          return Brave.src;
-        }
-        case COINBASE_WALLET: {
-          return Coinbase.src;
-        }
-      }
-    };
-
-    const providerImage = getProviderImage();
-    setProviderImage(providerImage);
-  }, []);
-
   return (
     <button
       className={styles.accountInfo}
@@ -54,9 +32,9 @@ const AccountInfo: FC<AccountInfoProps> = ({
         <div
           className={styles.provider}
           style={{
-            backgroundImage: `url(${providerImage})`,
+            backgroundImage: `url(${provider?.image})`,
           }}
-          title={providerName}
+          title={provider?.name}
         />
       </div>
 
@@ -85,32 +63,17 @@ const ValueContainer: FC<ValueContainerProps> = ({ label, value }) => {
 };
 
 const Wallet = () => {
-  const [isOpened, setIsOpened] = useState(false);
-  const [isCopied, setIsCopied] = useState(false);
-
-  const { toggleDrawer, navigationBar } = useNavigationBar();
-  const { blockchain, onDisconnectWallet } = useBlockchain();
-  const { user } = useUser();
-
+  const {
+    isOpened,
+    isCopied,
+    provider,
+    blockchain,
+    user,
+    closeWallet,
+    onCopyAddress,
+    onDisconnectWallet,
+  } = useWallet();
   const walletStyle = isOpened ? styles.closed : styles.opened;
-
-  const closeWallet = () => {
-    setIsOpened((prev) => !prev);
-    setTimeout(() => {
-      toggleDrawer('wallet');
-    }, 600);
-  };
-
-  const onCopyAddress = () => {
-    copyToClipboard(blockchain.account?.address);
-    setIsCopied((prev) => !prev);
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsCopied(false);
-    }, 1500);
-  }, [isCopied]);
 
   return (
     <aside className={`${styles.container} ${walletStyle}`}>
@@ -124,7 +87,7 @@ const Wallet = () => {
             isCopied={isCopied}
             onCopyAddress={onCopyAddress}
             profileColor={user.profileColor}
-            providerName={blockchain.wallet}
+            provider={provider}
           />
           <button className={styles.disconnect} onClick={onDisconnectWallet}>
             <FaPowerOff size={24} />
@@ -136,7 +99,7 @@ const Wallet = () => {
             value={
               blockchain.balance?.formatted
                 ? parseFloat(blockchain.balance?.formatted)
-                : ''
+                : 'Unavailable'
             }
           />
           <ValueContainer label={'Blockchain'} value={blockchain.chain?.name} />

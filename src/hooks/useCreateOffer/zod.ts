@@ -7,6 +7,7 @@ import {
   ZodOfferType,
   ZodPaymentMethodId,
   ZodTimeLimit,
+  ZodTradePricingType,
 } from '@/layouts/sections/offer/create/zod';
 
 import { z } from 'zod';
@@ -35,17 +36,18 @@ export const createOfferPaymentMethodResolver = zodResolver(
 
 export const CreateOfferTradePricing = z
   .object({
+    tradePricingType: ZodTradePricingType,
     listAt: ZodListAt,
     limitMax: ZodLimitMax,
     limitMin: ZodLimitMin,
     timeLimit: ZodTimeLimit,
   })
-  .superRefine(({ listAt }, ctx) => {
-    if (listAt !== 'fixed' && listAt !== 'market') {
+  .superRefine(({ tradePricingType }, ctx) => {
+    if (tradePricingType !== 'fixed' && tradePricingType !== 'market') {
       ctx.addIssue({
         code: 'custom',
         message: "Rate type must be either 'fixed' or 'market'",
-        path: ['listAt'],
+        path: ['tradePricingType'],
       });
     }
   });

@@ -30,7 +30,7 @@ export type AppState = {
   dimensions: Dimensions;
   toasts: Toast[];
   type: Type;
-  defaults?: Defaults;
+  defaults: Defaults;
   currentPrice?: CurrentPrice;
 };
 

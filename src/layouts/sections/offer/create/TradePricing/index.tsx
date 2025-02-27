@@ -16,16 +16,14 @@ import { useApp } from '@/hooks';
 
 const CreateOfferTradePricing: FC<CreateOfferTradePricingProps> = ({
   setCreateOfferValues,
+  toStep,
   createOffer,
   step,
   onClickEvents,
-  toStep,
 }) => {
   const {
     app: { currentPrice },
   } = useApp();
-
-  console.log({ createOffer });
 
   const selectRateType = (item: PricingItem) => {
     setCreateOfferValues({ tradePricingType: item.value });
@@ -99,7 +97,7 @@ const CreateOfferTradePricing: FC<CreateOfferTradePricingProps> = ({
           </section>
         </main>
         <aside className={stylesCore.aside}>
-          <h3 className={stylesCore.asideHeading}>About the Payment Method</h3>
+          <h3 className={stylesCore.asideHeading}>About the Trade Pricing</h3>
           <section className={stylesCore.horizontalGroup}>
             <p className={stylesCore.asideStatement}>
               In this step you'll be asked for the payment method of your offer
@@ -116,7 +114,7 @@ const CreateOfferTradePricing: FC<CreateOfferTradePricingProps> = ({
             isDisabled={!createOffer?.isTradePricingCompleted}
             onClick={goToNextStep}
           >
-            Go the next step: Trade pricing
+            Go the next step: Trade Instructions
           </Button>
         </aside>
       </div>

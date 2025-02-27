@@ -1,10 +1,11 @@
 'use client';
 
-import { useApp, useNavigationBar } from '@/hooks';
-import { toCapitalize, toUpperCase } from '@/utils';
 import { FC, HTMLInputTypeAttribute } from 'react';
-import styles from './index.module.scss';
+import { toCapitalize, toUpperCase } from '@/utils';
+import { useApp, useNavigationBar } from '@/hooks';
+
 import { SelectWithInput } from './types';
+import styles from './index.module.scss';
 
 const NO_DATA = 'No Data';
 

@@ -16,6 +16,7 @@ export const $app = map<AppState>({
   isMobile: false,
   type: 'buy',
   toasts: [],
+  defaults: {},
 });
 
 const setter = ({

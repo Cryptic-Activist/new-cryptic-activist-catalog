@@ -13,7 +13,7 @@ const useCreateOffer = () => {
   const {
     app: { defaults },
   } = useApp();
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(0);
   const onClickEvents = {
     0: () => toStep(0),
     1: () => toStep(1),
@@ -45,6 +45,7 @@ const useCreateOffer = () => {
 
   useEffect(() => {
     const validated = CreateOfferTradePricing.safeParse({
+      tradePricingType: createOffer?.tradePricingType,
       listAt: createOffer?.listAt,
       limitMax: createOffer?.limitMax,
       limitMin: createOffer?.limitMin,
@@ -53,6 +54,7 @@ const useCreateOffer = () => {
 
     setCreateOfferValues({ isTradePricingCompleted: validated.success });
   }, [
+    createOffer?.tradePricingType,
     createOffer?.listAt,
     createOffer?.limitMin,
     createOffer?.limitMax,
